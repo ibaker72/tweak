@@ -23,7 +23,7 @@ export function Founder() {
                     Behind the studio
                   </span>
                   <h2 className="mt-2 font-display text-[clamp(24px,3.5vw,32px)] font-extrabold tracking-[-0.02em] text-white">
-                    Built by engineers who ship.
+                    Your external product team.
                   </h2>
                 </div>
 
@@ -39,11 +39,10 @@ export function Founder() {
                   {/* Bio */}
                   <div className="text-center sm:text-left">
                     <p className="text-[16px] leading-[1.85] text-gray-300">
-                      Hi, I&apos;m <strong className="text-white">Iyad</strong>.
-                      I build production-grade web apps using Next.js, Supabase, and modern cloud infrastructure.
+                      <strong className="text-white">Tweak & Build</strong> is your external product team. Led by <strong className="text-white">Iyad Baker</strong>, we help founders ship production-grade software without the friction or overhead of a traditional agency.
                     </p>
                     <p className="mt-3 text-[15px] leading-[1.85] text-body">
-                      From SaaS products to automation systems, my focus is simple: build fast, ship fast, scale fast. Every project at Tweak & Build gets senior engineering from day one.
+                       Our philosophy is simple: <strong className="text-white/90">velocity without compromise.</strong> We architect high-impact SaaS products and automation systems using Next.js and Supabase. Every project gets senior engineering from day one, ensuring you build on a foundation that actually scales.
                     </p>
                   </div>
                 </div>

@@ -11,8 +11,6 @@ export function Pricing() {
   const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", timeline: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", timeline: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const s = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setForm(p => ({ ...p, [k]: e.target.value }));
   const submit = async () => { setStatus("loading"); try { await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, type: tab }) }); } catch {} setStatus("success"); };
   const reset = () => { setStatus("idle"); setForm({ name: "", email: "", company: "", budget: "", timeline: "", message: "" }); };

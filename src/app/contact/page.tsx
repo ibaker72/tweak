@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { Mail, Clock, Shield, Send, Loader2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/shared";
@@ -8,9 +7,12 @@ import { CalendlyEmbed } from "@/components/calendly-embed";
 import { budgetOptions, timelineOptions, tiers } from "@/lib/data";
 
 export default function ContactPage() {
-  const params = useSearchParams();
-  const tierParam = params.get("tier");
+  const [tierParam, setTierParam] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", timeline: "", tier: "", message: "" });
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setTierParam(params.get("tier"));
+  }, []);
   const [status, setStatus] = useState<"idle"|"loading"|"success">("idle");
   useEffect(() => { if (tierParam) setForm(p => ({ ...p, tier: tierParam })); }, [tierParam]);
   const s = (k: string) => (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => setForm(p => ({ ...p, [k]: e.target.value }));

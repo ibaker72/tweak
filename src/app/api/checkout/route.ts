@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     // ── Production: real Stripe Checkout ──
     if (stripeKey && !stripeKey.startsWith("sk_test_xxxx")) {
       const Stripe = (await import("stripe")).default;
-      const stripe = new Stripe(stripeKey, { apiVersion: "2024-12-18.acacia" });
+      const stripe = new Stripe(stripeKey, { apiVersion: "2025-02-24.acacia" });
 
       const priceId = tierPriceMap[tier];
 

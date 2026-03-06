@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { CheckCircle, Calendar, ArrowRight, FileText, MessageSquare } from "lucide-react";
 import { Reveal } from "@/components/shared";
@@ -8,10 +8,15 @@ import { CalendlyEmbed } from "@/components/calendly-embed";
 import { tiers } from "@/lib/data";
 
 export default function SuccessPage() {
-  const params = useSearchParams();
-  const tierName = params.get("tier") || "Quick Build";
-  const isDev = params.get("dev") === "true";
+  const [tierName, setTierName] = useState("Quick Build");
+  const [isDev, setIsDev] = useState(false);
   const tierData = tiers.find((t) => t.name === tierName);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setTierName(params.get("tier") || "Quick Build");
+    setIsDev(params.get("dev") === "true");
+  }, []);
 
   return (
     <div className="pb-20 pt-28 sm:pt-32">

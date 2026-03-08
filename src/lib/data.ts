@@ -80,49 +80,159 @@ export const projects: Project[] = [
 ];
 
 export const services = [
-  { icon: "Rocket" as const, title: "MVPs & Web Apps", desc: "From concept to launched product. Full-stack engineering with auth, payments, dashboards, and the features that drive your business.", tags: ["Next.js","React","Supabase","Stripe"], gradient: "from-v/[0.08] to-cyan/[0.03]" },
-  { icon: "Zap" as const, title: "Landing Pages & Funnels", desc: "Every element is conversion-engineered. Fast load, sharp copy, clear CTAs. Pages that turn ad spend into revenue.", tags: ["SEO","A/B Testing","Analytics","Speed First"], gradient: "from-cyan/[0.06] to-v/[0.03]" },
-  { icon: "Globe" as const, title: "WordPress & E-Commerce", desc: "Custom themes, WooCommerce builds, and headless architectures. Sites your team can update without filing a support ticket.", tags: ["Custom Themes","WooCommerce","ACF","Headless WP"], gradient: "from-gold/[0.04] to-v/[0.03]" },
-  { icon: "Bot" as const, title: "Automation & AI", desc: "We connect your tools, eliminate repetitive tasks, and build AI workflows that save your team real hours every week.", tags: ["OpenAI","n8n","Custom APIs","Integrations"], gradient: "from-v/[0.06] to-cyan/[0.04]" },
+  {
+    icon: "Rocket" as const,
+    title: "Web Applications",
+    tagline: "Full-stack products that run your business",
+    desc: "From SaaS dashboards to internal tools. Auth, payments, real-time data, and the custom logic that makes your product actually work.",
+    tags: ["Next.js", "React", "Supabase", "Stripe"],
+    gradient: "from-v/[0.08] to-cyan/[0.03]",
+  },
+  {
+    icon: "Zap" as const,
+    title: "Landing Pages & Funnels",
+    tagline: "Pages that turn traffic into revenue",
+    desc: "Conversion-engineered from the first pixel. Fast load, sharp messaging, strategic CTAs. Built to make your ad spend work harder.",
+    tags: ["SEO", "A/B Testing", "Analytics", "Speed First"],
+    gradient: "from-cyan/[0.06] to-v/[0.03]",
+  },
+  {
+    icon: "Globe" as const,
+    title: "E-Commerce & Storefronts",
+    tagline: "Custom shopping experiences that sell",
+    desc: "Headless builds, custom Shopify themes, and WooCommerce platforms. Sites your team can manage without filing a support ticket.",
+    tags: ["Shopify", "WooCommerce", "Headless", "Custom Themes"],
+    gradient: "from-gold/[0.04] to-v/[0.03]",
+  },
+  {
+    icon: "Bot" as const,
+    title: "Automation & AI Systems",
+    tagline: "Eliminate the work that slows you down",
+    desc: "We connect your tools, automate repetitive workflows, and build AI-powered systems that save your team real hours every week.",
+    tags: ["OpenAI", "n8n", "Custom APIs", "Integrations"],
+    gradient: "from-v/[0.06] to-cyan/[0.04]",
+  },
 ];
 
 export const tiers = [
-  { name: "Single Page", price: "$497", time: "3 day delivery", features: ["1 responsive page","Contact form","SEO fundamentals","Mobile optimized","1 revision round"], excluded: ["CMS","Multi-page","E-commerce"], popular: false },
-  { name: "Multi Page", price: "$1,497", time: "7 day delivery", features: ["Up to 5 pages","CMS integration","Lead capture forms","Analytics setup","2 revision rounds","Basic SEO"], excluded: ["E-commerce","Custom backend"], popular: true },
-  { name: "Full Site", price: "$2,997", time: "14 day delivery", features: ["Up to 12 pages","CMS + blog","Advanced forms + SEO","E-commerce ready","3 revision rounds","30 day support"], excluded: ["Custom SaaS logic","AI integrations"], popular: false },
+  {
+    name: "Single Page",
+    price: "$497",
+    time: "3 day delivery",
+    features: ["1 responsive page", "Contact form", "SEO fundamentals", "Mobile optimized", "1 revision round"],
+    excluded: ["CMS", "Multi-page", "E-commerce"],
+    popular: false,
+  },
+  {
+    name: "Multi Page",
+    price: "$1,497",
+    time: "7 day delivery",
+    features: ["Up to 5 pages", "CMS integration", "Lead capture forms", "Analytics setup", "2 revision rounds", "Basic SEO"],
+    excluded: ["E-commerce", "Custom backend"],
+    popular: true,
+  },
+  {
+    name: "Full Site",
+    price: "$2,997",
+    time: "14 day delivery",
+    features: ["Up to 12 pages", "CMS + blog", "Advanced forms + SEO", "E-commerce ready", "3 revision rounds", "30 day support"],
+    excluded: ["Custom SaaS logic", "AI integrations"],
+    popular: false,
+  },
 ];
 
 export const testimonials = [
-  { quote: "They shipped our platform in 5 weeks and it looked like it had months of development behind it. Our investors were genuinely impressed at the demo.", name: "David Morales", title: "CTO, LeadsAndSaaS", rating: 5 },
-  { quote: "We went from a 48 hour manual quoting process to instant online quotes. The impact on our conversion rate was immediate and dramatic.", name: "Ryan Torres", title: "Founder, Create3DParts", rating: 5 },
-  { quote: "Third agency we hired. First one that actually shipped on time, on budget, and without us having to chase for updates every week.", name: "Priya Patel", title: "Founder, GreenThread", rating: 5 },
+  {
+    quote: "They shipped our platform in 5 weeks and it looked like it had months of development behind it. Our investors were genuinely impressed at the demo.",
+    name: "David Morales",
+    title: "CTO, LeadsAndSaaS",
+    project: "SaaS Platform",
+    rating: 5,
+  },
+  {
+    quote: "We went from a 48 hour manual quoting process to instant online quotes. The impact on our conversion rate was immediate and dramatic.",
+    name: "Ryan Torres",
+    title: "Founder, Create3DParts",
+    project: "E-Commerce Platform",
+    rating: 5,
+  },
+  {
+    quote: "Third agency we hired. First one that actually shipped on time, on budget, and without us having to chase for updates every week.",
+    name: "Priya Patel",
+    title: "Founder, GreenThread",
+    project: "Landing Page + CRM",
+    rating: 5,
+  },
 ];
 
 export const techStack = [
-  { name: "Next.js", color: "#fff" }, { name: "React", color: "#61DAFB" },
-  { name: "TypeScript", color: "#3178C6" }, { name: "Supabase", color: "#3ECF8E" },
-  { name: "Stripe", color: "#635BFF" }, { name: "OpenAI", color: "#10A37F" },
-  { name: "WordPress", color: "#21759B" }, { name: "Node.js", color: "#68A063" },
+  { name: "Next.js", color: "#fff" },
+  { name: "React", color: "#61DAFB" },
+  { name: "TypeScript", color: "#3178C6" },
+  { name: "Supabase", color: "#3ECF8E" },
+  { name: "Stripe", color: "#635BFF" },
+  { name: "OpenAI", color: "#10A37F" },
+  { name: "WordPress", color: "#21759B" },
+  { name: "Node.js", color: "#68A063" },
   { name: "Vercel", color: "#fff" },
 ];
 
-export const liveActivity = [
-  { text: "Deployed Create3DParts v2.3 to production", time: "2 hours ago", type: "deploy" },
-  { text: "New lead captured for Atlas Freight", time: "5 hours ago", type: "lead" },
-  { text: "LeadsAndSaaS sprint 14 review completed", time: "Yesterday", type: "review" },
-  { text: "Meridian Health onboarded 200th patient", time: "2 days ago", type: "milestone" },
-  { text: "Vow Studios: AOV increased to $847", time: "This week", type: "metric" },
+export const metrics = [
+  { value: "5+", label: "Projects shipped" },
+  { value: "$2M+", label: "Client revenue generated" },
+  { value: "<4hr", label: "Avg. response time" },
+  { value: "100%", label: "Code ownership" },
+];
+
+export const differentiators = [
+  {
+    title: "Senior engineers only",
+    desc: "No juniors, no handoffs, no learning on your dime. Every project is built by engineers with 5+ years of production experience.",
+  },
+  {
+    title: "Fixed pricing, always",
+    desc: "You get a locked price before we write a single line of code. No hourly billing, no scope creep surprises, no invoices that don't match the quote.",
+  },
+  {
+    title: "Product thinking built in",
+    desc: "We don't just build what you describe. We challenge assumptions, optimize for conversion, and make sure every feature serves a business goal.",
+  },
+  {
+    title: "You own everything",
+    desc: "100% of the source code, design assets, and documentation transfer to you on final payment. No lock-in, no licensing fees, no hostage situations.",
+  },
 ];
 
 export const faqs = [
-  { q: "What's the difference between Quick Build and Custom Project?", a: "Quick Build is our flat-rate service for when you already have a design, wireframe, or clear description. We implement what you provide. Custom Project is for when you need strategy, UX, and engineering from scratch. Different starting points, same quality." },
-  { q: "What if I'm not sure which path fits?", a: "Use the \"Not sure?\" form under Quick Build pricing or reach out through Custom Project. We'll route you to the right track." },
-  { q: "How fast can you start?", a: "Quick Builds start within 48 hours. Custom projects kick off within 1 to 2 weeks of signing the proposal." },
-  { q: "Do we own the code?", a: "Yes. 100% of source code, design assets, and documentation transfer to you on final payment." },
-  { q: "What does a custom project cost?", a: "Custom engagements range from $5,000 to $25,000+ depending on scope. Fixed-price proposals always. No hourly billing." },
-  { q: "What happens after launch?", a: "Every engagement includes 30 days of post-launch support. Monthly retainers available for ongoing development." },
-  { q: "What's your guarantee?", a: "Milestone-based billing on custom projects. If we don't deliver the agreed scope, full refund for that milestone. Quick Builds include revision rounds and a satisfaction guarantee." },
+  {
+    q: "What's the difference between Quick Build and Custom Project?",
+    a: "Quick Build is our flat-rate service for when you already have a design, wireframe, or clear description. We implement what you provide. Custom Project is for when you need strategy, UX, and engineering from scratch. Different starting points, same quality.",
+  },
+  {
+    q: "What if I'm not sure which path fits?",
+    a: "Use the \"Not sure?\" form under Quick Build pricing or reach out through Custom Project. We'll route you to the right track within 24 hours.",
+  },
+  {
+    q: "How fast can you start?",
+    a: "Quick Builds start within 48 hours. Custom projects kick off within 1 to 2 weeks of signing the proposal.",
+  },
+  {
+    q: "Do we own the code?",
+    a: "Yes. 100% of source code, design assets, and documentation transfer to you on final payment. No exceptions.",
+  },
+  {
+    q: "What does a custom project cost?",
+    a: "Custom engagements range from $5,000 to $25,000+ depending on scope. Fixed-price proposals always. No hourly billing.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "Every engagement includes 30 days of post-launch support. Monthly retainers available for ongoing development and iteration.",
+  },
+  {
+    q: "What's your guarantee?",
+    a: "Milestone-based billing on custom projects. If we don't deliver the agreed scope, full refund for that milestone. Quick Builds include revision rounds and a satisfaction guarantee.",
+  },
 ];
 
-export const budgetOptions = ["Under $5k","$5k to $10k","$10k to $25k","$25k+","Not sure"];
-export const timelineOptions = ["ASAP","1 to 2 months","2 to 4 months","Flexible"];
+export const budgetOptions = ["Under $5k", "$5k to $10k", "$10k to $25k", "$25k+", "Not sure"];
+export const timelineOptions = ["ASAP", "1 to 2 months", "2 to 4 months", "Flexible"];

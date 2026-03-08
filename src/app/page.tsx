@@ -2,10 +2,10 @@ import { Hero } from "@/components/hero";
 import { Services } from "@/components/services";
 import { Projects } from "@/components/projects";
 import { Testimonials } from "@/components/testimonials";
-import { Founder } from "@/components/founder";
+import { WhyUs } from "@/components/founder";
 import { Process } from "@/components/process";
 import { Pricing } from "@/components/pricing";
-import { FAQ, ContactBar } from "@/components/footer";
+import { FAQ, FinalCTA } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -13,12 +13,12 @@ export default function Home() {
       <Hero />
       <Services />
       <Projects />
-      <Testimonials />
-      <Founder />
+      <WhyUs />
       <Process />
+      <Testimonials />
       <Pricing />
       <FAQ />
-      <ContactBar />
+      <FinalCTA />
     </>
   );
 }

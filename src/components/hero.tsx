@@ -4,29 +4,37 @@ import { ArrowRight } from "lucide-react";
 import { Reveal, DotGrid } from "./shared";
 import { metrics } from "@/lib/data";
 
-/* ── Layered product scene ── */
+/* ── Product mockup ── */
 function ProductScene({ compact = false }: { compact?: boolean }) {
-  const base = compact ? "max-w-[340px]" : "max-w-[520px]";
+  const base = compact ? "max-w-[360px]" : "max-w-[500px]";
   return (
     <div className={`relative w-full ${base}`}>
-      {/* Ambient glow */}
-      {!compact && <div className="absolute -inset-16 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.08),transparent_70%)] blur-[50px]" />}
+      {/* Ambient glow — subtle, not flashy */}
+      {!compact && <div className="absolute -inset-20 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.06),transparent_70%)] blur-[60px]" />}
 
-      {/* Main browser window */}
-      <div className="relative overflow-hidden rounded-[16px] border border-white/[0.08] shadow-[0_40px_100px_rgba(0,0,0,0.6),0_0_80px_rgba(139,92,246,0.04)]" style={{ background: "linear-gradient(170deg, #0C0C14, #0F0F18)", animation: "heroFloat 7s ease-in-out infinite" }}>
-        {/* Browser chrome */}
-        <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-2.5">
-          <div className="flex gap-[6px]">
-            {["#EF4444","#F59E0B","#22C55E"].map(c => <div key={c} className="h-[9px] w-[9px] rounded-full opacity-60" style={{ background: c }} />)}
+      {/* Browser window */}
+      <div
+        className="relative overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_32px_80px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.02)]"
+        style={{
+          background: "linear-gradient(170deg, #0C0C14, #0F0F18)",
+          animation: compact ? "none" : "heroFloat 8s ease-in-out infinite",
+        }}
+      >
+        {/* Browser chrome — minimal */}
+        <div className="flex items-center gap-2 border-b border-white/[0.05] px-4 py-2">
+          <div className="flex gap-[5px]">
+            {["#EF4444","#F59E0B","#22C55E"].map(c => (
+              <div key={c} className="h-2 w-2 rounded-full opacity-50" style={{ background: c }} />
+            ))}
           </div>
-          <div className="ml-3 flex-1 rounded-md bg-white/[0.04] px-3 py-1">
+          <div className="ml-2 flex-1 rounded-md bg-white/[0.03] px-3 py-[3px]">
             <span className="font-mono text-[10px] text-dim">app.clientproject.com</span>
           </div>
         </div>
 
         {/* Dashboard content */}
         <div className={compact ? "p-3" : "p-5"}>
-          {/* Top nav bar inside app */}
+          {/* App nav */}
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="h-5 w-5 rounded-md bg-gradient-to-br from-v/40 to-cyan/20" />
@@ -39,7 +47,7 @@ function ProductScene({ compact = false }: { compact?: boolean }) {
             </div>
           </div>
 
-          {/* Metrics row */}
+          {/* Metrics */}
           <div className={`mb-4 grid grid-cols-3 ${compact ? "gap-2" : "gap-3"}`}>
             {[
               { l: "Revenue", v: "$48.2k", c: "+12.4%", col: "#22C55E" },
@@ -54,7 +62,7 @@ function ProductScene({ compact = false }: { compact?: boolean }) {
             ))}
           </div>
 
-          {/* Chart area */}
+          {/* Chart */}
           <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-3">
             <div className="mb-2 flex items-center justify-between">
               <span className="font-mono text-[9px] text-dim">Revenue / 12 months</span>
@@ -62,7 +70,7 @@ function ProductScene({ compact = false }: { compact?: boolean }) {
             </div>
             <div className="flex items-end gap-[3px]" style={{ height: compact ? 40 : 56 }}>
               {[30,42,38,55,50,62,58,72,68,82,78,92].map((h, i) => (
-                <div key={i} className="flex-1 rounded-sm transition-all" style={{
+                <div key={i} className="flex-1 rounded-sm" style={{
                   height: `${h}%`,
                   background: `linear-gradient(180deg, rgba(139,92,246,${0.3 + (i/12)*0.5}), rgba(6,182,212,${0.1 + (i/12)*0.3}))`,
                 }} />
@@ -72,47 +80,17 @@ function ProductScene({ compact = false }: { compact?: boolean }) {
         </div>
       </div>
 
-      {/* Floating notification card - top right */}
-      {!compact && (
-        <div className="absolute -right-8 top-12 hidden rounded-xl border border-emerald-400/[0.15] px-4 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.4)] lg:flex" style={{ background: "linear-gradient(135deg, #0C0C14, #111119)", animation: "heroFloatAlt 8s ease-in-out infinite" }}>
-          <div className="flex items-center gap-2.5">
-            <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
-            <div>
-              <div className="font-mono text-[10px] font-medium text-emerald-300">New order received</div>
-              <div className="font-mono text-[9px] text-dim">Create3DParts — $847</div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Floating deploy status - bottom left */}
-      {!compact && (
-        <div className="absolute -bottom-4 -left-6 hidden rounded-xl border border-v/[0.12] px-4 py-2.5 shadow-[0_12px_40px_rgba(0,0,0,0.4)] lg:flex" style={{ background: "linear-gradient(135deg, #0C0C14, #111119)", animation: "heroFloatAlt 9s ease-in-out infinite 1s" }}>
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-5 w-5 items-center justify-center rounded-md bg-v/[0.15]">
-              <svg className="h-3 w-3 text-v-light" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-            </div>
-            <div>
-              <div className="font-mono text-[10px] font-medium text-v-light">Deployed to production</div>
-              <div className="font-mono text-[9px] text-dim">v2.4.1 — 2 min ago</div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-        @keyframes heroFloatAlt{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-6px)}}
-      `}</style>
+      <style>{`@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}`}</style>
     </div>
   );
 }
 
-/* ── Trust metrics bar ── */
+/* ── Trust metrics ── */
 function TrustStrip() {
   return (
-    <div className="mt-14 border-t border-white/[0.06] pt-10 sm:mt-20">
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
+    <div className="mt-16 sm:mt-20">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="grid grid-cols-2 gap-6 pt-10 sm:grid-cols-4 sm:gap-8">
         {metrics.map((m, i) => (
           <div key={m.label} className="text-center" style={{ animation: `fadeUp 0.5s ease ${0.1 + i * 0.08}s both` }}>
             <div className="font-display text-[clamp(24px,3vw,32px)] font-black tracking-tight text-white">{m.value}</div>
@@ -125,72 +103,66 @@ function TrustStrip() {
   );
 }
 
-/* ── Hero section ── */
+/* ── Hero ── */
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <DotGrid />
-      {/* Gradient overlays */}
+      {/* Gradient overlays — restrained */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[2] h-[40%] bg-gradient-to-t from-surface-0 to-transparent" />
-      <div className="pointer-events-none absolute right-[-10%] top-[15%] z-[1] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.06),transparent_70%)] blur-[80px]" />
-      <div className="pointer-events-none absolute left-[-5%] top-[40%] z-[1] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.03),transparent_70%)] blur-[60px]" />
+      <div className="pointer-events-none absolute right-[-10%] top-[20%] z-[1] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.05),transparent_70%)] blur-[80px]" />
 
-      <div className="wrap relative z-[3] pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-24 lg:pt-[120px]">
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_520px] lg:gap-16">
+      <div className="wrap relative z-[3] pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-[140px]">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_500px] lg:gap-16">
           {/* Left: Copy */}
           <div>
             <Reveal>
-              <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-v/[0.15] bg-gradient-to-r from-v/[0.06] to-cyan/[0.03] px-4 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-v-light sm:text-[11px]">
-                <span className="h-[7px] w-[7px] animate-pulse rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(34,197,94,0.35)]" />
-                Product Engineering Studio
-              </div>
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.14em] text-v-light sm:mb-6">
+                Product engineering studio
+              </p>
             </Reveal>
 
             <Reveal delay={0.06}>
-              <h1 className="font-display text-[clamp(36px,8vw,56px)] font-black leading-[1.04] tracking-[-0.04em] text-white sm:text-[clamp(48px,5.5vw,72px)]">
-                We build the<br />software that<br /><span className="gradient-text">grows your business.</span>
+              <h1 className="font-display text-[clamp(34px,7.5vw,56px)] font-black leading-[1.06] tracking-[-0.035em] text-white sm:text-[clamp(44px,5.5vw,68px)]">
+                We build the software{" "}
+                <span className="gradient-text">that grows your business.</span>
               </h1>
             </Reveal>
 
             <Reveal delay={0.14}>
-              <p className="mt-5 max-w-[480px] text-[15px] leading-[1.85] text-body sm:mt-7 sm:text-[17px]">
-                High-converting websites. Production-grade web apps. Automation systems that save real hours. Fixed pricing, senior engineers, and a process built for founders who ship.
+              <p className="mt-5 max-w-[460px] text-[15px] leading-[1.8] text-body sm:mt-6 sm:text-[16px]">
+                Websites, web apps, and automation — engineered by senior developers. Fixed pricing, full code ownership, and a process built for founders who ship.
               </p>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
-                <Link href="/contact" className="btn-v justify-center text-[14px] sm:justify-start sm:text-[15px]">
+              <div className="mt-7 flex flex-col gap-2.5 sm:mt-8 sm:flex-row">
+                <Link href="/contact" className="btn-v justify-center sm:justify-start">
                   Start a project <ArrowRight size={15} />
                 </Link>
-                <Link href="/work" className="btn-o justify-center text-[14px] sm:justify-start sm:text-[15px]">
+                <Link href="/work" className="btn-o justify-center sm:justify-start">
                   View our work
                 </Link>
               </div>
             </Reveal>
 
+            {/* Trust — editorial, not cliché */}
             <Reveal delay={0.26}>
-              <div className="mt-7 flex items-center gap-3 sm:mt-9">
-                <div className="flex -space-x-2">
-                  {["DM","RT","PP"].map((initials, i) => (
-                    <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-surface-0 bg-gradient-to-br from-v/30 to-cyan/20 text-[9px] font-bold text-white/80">
-                      {initials}
-                    </div>
+              <div className="mt-8 sm:mt-10">
+                <p className="text-[12px] text-dim">Trusted by</p>
+                <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1">
+                  {["Create3DParts", "LeadsAndSaaS", "GreenThread"].map((name, i) => (
+                    <span key={name} className="flex items-center gap-2 font-mono text-[12px] font-medium text-gray-400">
+                      {i > 0 && <span className="text-white/[0.1]">/</span>}
+                      {name}
+                    </span>
                   ))}
-                </div>
-                <div>
-                  <div className="flex gap-0.5">
-                    {[1,2,3,4,5].map(i => (
-                      <svg key={i} className="h-3 w-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                    ))}
-                  </div>
-                  <p className="mt-0.5 text-[11px] text-dim">Trusted by founders and CTOs</p>
                 </div>
               </div>
             </Reveal>
           </div>
 
-          {/* Right: Product scene - desktop */}
+          {/* Right: Product scene — desktop only */}
           <div className="hidden justify-center lg:flex">
             <Reveal delay={0.3}><ProductScene /></Reveal>
           </div>

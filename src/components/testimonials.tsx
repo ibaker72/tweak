@@ -1,72 +1,111 @@
 "use client";
-import { Star, Quote } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal, Tilt } from "./shared";
 import { testimonials } from "@/lib/data";
 
 export function Testimonials() {
+  const featured = testimonials[0];
+  const rest = testimonials.slice(1);
+
   return (
     <section className="relative overflow-hidden py-28 sm:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.05),transparent_50%),radial-gradient(ellipse_at_70%_100%,rgba(6,182,212,0.03),transparent_50%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(139,92,246,0.04),transparent_50%)]" />
 
       <div className="wrap relative">
         <Reveal>
-          <div className="mb-14 text-center">
-            <span className="section-label">Proof</span>
-            <h2 className="section-title mt-3">Don&apos;t take our word for it.</h2>
-            <p className="mx-auto mt-4 max-w-[440px] text-[15px] leading-[1.7] text-body">
-              Here&apos;s what founders and CTOs say after working with us.
+          <div className="mb-14">
+            <span className="section-label">Client proof</span>
+            <h2 className="section-title mt-3">What clients valued most</h2>
+            <p className="mt-4 max-w-[420px] text-[15px] leading-[1.7] text-body">
+              Speed, clarity, and execution — from recent engagements.
             </p>
           </div>
         </Reveal>
 
-        {/* Featured testimonial */}
+        {/* Featured proof card */}
         <Reveal delay={0.08}>
           <Tilt>
-            <div className="mx-auto mb-6 max-w-[800px] overflow-hidden rounded-[24px] border border-v/[0.1] p-8 sm:p-10" style={{ background: "linear-gradient(170deg, rgba(139,92,246,0.04), rgba(12,12,20,0.95))" }}>
-              <div className="flex items-start gap-4">
-                <Quote size={28} className="mt-1 flex-shrink-0 text-v/40" />
-                <div>
-                  <p className="text-[18px] leading-[1.8] text-gray-200 sm:text-[20px]">
-                    {testimonials[0].quote}
-                  </p>
-                  <div className="mt-6 flex items-center gap-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-v/[0.2] bg-gradient-to-br from-v/[0.15] to-cyan/[0.05]">
-                      <span className="font-display text-sm font-bold text-v-light">{testimonials[0].name.split(" ").map(n => n[0]).join("")}</span>
-                    </div>
-                    <div>
-                      <p className="font-display text-[15px] font-bold text-white">{testimonials[0].name}</p>
-                      <p className="font-mono text-[11px] text-dim">{testimonials[0].title}</p>
-                    </div>
-                    <div className="ml-auto hidden items-center gap-1 sm:flex">
-                      {Array(testimonials[0].rating).fill(0).map((_, j) => (
-                        <Star key={j} size={13} fill="#F59E0B" color="#F59E0B" />
-                      ))}
-                    </div>
+            <div className="mx-auto mb-6 max-w-[800px]">
+              <div
+                className="relative overflow-hidden rounded-[22px] border border-white/[0.06] p-8 sm:p-10"
+                style={{ background: "linear-gradient(170deg, rgba(139,92,246,0.03), rgba(12,12,20,0.95))" }}
+              >
+                {/* Top edge line */}
+                <div className="absolute left-10 right-10 top-0 h-px bg-gradient-to-r from-transparent via-v/[0.15] to-transparent" />
+
+                {/* Engagement tags */}
+                <div className="mb-6 flex flex-wrap items-center gap-2">
+                  <span className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1 font-mono text-[10px] text-gray-400">
+                    {featured.engagement}
+                  </span>
+                  <span className="rounded-lg border border-v/[0.12] bg-v/[0.04] px-3 py-1 font-mono text-[10px] text-v-light">
+                    {featured.result}
+                  </span>
+                </div>
+
+                {/* Quote */}
+                <p className="text-[18px] font-medium leading-[1.75] text-gray-200 sm:text-[20px] sm:leading-[1.7]">
+                  &ldquo;{featured.quote}&rdquo;
+                </p>
+
+                {/* Attribution */}
+                <div className="mt-8 flex items-center gap-4 border-t border-white/[0.05] pt-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-v/[0.15] bg-gradient-to-br from-v/[0.1] to-v/[0.03]">
+                    <span className="font-display text-[12px] font-bold text-v-light">
+                      {featured.name.split(" ").map(n => n[0]).join("")}
+                    </span>
                   </div>
+                  <div>
+                    <p className="font-display text-[14px] font-bold text-white">{featured.name}</p>
+                    <p className="font-mono text-[11px] text-dim">{featured.title}</p>
+                  </div>
+                  <span className="ml-auto hidden rounded-lg border border-white/[0.05] bg-white/[0.02] px-3 py-1 font-mono text-[10px] text-dim sm:inline-block">
+                    {featured.project}
+                  </span>
                 </div>
               </div>
             </div>
           </Tilt>
         </Reveal>
 
-        {/* Remaining testimonials */}
+        {/* Supporting proof cards */}
         <div className="mx-auto grid max-w-[800px] gap-4 sm:grid-cols-2">
-          {testimonials.slice(1).map((t, i) => (
+          {rest.map((t, i) => (
             <Reveal key={t.name} delay={0.15 + i * 0.08}>
               <Tilt className="h-full">
-                <div className="flex h-full flex-col rounded-[20px] border border-white/[0.06] p-7" style={{ background: "linear-gradient(170deg, #0C0C14, #111119)" }}>
-                  <div className="mb-4 flex gap-0.5">
-                    {Array(t.rating).fill(0).map((_, j) => <Star key={j} size={12} fill="#F59E0B" color="#F59E0B" />)}
+                <div
+                  className="flex h-full flex-col rounded-[20px] border border-white/[0.05] p-7 transition-all duration-300 hover:border-white/[0.08]"
+                  style={{ background: "linear-gradient(170deg, #0C0C14, #111119)" }}
+                >
+                  {/* Tags */}
+                  <div className="mb-5 flex flex-wrap items-center gap-2">
+                    <span className="rounded-md border border-white/[0.06] bg-white/[0.02] px-2.5 py-[3px] font-mono text-[9px] text-gray-400">
+                      {t.engagement}
+                    </span>
+                    <span className="rounded-md border border-v/[0.1] bg-v/[0.03] px-2.5 py-[3px] font-mono text-[9px] text-v-light">
+                      {t.result}
+                    </span>
                   </div>
-                  <p className="flex-1 text-[14px] leading-[1.8] text-gray-300">&ldquo;{t.quote}&rdquo;</p>
-                  <div className="mt-5 flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03]">
-                      <span className="font-display text-[10px] font-bold text-gray-400">{t.name.split(" ").map(n => n[0]).join("")}</span>
+
+                  {/* Quote */}
+                  <p className="flex-1 text-[14px] leading-[1.8] text-gray-300">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+
+                  {/* Attribution */}
+                  <div className="mt-6 flex items-center gap-3 border-t border-white/[0.05] pt-5">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.06] bg-gradient-to-br from-white/[0.04] to-white/[0.01]">
+                      <span className="font-display text-[10px] font-bold text-gray-300">
+                        {t.name.split(" ").map(n => n[0]).join("")}
+                      </span>
                     </div>
-                    <div>
-                      <p className="font-display text-sm font-bold text-white">{t.name}</p>
+                    <div className="min-w-0">
+                      <p className="font-display text-[13px] font-bold text-white">{t.name}</p>
                       <p className="font-mono text-[10px] text-dim">{t.title}</p>
                     </div>
+                    <span className="ml-auto hidden rounded-md border border-white/[0.04] bg-white/[0.015] px-2 py-[3px] font-mono text-[9px] text-dim sm:inline-block">
+                      {t.project}
+                    </span>
                   </div>
                 </div>
               </Tilt>

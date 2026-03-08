@@ -150,21 +150,24 @@ export const testimonials = [
     name: "David Morales",
     title: "CTO, LeadsAndSaaS",
     project: "SaaS Platform",
-    rating: 5,
+    engagement: "5-week build",
+    result: "Shipped to investor demo on schedule",
   },
   {
     quote: "We went from a 48 hour manual quoting process to instant online quotes. The impact on our conversion rate was immediate and dramatic.",
     name: "Ryan Torres",
     title: "Founder, Create3DParts",
     project: "E-Commerce Platform",
-    rating: 5,
+    engagement: "Fixed-price engagement",
+    result: "Quote time: 48hrs → 60sec",
   },
   {
     quote: "Third agency we hired. First one that actually shipped on time, on budget, and without us having to chase for updates every week.",
     name: "Priya Patel",
     title: "Founder, GreenThread",
     project: "Landing Page + CRM",
-    rating: 5,
+    engagement: "3-week build",
+    result: "On time, on budget",
   },
 ];
 

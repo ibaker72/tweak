@@ -1,7 +1,7 @@
 "use client";
-import { Rocket, Zap, Globe, Bot, ArrowRight } from "lucide-react";
+import { Rocket, Zap, Globe, Bot, ArrowRight, Check } from "lucide-react";
 import { Reveal, Tilt } from "./shared";
-import { services } from "@/lib/data";
+import { services, deliveryTraits } from "@/lib/data";
 
 const iconMap = { Rocket, Zap, Globe, Bot };
 
@@ -51,6 +51,19 @@ export function Services() {
             );
           })}
         </div>
+
+        {/* Delivery trust strip */}
+        <Reveal delay={0.3}>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-8">
+            {deliveryTraits.map((trait, i) => (
+              <span key={trait} className="flex items-center gap-2 text-[12px] text-dim">
+                {i > 0 && <span className="hidden text-white/[0.08] sm:inline">&middot;</span>}
+                <Check size={11} className="text-cyan/50" />
+                {trait}
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

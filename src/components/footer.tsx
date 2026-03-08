@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, Mail, Clock, ArrowRight, ArrowUp, Terminal } from "lucide-react";
+import { ChevronDown, Mail, Clock, ArrowRight, ArrowUp, Terminal, Check, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./shared";
 import { faqs } from "@/lib/data";
@@ -32,7 +32,7 @@ export function FAQ() {
                   <span className={cn("text-[15px] font-semibold", open === i ? "text-white" : "text-gray-300")}>{faq.q}</span>
                   <ChevronDown size={18} className={cn("flex-shrink-0 transition-transform duration-300", open === i ? "rotate-180 text-v-light" : "text-dim")} />
                 </button>
-                <div className="overflow-hidden transition-[max-height] duration-300" style={{ maxHeight: open === i ? 280 : 0 }}>
+                <div className="overflow-hidden transition-[max-height] duration-300" style={{ maxHeight: open === i ? 300 : 0 }}>
                   <p className="px-6 pb-5 text-sm leading-[1.75] text-body">{faq.a}</p>
                 </div>
               </div>
@@ -50,14 +50,15 @@ export function FinalCTA() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.06),transparent_60%)]" />
       <div className="wrap relative">
         <Reveal>
-          <div className="mx-auto max-w-[640px] text-center">
-            <span className="section-label">Ready?</span>
+          <div className="mx-auto max-w-[680px] text-center">
+            <span className="section-label">Ready to build?</span>
             <h2 className="mt-3 font-display text-[clamp(32px,5vw,52px)] font-black leading-[1.06] tracking-[-0.03em] text-white">
-              Let&apos;s build something<br /><span className="gradient-text">worth talking about.</span>
+              Your next project<br />deserves <span className="gradient-text">real engineering.</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-[460px] text-[16px] leading-[1.75] text-body">
-              Whether you need a single landing page or a full product build, we&apos;re ready to ship.
+            <p className="mx-auto mt-5 max-w-[500px] text-[16px] leading-[1.75] text-body">
+              Fixed pricing. Senior engineers. A clear process from day one. Whether it&apos;s a landing page or a full product build, we&apos;re ready when you are.
             </p>
+
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/contact" className="btn-v justify-center text-[15px]">
                 Start a project <ArrowRight size={15} />
@@ -66,13 +67,25 @@ export function FinalCTA() {
                 View pricing
               </Link>
             </div>
+
+            {/* Trust reinforcement */}
+            <div className="mx-auto mt-10 grid max-w-[520px] grid-cols-1 gap-3 sm:grid-cols-3">
+              {[
+                { icon: Shield, text: "Milestone-based billing" },
+                { icon: Check, text: "Fixed-price proposals" },
+                { icon: Clock, text: "Response in under 4 hours" },
+              ].map(item => (
+                <div key={item.text} className="flex items-center justify-center gap-2 rounded-xl border border-white/[0.05] bg-white/[0.015] px-4 py-2.5">
+                  <item.icon size={13} className="flex-shrink-0 text-v-light" />
+                  <span className="text-[11px] font-medium text-gray-400">{item.text}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
               <a href="mailto:iyadbaker.dev@gmail.com" className="flex items-center gap-2 text-sm text-body transition-colors hover:text-white">
                 <Mail size={14} className="text-v-light" /> iyadbaker.dev@gmail.com
               </a>
-              <span className="flex items-center gap-2 text-sm text-dim">
-                <Clock size={14} className="text-v-light" /> Responds in under 4 hours
-              </span>
             </div>
           </div>
         </Reveal>
@@ -97,7 +110,7 @@ export function Footer() {
                 <Terminal size={13} className="text-white" />
               </div>
               <span className="font-display text-[15px] font-extrabold text-white">
-                tweak<span className="text-v-light">&</span>build
+                tweak<span className="text-v-light">&amp;</span>build
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-dim">
@@ -122,7 +135,7 @@ export function Footer() {
             <Link href="/privacy" className="text-xs text-dim transition-colors hover:text-body">Privacy</Link>
             <Link href="/terms" className="text-xs text-dim transition-colors hover:text-body">Terms</Link>
           </div>
-          <span className="text-xs text-dim">Engineered by Tweak & Build</span>
+          <span className="text-xs text-dim">Engineered by Tweak &amp; Build</span>
         </div>
       </div>
     </footer>
@@ -135,7 +148,7 @@ export function BackToTop() {
   if (!v) return null;
   return (
     <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2/90 text-dim shadow-lg backdrop-blur-sm transition-all hover:border-v/[0.2] hover:text-v"
+      className="fixed bottom-6 left-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2/90 text-dim shadow-lg backdrop-blur-sm transition-all hover:border-v/[0.2] hover:text-v"
       aria-label="Back to top">
       <ArrowUp size={16} />
     </button>

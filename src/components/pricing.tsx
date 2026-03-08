@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Minus, Package, Code2, HelpCircle, MessageSquare, Upload, Send, Loader2, CreditCard } from "lucide-react";
+import { ArrowRight, Check, Minus, Package, Code2, HelpCircle, MessageSquare, Upload, Send, Loader2, CreditCard, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal, Tilt } from "./shared";
 import { tiers, budgetOptions, timelineOptions } from "@/lib/data";
@@ -24,9 +24,7 @@ export function Pricing() {
         body: JSON.stringify({ tier: tierName }),
       });
       const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
+      if (data.url) window.location.href = data.url;
     } catch (err) {
       console.error("Checkout error:", err);
       setCheckoutLoading(null);
@@ -98,7 +96,13 @@ export function Pricing() {
                         <span className="font-display text-[42px] font-black tracking-tight text-white">{q.price}</span>
                         <span className="text-[13px] text-dim">flat rate</span>
                       </div>
-                      <div className="mb-6 mt-1 font-mono text-[11px] text-cyan">{q.time}</div>
+                      <div className="mb-4 mt-1 font-mono text-[11px] text-cyan">{q.time}</div>
+
+                      {/* Payment terms */}
+                      <div className="mb-5 flex items-center gap-2 rounded-lg border border-white/[0.05] bg-white/[0.02] px-3 py-2">
+                        <Wallet size={12} className="flex-shrink-0 text-v-light" />
+                        <span className="font-mono text-[10px] leading-tight text-gray-400">{q.payment}</span>
+                      </div>
 
                       <div className="flex-1 border-t border-white/[0.06] pt-5">
                         {q.features.map(f => (
@@ -133,6 +137,19 @@ export function Pricing() {
                 ))}
               </div>
 
+              {/* Payment reassurance strip */}
+              <div className="mb-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+                {[
+                  "Fixed pricing — no hourly billing",
+                  "Source code delivered after final payment",
+                  "Revision rounds included",
+                ].map(t => (
+                  <span key={t} className="flex items-center gap-2 text-[12px] text-dim">
+                    <Check size={11} className="text-cyan/60" />{t}
+                  </span>
+                ))}
+              </div>
+
               {/* Not sure form */}
               <div className="relative mx-auto max-w-[580px] overflow-hidden rounded-[20px] border border-v/[0.1] p-8" style={{ background: "linear-gradient(170deg, #0C0C14, #111119)" }}>
                 <div className="absolute left-8 right-8 top-0 h-px bg-gradient-to-r from-transparent via-v/20 to-transparent" />
@@ -150,7 +167,7 @@ export function Pricing() {
                     </div>
                     <p className="font-display text-lg font-bold text-white">Got it!</p>
                     <p className="mt-1 text-sm text-body">We&apos;ll review and recommend within 24 hours.</p>
-                    <button onClick={reset} className="mt-5 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another →</button>
+                    <button onClick={reset} className="mt-5 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another &rarr;</button>
                   </div>
                 ) : (
                   <div className="space-y-3.5">
@@ -183,7 +200,7 @@ export function Pricing() {
         {/* Custom Project */}
         {tab === "custom" && (
           <Reveal delay={0.1}>
-            <div className="mx-auto grid max-w-[840px] gap-10 md:grid-cols-2 md:items-start">
+            <div className="mx-auto grid max-w-[880px] gap-10 md:grid-cols-2 md:items-start">
               <div>
                 <h3 className="mb-6 font-display text-[24px] font-bold text-white">What you get</h3>
                 {[
@@ -201,9 +218,42 @@ export function Pricing() {
                     {f}
                   </div>
                 ))}
+
+                {/* Pricing + milestone structure */}
                 <div className="mt-7 rounded-[16px] border border-v/[0.12] bg-gradient-to-br from-v/[0.05] to-cyan/[0.02] p-6">
                   <p className="text-[14px] text-gray-300">
                     <strong className="text-white">Starting at $5,000.</strong> Most projects fall between $5k and $25k. Fixed-price proposals always — no hourly billing.
+                  </p>
+                </div>
+
+                {/* Milestone visual */}
+                <div className="mt-6 rounded-[16px] border border-white/[0.06] p-6" style={{ background: "linear-gradient(170deg, #0C0C14, #111119)" }}>
+                  <div className="mb-4 flex items-center gap-2">
+                    <Wallet size={14} className="text-v-light" />
+                    <h4 className="font-display text-[14px] font-bold text-white">How projects are structured</h4>
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      { pct: "40%", label: "Deposit", desc: "Project kicks off", color: "#8B5CF6", w: "40%" },
+                      { pct: "30%", label: "Midpoint", desc: "Approved build preview", color: "#06B6D4", w: "30%" },
+                      { pct: "30%", label: "Final", desc: "Before launch & handoff", color: "#22C55E", w: "30%" },
+                    ].map(m => (
+                      <div key={m.label}>
+                        <div className="mb-1.5 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="h-1.5 w-1.5 rounded-full" style={{ background: m.color }} />
+                            <span className="font-mono text-[11px] font-medium text-white">{m.pct} {m.label}</span>
+                          </div>
+                          <span className="font-mono text-[10px] text-dim">{m.desc}</span>
+                        </div>
+                        <div className="h-1.5 rounded-full bg-white/[0.04]">
+                          <div className="h-full rounded-full transition-all" style={{ width: m.w, background: `linear-gradient(90deg, ${m.color}80, ${m.color}40)` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="mt-4 text-[11px] leading-[1.6] text-dim">
+                    Source code, credentials, and full documentation transfer after final payment. Clear scope, clear milestones, no surprises.
                   </p>
                 </div>
               </div>
@@ -216,7 +266,7 @@ export function Pricing() {
                     <Check size={28} className="mx-auto mb-2.5 text-cyan" />
                     <p className="font-display text-[17px] font-bold text-white">Inquiry received!</p>
                     <p className="mt-1 text-sm text-body">We&apos;ll respond within 24 hours.</p>
-                    <button onClick={reset} className="mt-4 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another →</button>
+                    <button onClick={reset} className="mt-4 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another &rarr;</button>
                   </div>
                 ) : (
                   <div className="space-y-3">

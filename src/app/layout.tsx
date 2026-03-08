@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { Footer, BackToTop } from "@/components/footer";
+import { ChatWidget } from "@/components/chat-widget";
 
 export const metadata: Metadata = {
   title: { default: "Tweak & Build — Premium Product Engineering Studio", template: "%s | Tweak & Build" },
@@ -19,6 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <BackToTop />
+        <ChatWidget />
       </body>
     </html>
   );

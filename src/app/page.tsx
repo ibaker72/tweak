@@ -5,6 +5,7 @@ import { Testimonials } from "@/components/testimonials";
 import { WhyUs } from "@/components/founder";
 import { Process } from "@/components/process";
 import { Pricing } from "@/components/pricing";
+import { BestFor } from "@/components/best-for";
 import { FAQ, FinalCTA } from "@/components/footer";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Process />
       <Testimonials />
       <Pricing />
+      <BestFor />
       <FAQ />
       <FinalCTA />
     </>

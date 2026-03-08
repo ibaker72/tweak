@@ -119,6 +119,7 @@ export const tiers = [
     name: "Single Page",
     price: "$497",
     time: "3 day delivery",
+    payment: "Payment in full upfront",
     features: ["1 responsive page", "Contact form", "SEO fundamentals", "Mobile optimized", "1 revision round"],
     excluded: ["CMS", "Multi-page", "E-commerce"],
     popular: false,
@@ -127,6 +128,7 @@ export const tiers = [
     name: "Multi Page",
     price: "$1,497",
     time: "7 day delivery",
+    payment: "60% upfront · 40% before launch",
     features: ["Up to 5 pages", "CMS integration", "Lead capture forms", "Analytics setup", "2 revision rounds", "Basic SEO"],
     excluded: ["E-commerce", "Custom backend"],
     popular: true,
@@ -135,6 +137,7 @@ export const tiers = [
     name: "Full Site",
     price: "$2,997",
     time: "14 day delivery",
+    payment: "50% upfront · 25% at preview · 25% before launch",
     features: ["Up to 12 pages", "CMS + blog", "Advanced forms + SEO", "E-commerce ready", "3 revision rounds", "30 day support"],
     excluded: ["Custom SaaS logic", "AI integrations"],
     popular: false,
@@ -203,10 +206,35 @@ export const differentiators = [
   },
 ];
 
+export const deliveryTraits = [
+  "Mobile-first",
+  "SEO-ready",
+  "Performance optimized",
+  "Accessible",
+  "Clean handoff",
+  "Fully documented",
+];
+
+export const bestFitClients = [
+  { label: "Founders & CEOs", desc: "Building your first product or rebuilding for scale" },
+  { label: "Local businesses", desc: "Need a premium web presence that converts" },
+  { label: "Service companies", desc: "Want lead capture and automation that works" },
+  { label: "Early-stage startups", desc: "Ship fast without hiring a full team" },
+  { label: "E-commerce brands", desc: "Custom storefronts that outperform templates" },
+];
+
 export const faqs = [
   {
     q: "What's the difference between Quick Build and Custom Project?",
     a: "Quick Build is our flat-rate service for when you already have a design, wireframe, or clear description. We implement what you provide. Custom Project is for when you need strategy, UX, and engineering from scratch. Different starting points, same quality.",
+  },
+  {
+    q: "How do payments work?",
+    a: "Quick Builds are paid upfront or split into two payments depending on the tier. Custom projects follow a milestone structure: 40% to begin, 30% at the midpoint, and 30% before final launch and handoff. You always know exactly what you owe and when.",
+  },
+  {
+    q: "When do I get the source code and files?",
+    a: "Full source code, repository access, credentials, and all documentation transfer to you after final payment. This is standard for every engagement — you own 100% of what we build.",
   },
   {
     q: "What if I'm not sure which path fits?",
@@ -217,20 +245,24 @@ export const faqs = [
     a: "Quick Builds start within 48 hours. Custom projects kick off within 1 to 2 weeks of signing the proposal.",
   },
   {
-    q: "Do we own the code?",
-    a: "Yes. 100% of source code, design assets, and documentation transfer to you on final payment. No exceptions.",
+    q: "What happens after I submit an inquiry?",
+    a: "We respond within one business day — usually within a few hours. For Quick Builds, we confirm scope and send an invoice. For custom projects, we schedule a 30-minute strategy call to understand your goals before writing a proposal.",
+  },
+  {
+    q: "How many revision rounds do I get?",
+    a: "Quick Builds include 1 to 3 revision rounds depending on the tier. Custom projects include revisions at each milestone checkpoint. We work iteratively with weekly demos so there are no surprises at the end.",
   },
   {
     q: "What does a custom project cost?",
-    a: "Custom engagements range from $5,000 to $25,000+ depending on scope. Fixed-price proposals always. No hourly billing.",
+    a: "Custom engagements range from $5,000 to $25,000+ depending on scope. Fixed-price proposals always. No hourly billing, no estimate ranges that balloon later.",
   },
   {
     q: "What happens after launch?",
-    a: "Every engagement includes 30 days of post-launch support. Monthly retainers available for ongoing development and iteration.",
+    a: "Every engagement includes post-launch support (14 to 30 days depending on scope). Monthly retainers available for ongoing development and iteration.",
   },
   {
-    q: "What's your guarantee?",
-    a: "Milestone-based billing on custom projects. If we don't deliver the agreed scope, full refund for that milestone. Quick Builds include revision rounds and a satisfaction guarantee.",
+    q: "Who is this best for?",
+    a: "Founders, small business owners, and early-stage startups who need a professional web presence or custom product built by senior engineers. If you value quality, clear communication, and getting it right the first time — we're a good fit.",
   },
 ];
 

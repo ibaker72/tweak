@@ -53,34 +53,35 @@ export function FeaturedWork() {
     <section id="work" className="relative py-24 sm:py-32">
       <div className="wrap">
         <Reveal>
-          <div className="mb-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="section-label">Selected work</span>
-              <h2 className="mt-4 font-display text-[clamp(32px,5vw,52px)] font-extrabold leading-[1.06] tracking-[-0.03em] text-white">
+              <h2 className="mt-4 font-display text-[clamp(30px,4.5vw,48px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-white">
                 Real projects.<br />Measurable outcomes.
               </h2>
             </div>
             <Link
               href="/work"
-              className="group flex items-center gap-2 self-start font-mono text-[12px] uppercase tracking-[0.1em] text-dim transition-colors hover:text-white sm:self-auto"
+              className="group flex items-center gap-2 self-start font-mono text-[11px] uppercase tracking-[0.12em] text-dim transition-colors duration-200 hover:text-white sm:self-auto"
             >
-              All case studies <ArrowUpRight size={13} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              All case studies <ArrowUpRight size={12} className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </div>
         </Reveal>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {featuredProjects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 0.08}>
               <Link href={`/work/${project.slug}`} className="group block">
-                <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025]">
-                  <div className="grid gap-0 lg:grid-cols-[1fr,1fr]">
+                <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025]">
+                  <div className="grid gap-0 lg:grid-cols-[1.15fr,0.85fr]">
                     {/* Left: project info */}
                     <div className="flex flex-col justify-between p-8 lg:p-10">
                       <div>
-                        <div className="mb-4 flex flex-wrap items-center gap-3">
-                          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-dim">{project.category}</span>
-                          <span className="font-mono text-[11px] text-dim">{project.year}</span>
+                        <div className="mb-5 flex flex-wrap items-center gap-3">
+                          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-dim">{project.category}</span>
+                          <span className="h-0.5 w-0.5 rounded-full bg-dim" />
+                          <span className="font-mono text-[10px] text-dim">{project.year}</span>
                           {project.live && (
                             <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-0.5">
                               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -88,15 +89,15 @@ export function FeaturedWork() {
                             </span>
                           )}
                         </div>
-                        <h3 className="font-display text-[28px] font-bold tracking-[-0.02em] text-white transition-colors group-hover:text-accent lg:text-[32px]">
+                        <h3 className="font-display text-[26px] font-bold tracking-[-0.03em] text-white transition-colors duration-200 group-hover:text-accent lg:text-[30px]">
                           {project.title}
                         </h3>
-                        <p className="mt-3 max-w-[440px] text-[15px] leading-[1.7] text-body">
+                        <p className="mt-3 max-w-[420px] text-[14px] leading-[1.75] text-body">
                           {project.description}
                         </p>
                       </div>
 
-                      <div className="mt-8 flex flex-wrap gap-2">
+                      <div className="mt-8 flex flex-wrap gap-1.5">
                         {project.stack.map((t) => (
                           <span key={t} className="tag">{t}</span>
                         ))}
@@ -104,24 +105,24 @@ export function FeaturedWork() {
                     </div>
 
                     {/* Right: metrics panel */}
-                    <div className="border-t border-white/[0.04] bg-white/[0.015] p-8 lg:border-l lg:border-t-0 lg:p-10">
-                      <div className="flex h-full flex-col justify-center gap-6">
+                    <div className="border-t border-white/[0.04] bg-white/[0.01] p-8 lg:border-l lg:border-t-0 lg:p-10">
+                      <div className="flex h-full flex-col justify-center gap-7">
                         {project.metrics.map((m) => (
                           <div key={m.label}>
-                            <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.1em] text-dim">{m.label}</div>
+                            <div className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.12em] text-dim">{m.label}</div>
                             {"before" in m ? (
-                              <div className="flex items-center gap-3">
-                                <span className="text-[15px] text-white/40 line-through">{m.before}</span>
-                                <ArrowUpRight size={14} className="text-accent" style={{ transform: "rotate(90deg)" }} />
-                                <span className="font-display text-[28px] font-black text-white">{m.after}</span>
+                              <div className="flex items-baseline gap-3">
+                                <span className="text-[14px] text-white/30 line-through">{m.before}</span>
+                                <span className="text-[13px] text-accent/60">&rarr;</span>
+                                <span className="font-display text-[26px] font-black tracking-[-0.02em] text-white">{m.after}</span>
                               </div>
                             ) : (
-                              <div className="font-display text-[28px] font-black text-accent">{m.value}</div>
+                              <div className="font-display text-[26px] font-black tracking-[-0.02em] text-accent">{m.value}</div>
                             )}
                           </div>
                         ))}
 
-                        <div className="mt-auto flex items-center gap-2 pt-4 font-mono text-[11px] text-dim opacity-0 transition-opacity group-hover:opacity-100">
+                        <div className="mt-auto flex items-center gap-2 pt-4 font-mono text-[11px] text-dim opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
                           View case study <ArrowUpRight size={12} />
                         </div>
                       </div>

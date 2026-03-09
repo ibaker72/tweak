@@ -17,8 +17,8 @@ export function Reveal({ children, delay = 0, className = "" }: { children: Reac
   return (
     <div ref={ref} className={className} style={{
       opacity: v ? 1 : 0,
-      transform: v ? "translateY(0) scale(1)" : "translateY(28px) scale(0.98)",
-      transition: `all 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+      transform: v ? "translateY(0)" : "translateY(20px)",
+      transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
     }}>{children}</div>
   );
 }

@@ -19,9 +19,10 @@
 
   /* ─── Nav ─── */
   .glass-nav {
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    background: rgba(3,3,6,0.85);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    background: rgba(3,3,5,0.88);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 32px rgba(0,0,0,0.35);
   }
 
   /* ─── Typography ─── */
@@ -33,45 +34,57 @@
   }
 
   .section-label {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-accent;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-accent;
   }
   .section-title {
-    @apply font-display text-[clamp(30px,4vw,52px)] font-extrabold leading-[1.06] tracking-[-0.03em] text-white;
+    @apply font-display text-[clamp(30px,4vw,52px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-white;
   }
 
   /* ─── Primary button ─── */
   .btn-v {
-    @apply inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-surface-0 transition-all relative overflow-hidden;
+    @apply inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold text-surface-0 transition-all duration-200 relative overflow-hidden;
     background: #C8FF00;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   }
-  .btn-v:hover { @apply -translate-y-0.5; box-shadow: 0 12px 40px rgba(200,255,0,0.18); }
-  .btn-v:active { @apply translate-y-0; }
+  .btn-v:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 8px 32px rgba(200,255,0,0.2), 0 2px 8px rgba(200,255,0,0.12);
+  }
+  .btn-v:active { @apply translate-y-0; box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
 
   /* ─── Ghost button ─── */
   .btn-o {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-sm font-medium text-white transition-all;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.02] px-7 py-3 text-[14px] font-medium text-white transition-all duration-200;
   }
-  .btn-o:hover { @apply -translate-y-px border-white/[0.25]; }
+  .btn-o:hover { @apply -translate-y-0.5 border-white/[0.22] bg-white/[0.04]; }
 
   /* ─── Form fields ─── */
-  .field { @apply w-full rounded-xl border-[1.5px] border-white/[0.07] bg-white/[0.02] px-4 py-[14px] font-body text-sm text-white outline-none transition-all placeholder:text-[#252530]; }
-  .field:focus { @apply border-v/[0.4]; box-shadow: 0 0 0 4px rgba(139,92,246,0.06); background: rgba(255,255,255,0.03); }
+  .field {
+    @apply w-full rounded-xl border-[1.5px] border-white/[0.07] bg-white/[0.02] px-4 py-[13px] font-body text-[13px] text-white outline-none transition-all duration-200 placeholder:text-white/[0.15];
+  }
+  .field:focus {
+    @apply border-accent/[0.35];
+    box-shadow: 0 0 0 3px rgba(200,255,0,0.06);
+    background: rgba(255,255,255,0.025);
+  }
   select.field { appearance: none; cursor: pointer; }
   textarea.field { resize: none; }
 
   /* ─── Tags ─── */
-  .tag { @apply inline-block rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 font-mono text-[10px] tracking-wide text-gray-400; }
+  .tag { @apply inline-block rounded-full border border-white/[0.07] bg-white/[0.025] px-3 py-1 font-mono text-[10px] tracking-[0.02em] text-white/40; }
 
   /* ─── Cards ─── */
   .card {
     @apply overflow-hidden rounded-2xl border border-white/[0.06] transition-all duration-300;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255,255,255,0.015);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
   }
-  .card:hover { @apply border-white/[0.1]; }
+  .card:hover { @apply border-white/[0.12]; }
 
   .card-premium {
     @apply relative overflow-hidden rounded-2xl border border-white/[0.06] p-8;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255,255,255,0.015);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 16px 48px rgba(0,0,0,0.12);
   }
 
   /* ─── Grain ─── */

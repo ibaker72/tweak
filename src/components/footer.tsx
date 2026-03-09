@@ -55,7 +55,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
+              <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-accent">
                 <Terminal size={13} className="text-surface-0" />
               </div>
               <span className="font-display text-[15px] font-extrabold text-white">

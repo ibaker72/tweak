@@ -40,26 +40,26 @@ export function TechShowcase() {
         <Reveal>
           <div className="mb-14">
             <span className="section-label">Why us</span>
-            <h2 className="mt-4 max-w-[500px] font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.06] tracking-[-0.03em] text-white">
+            <h2 className="mt-4 max-w-[480px] font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-white">
               Not another generic agency.
             </h2>
-            <p className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-body">
+            <p className="mt-4 max-w-[460px] text-[15px] leading-[1.75] text-body">
               We&apos;re a small, senior team that treats your product like our own.
             </p>
           </div>
         </Reveal>
 
-        {/* Differentiators - 2x2 grid with asymmetric sizing */}
-        <div className="grid gap-3 sm:grid-cols-2">
+        {/* Differentiators - 2x2 grid */}
+        <div className="grid gap-4 sm:grid-cols-2">
           {differentiators.map((d, i) => (
             <Reveal key={d.title} delay={i * 0.06}>
-              <div className="flex gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025]">
-                <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-accent/20 bg-accent/[0.06]">
-                  <Check size={14} className="text-accent" />
+              <div className="flex h-full gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7 shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025]">
+                <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[8px] border border-accent/20 bg-accent/[0.06]">
+                  <Check size={13} className="text-accent" />
                 </div>
                 <div>
-                  <h3 className="mb-2 font-display text-[17px] font-bold text-white">{d.title}</h3>
-                  <p className="text-[14px] leading-[1.75] text-body">{d.desc}</p>
+                  <h3 className="mb-2 font-display text-[16px] font-bold text-white">{d.title}</h3>
+                  <p className="text-[13px] leading-[1.75] text-body">{d.desc}</p>
                 </div>
               </div>
             </Reveal>
@@ -68,16 +68,16 @@ export function TechShowcase() {
 
         {/* Tech stack bar */}
         <Reveal delay={0.3}>
-          <div className="mt-8 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 sm:p-8">
-            <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.1em] text-dim">Our stack</div>
+          <div className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] sm:p-7">
+            <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.12em] text-dim">Our stack</div>
             <div className="flex flex-wrap gap-2">
               {techStack.map((t) => (
                 <div
                   key={t.name}
-                  className="flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-4 py-2 transition-all duration-200 hover:-translate-y-0.5"
+                  className="flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-3.5 py-1.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-white/[0.1]"
                 >
                   <div className="h-1.5 w-1.5 rounded-full" style={{ background: t.color }} />
-                  <span className="font-mono text-[11px] font-medium text-gray-400">{t.name}</span>
+                  <span className="font-mono text-[11px] font-medium text-white/40">{t.name}</span>
                 </div>
               ))}
             </div>

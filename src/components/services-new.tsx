@@ -52,7 +52,7 @@ export function ServicesNew() {
         <Reveal>
           <div className="mb-14">
             <span className="section-label">What we build</span>
-            <h2 className="mt-4 max-w-[560px] font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.08] tracking-[-0.03em] text-white">
+            <h2 className="mt-4 max-w-[540px] font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-white">
               Four disciplines.{" "}
               <span className="text-body">One team that delivers all of them.</span>
             </h2>
@@ -60,26 +60,24 @@ export function ServicesNew() {
         </Reveal>
 
         {/* Bento grid */}
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {services.map((sv, i) => (
             <Reveal key={sv.title} delay={i * 0.06}>
               <div
-                className={`group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025] lg:p-8 ${
-                  sv.size === "large" ? "sm:col-span-1 min-h-[280px]" : "min-h-[240px]"
-                }`}
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7 shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025] lg:p-8"
               >
                 {/* Icon + title row */}
                 <div className="mb-5 flex items-start gap-4">
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/[0.06]">
-                    <sv.icon size={18} className="text-accent" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px] border border-accent/20 bg-accent/[0.06]">
+                    <sv.icon size={17} className="text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-display text-[20px] font-bold tracking-[-0.01em] text-white">{sv.title}</h3>
-                    <p className="mt-0.5 font-mono text-[11px] text-accent/70">{sv.tagline}</p>
+                    <h3 className="font-display text-[18px] font-bold tracking-[-0.02em] text-white">{sv.title}</h3>
+                    <p className="mt-0.5 font-mono text-[10px] text-accent/60">{sv.tagline}</p>
                   </div>
                 </div>
 
-                <p className="mb-6 flex-1 text-[14px] leading-[1.75] text-body">{sv.desc}</p>
+                <p className="mb-6 flex-1 text-[13px] leading-[1.8] text-body">{sv.desc}</p>
 
                 <div className="flex flex-wrap gap-1.5">
                   {sv.tags.map((t) => (
@@ -89,8 +87,8 @@ export function ServicesNew() {
 
                 {/* Hover arrow */}
                 <ArrowRight
-                  size={16}
-                  className="absolute right-7 top-7 text-dim opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent group-hover:opacity-100"
+                  size={14}
+                  className="absolute right-7 top-7 text-dim opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent group-hover:opacity-100"
                 />
               </div>
             </Reveal>
@@ -99,10 +97,10 @@ export function ServicesNew() {
 
         {/* Delivery strip */}
         <Reveal delay={0.3}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:gap-x-8">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2.5 sm:gap-x-10">
             {deliveryTraits.map((trait) => (
-              <span key={trait} className="flex items-center gap-2 text-[12px] text-dim">
-                <Check size={11} className="text-accent/50" />
+              <span key={trait} className="flex items-center gap-2 text-[11px] text-dim">
+                <Check size={10} className="text-accent/50" />
                 {trait}
               </span>
             ))}

@@ -16,24 +16,24 @@ export function Hero() {
     <section className="relative min-h-[100dvh] overflow-hidden">
       {/* Subtle grid background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+          backgroundSize: "72px 72px",
         }}
       />
       {/* Top gradient wash */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(200,255,0,0.04),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(200,255,0,0.035),transparent)]" />
 
-      <div className="wrap relative flex min-h-[100dvh] flex-col justify-center pb-16 pt-24 lg:pb-20 lg:pt-28">
+      <div className="wrap relative flex min-h-[100dvh] flex-col justify-center pb-16 pt-24 lg:pb-24 lg:pt-28">
         {/* Top bar: status + availability */}
         <Reveal>
-          <div className="mb-10 flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-1.5">
-              <span className="relative flex h-2 w-2">
+          <div className="mb-8 flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3.5 py-1.5">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
               <span className="font-mono text-[11px] font-medium text-emerald-400">Accepting projects</span>
             </div>
@@ -42,11 +42,11 @@ export function Hero() {
         </Reveal>
 
         {/* Main headline area */}
-        <div className="grid gap-12 lg:grid-cols-[1fr,480px] lg:items-center lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[1fr,460px] lg:items-center lg:gap-16">
           {/* Left: copy */}
           <div>
             <Reveal delay={0.05}>
-              <h1 className="font-display text-[clamp(40px,7.5vw,80px)] font-black leading-[0.95] tracking-[-0.04em] text-white">
+              <h1 className="font-display text-[clamp(40px,7vw,76px)] font-black leading-[0.94] tracking-[-0.045em] text-white">
                 We build
                 <br />
                 <span className="text-accent">digital products</span>
@@ -56,8 +56,8 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={0.12}>
-              <p className="mt-6 max-w-[520px] text-[17px] leading-[1.75] text-body lg:text-[18px]">
-                Tweak & Build is a product engineering studio for founders and businesses
+              <p className="mt-7 max-w-[480px] text-[16px] leading-[1.75] text-body lg:text-[17px]">
+                Tweak &amp; Build is a product engineering studio for founders and businesses
                 who need websites, web apps, and automation systems built fast, built right,
                 and built to convert.
               </p>
@@ -76,11 +76,11 @@ export function Hero() {
 
             {/* Client logos row */}
             <Reveal delay={0.24}>
-              <div className="mt-12 border-t border-white/[0.06] pt-6">
-                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.12em] text-dim">Shipped for</p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <div className="mt-12 border-t border-white/[0.06] pt-7">
+                <p className="mb-3.5 font-mono text-[10px] uppercase tracking-[0.14em] text-dim">Shipped for</p>
+                <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
                   {clientNames.map((name) => (
-                    <span key={name} className="font-display text-[13px] font-semibold text-white/40 transition-colors hover:text-white/70">
+                    <span key={name} className="font-display text-[13px] font-semibold text-white/30 transition-colors duration-200 hover:text-white/60">
                       {name}
                     </span>
                   ))}
@@ -93,14 +93,20 @@ export function Hero() {
           <Reveal delay={0.15}>
             <div className="relative">
               {/* Outer container - studio monitor */}
-              <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-surface-1">
+              <div className="overflow-hidden rounded-2xl border border-white/[0.10] bg-surface-1 shadow-2xl shadow-black/25">
                 {/* Monitor header */}
-                <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3">
-                  <div className="flex items-center gap-2">
-                    <Circle size={7} fill="#C8FF00" className="text-accent" />
-                    <span className="font-mono text-[11px] font-medium text-white/60">Studio feed</span>
+                <div className="flex items-center justify-between border-b border-white/[0.06] px-6 py-3.5">
+                  <div className="flex items-center gap-2.5">
+                    <Circle size={6} fill="#C8FF00" className="text-accent" />
+                    <span className="font-mono text-[11px] font-medium text-white/50">Studio feed</span>
                   </div>
-                  <span className="font-mono text-[10px] text-dim">Live</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-30" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                    </span>
+                    <span className="font-mono text-[10px] text-accent/60">Live</span>
+                  </div>
                 </div>
 
                 {/* Project rows */}
@@ -108,42 +114,38 @@ export function Hero() {
                   {liveProjects.map((proj, i) => (
                     <div
                       key={proj.name}
-                      className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-white/[0.02]"
+                      className="group flex items-center gap-4 px-6 py-4 transition-colors duration-200 hover:bg-white/[0.02]"
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/[0.08] font-display text-[14px] font-bold text-accent">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent/[0.08] font-mono text-[12px] font-bold text-accent/80">
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="truncate text-[14px] font-semibold text-white">{proj.name}</span>
-                          <span className="flex-shrink-0 rounded-full bg-white/[0.04] px-2 py-0.5 font-mono text-[9px] text-dim">
+                        <div className="flex items-center gap-2.5">
+                          <span className="truncate text-[13px] font-semibold text-white">{proj.name}</span>
+                          <span className="flex-shrink-0 rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-0.5 font-mono text-[9px] text-white/40">
                             {proj.tag}
                           </span>
                         </div>
-                        <div className="mt-0.5 font-mono text-[11px] text-accent/70">{proj.result}</div>
+                        <div className="mt-1 font-mono text-[11px] text-accent/60">{proj.result}</div>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Bottom stats bar */}
-                <div className="grid grid-cols-3 border-t border-white/[0.06]">
+                <div className="grid grid-cols-3 border-t border-white/[0.06] bg-white/[0.01]">
                   {[
                     { val: "12+", label: "Shipped" },
                     { val: "<4hr", label: "Response" },
                     { val: "100%", label: "Ownership" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="border-r border-white/[0.04] px-5 py-4 last:border-r-0">
-                      <div className="font-display text-[20px] font-black text-white">{stat.val}</div>
-                      <div className="font-mono text-[9px] uppercase tracking-[0.1em] text-dim">{stat.label}</div>
+                  ].map((stat, i) => (
+                    <div key={stat.label} className={`px-6 py-4 ${i < 2 ? "border-r border-white/[0.04]" : ""}`}>
+                      <div className="font-display text-[18px] font-black tracking-[-0.02em] text-white">{stat.val}</div>
+                      <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-dim">{stat.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Floating accent detail */}
-              <div className="absolute -bottom-3 -right-3 h-24 w-24 rounded-2xl border border-accent/20 bg-accent/[0.04]" />
-              <div className="absolute -left-2 -top-2 h-16 w-16 rounded-xl border border-white/[0.06] bg-surface-2" />
             </div>
           </Reveal>
         </div>

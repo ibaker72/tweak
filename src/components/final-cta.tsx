@@ -25,7 +25,7 @@ export function FinalCTA() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-40" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
-              <span className="font-mono text-[11px] font-medium text-accent">2 spots open for March</span>
+              <span className="font-mono text-[11px] font-medium text-accent">Accepting projects</span>
             </div>
 
             <h2 className="font-display text-[clamp(34px,5.5vw,60px)] font-black leading-[0.95] tracking-[-0.045em] text-white">

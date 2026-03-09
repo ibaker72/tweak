@@ -37,7 +37,6 @@ export function Hero() {
               </span>
               <span className="font-mono text-[11px] font-medium text-emerald-400">Accepting projects</span>
             </div>
-            <span className="font-mono text-[11px] text-dim">2 spots open for March</span>
           </div>
         </Reveal>
 

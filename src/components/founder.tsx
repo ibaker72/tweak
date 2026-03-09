@@ -7,7 +7,6 @@ export function WhyUs() {
   return (
     <section className="relative overflow-hidden py-28 sm:py-32">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-0 via-surface-1/50 to-surface-0" />
-      <div className="pointer-events-none absolute left-[10%] top-[20%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.04),transparent_70%)] blur-[60px]" />
 
       <div className="wrap relative">
         <Reveal>
@@ -25,7 +24,7 @@ export function WhyUs() {
           {differentiators.map((d, i) => (
             <Reveal key={d.title} delay={i * 0.06}>
               <Tilt className="h-full">
-                <div className="flex h-full gap-4 rounded-[20px] border border-white/[0.06] p-7 transition-all duration-300 hover:border-v/[0.1] shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_20px_40px_-12px_rgba(0,0,0,0.35)]" style={{ background: "linear-gradient(170deg, rgba(14,14,24,0.95), rgba(10,10,18,0.98))" }}>
+                <div className="flex h-full gap-4 rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-7 transition-all duration-300 hover:border-v/[0.1]">
                   <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-v/[0.2] bg-gradient-to-br from-v/[0.1] to-cyan/[0.04]">
                     <Check size={14} className="text-v-light" />
                   </div>
@@ -43,12 +42,12 @@ export function WhyUs() {
         <Reveal delay={0.3}>
           <div className="mx-auto max-w-[720px]">
             <Tilt>
-              <div className="relative overflow-hidden rounded-[24px] border border-white/[0.06] p-8 shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_24px_48px_-12px_rgba(0,0,0,0.35)] sm:p-10" style={{ background: "linear-gradient(170deg, rgba(14,14,24,0.95), rgba(10,10,18,0.98))" }}>
+              <div className="relative overflow-hidden rounded-[24px] border border-white/[0.06] bg-white/[0.02] p-8 sm:p-10">
                 <div className="absolute left-10 right-10 top-0 h-px bg-gradient-to-r from-transparent via-v/[0.2] to-transparent" />
 
                 <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8">
                   <div className="flex-shrink-0">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-v/[0.2] bg-gradient-to-br from-v/[0.12] to-cyan/[0.06] shadow-[0_0_32px_rgba(139,92,246,0.08)]">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-v/[0.15] bg-v/[0.06]">
                       <span className="font-display text-2xl font-black text-v-light">IB</span>
                     </div>
                   </div>
@@ -77,7 +76,7 @@ export function WhyUs() {
                         e.currentTarget.style.boxShadow = "none";
                       }}
                     >
-                      <div className="h-1.5 w-1.5 rounded-full" style={{ background: t.color, boxShadow: `0 0 6px ${t.color}33` }} />
+                      <div className="h-1.5 w-1.5 rounded-full" style={{ background: t.color }} />
                       <span className="font-mono text-[11px] font-medium text-gray-400">{t.name}</span>
                     </div>
                   ))}

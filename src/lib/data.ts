@@ -184,10 +184,16 @@ export const techStack = [
 ];
 
 export const metrics = [
-  { value: "5+", label: "Projects shipped" },
+  { value: "12+", label: "Projects shipped" },
   { value: "$2M+", label: "Client revenue generated" },
   { value: "<4hr", label: "Avg. response time" },
   { value: "100%", label: "Code ownership" },
+];
+
+export const recentLaunches = [
+  { name: "Create3DParts.com", type: "E-Commerce", status: "live", result: "Orders up 35%" },
+  { name: "LeadsAndSaaS", type: "SaaS Platform", status: "live", result: "Shipped in 5 weeks" },
+  { name: "Meridian Health", type: "Web App", status: "shipped", result: "No-shows down 40%" },
 ];
 
 export const differentiators = [

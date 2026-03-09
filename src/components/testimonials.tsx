@@ -27,8 +27,7 @@ export function Testimonials() {
           <Tilt>
             <div className="mx-auto mb-6 max-w-[800px]">
               <div
-                className="relative overflow-hidden rounded-[22px] border border-white/[0.06] p-8 shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_24px_48px_-12px_rgba(0,0,0,0.4)] sm:p-10"
-                style={{ background: "linear-gradient(170deg, rgba(139,92,246,0.035), rgba(12,12,22,0.96))" }}
+                className="relative overflow-hidden rounded-[22px] border border-white/[0.06] bg-white/[0.02] p-8 sm:p-10"
               >
                 {/* Top edge line */}
                 <div className="absolute left-10 right-10 top-0 h-px bg-gradient-to-r from-transparent via-v/[0.15] to-transparent" />
@@ -74,8 +73,7 @@ export function Testimonials() {
             <Reveal key={t.name} delay={0.15 + i * 0.08}>
               <Tilt className="h-full">
                 <div
-                  className="flex h-full flex-col rounded-[20px] border border-white/[0.06] p-7 shadow-[0_1px_0_0_rgba(255,255,255,0.03)_inset,0_20px_40px_-12px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-white/[0.09]"
-                  style={{ background: "linear-gradient(170deg, rgba(14,14,24,0.95), rgba(10,10,18,0.98))" }}
+                  className="flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-7 transition-all duration-300 hover:border-white/[0.09]"
                 >
                   {/* Tags */}
                   <div className="mb-5 flex flex-wrap items-center gap-2">

@@ -64,7 +64,7 @@ export function ChatWidget() {
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0"
       )}>
-        <div className="overflow-hidden rounded-[20px] border border-white/[0.08] shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_40px_rgba(139,92,246,0.06)]" style={{ background: "linear-gradient(170deg, rgba(14,14,24,0.97), rgba(10,10,18,0.99))" }}>
+        <div className="overflow-hidden rounded-[20px] border border-white/[0.08] bg-surface-2 shadow-[0_24px_80px_rgba(0,0,0,0.5)]">
           {/* Header */}
           <div className="border-b border-white/[0.06] px-6 pb-4 pt-5">
             <div className="flex items-start justify-between">
@@ -123,7 +123,7 @@ export function ChatWidget() {
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          "fixed bottom-6 right-6 z-[60] flex items-center gap-2.5 rounded-full border px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_24px_rgba(139,92,246,0.08)] transition-all duration-300 hover:-translate-y-0.5",
+          "fixed bottom-6 right-6 z-[60] flex items-center gap-2.5 rounded-full border px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-0.5",
           open
             ? "border-white/[0.1] bg-surface-2 text-white"
             : "border-v/[0.25] text-white"

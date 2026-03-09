@@ -48,7 +48,7 @@ export default function TermsPage() {
               <p>Governed by the laws of the State of New Jersey. Disputes resolved through binding arbitration in New Jersey.</p>
 
               <h2>9. Contact</h2>
-              <p>Questions? Email <a href="mailto:billing@tweakandbuild.com">billing@tweakandbuild.com</a>.</p>
+              <p>Questions? Email <a href="mailto:hello@tweakandbuild.com">hello@tweakandbuild.com</a>.</p>
             </div>
           </div>
         </div>

@@ -31,30 +31,30 @@ export function Navbar() {
       "fixed inset-x-0 top-0 z-50 transition-all duration-300",
       scrolled ? "glass-nav border-b border-white/[0.06]" : "border-b border-transparent"
     )}>
-      <div className="wrap flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-gradient-to-br from-v to-v-deep shadow-[0_2px_12px_rgba(139,92,246,0.15)]">
-            <Terminal size={14} className="text-white" />
+      <div className="wrap flex h-[68px] items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
+            <Terminal size={14} className="text-surface-0" />
           </div>
           <span className="font-display text-[17px] font-extrabold tracking-[-0.03em] text-white">
-            tweak<span className="text-v-light">&amp;</span>build
+            tweak<span className="text-accent">&amp;</span>build
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {links.map(l => (
-            <Link key={l.href} href={l.href} className="text-[13px] font-medium text-dim transition-colors hover:text-white">
+            <Link key={l.href} href={l.href} className="text-[13px] font-medium text-white/50 transition-colors hover:text-white">
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" className="btn-v !px-5 !py-2.5 !text-[13px]">
+          <Link href="/contact" className="btn-v !py-2.5 !text-[13px]">
             Start a project <ArrowRight size={13} />
           </Link>
         </nav>
 
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-white/[0.08] bg-white/[0.03] text-white transition-colors hover:border-white/[0.12] lg:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-white transition-colors hover:border-white/[0.12] lg:hidden"
           aria-label="Menu"
         >
           {open ? <X size={17} /> : <Menu size={17} />}

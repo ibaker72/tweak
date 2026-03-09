@@ -1,22 +1,24 @@
 import { Hero } from "@/components/hero";
-import { Services } from "@/components/services";
-import { Projects } from "@/components/projects";
-import { Testimonials } from "@/components/testimonials";
-import { WhyUs } from "@/components/founder";
-import { Process } from "@/components/process";
+import { FeaturedWork } from "@/components/featured-work";
+import { ServicesNew } from "@/components/services-new";
+import { TrustStrip } from "@/components/trust-strip";
+import { TechShowcase } from "@/components/tech-showcase";
+import { ProcessNew } from "@/components/process-new";
+import { TestimonialsNew } from "@/components/testimonials-new";
 import { Pricing } from "@/components/pricing";
-
-import { FAQ, FinalCTA } from "@/components/footer";
+import { FinalCTA } from "@/components/final-cta";
+import { FAQ } from "@/components/footer";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Services />
-      <Projects />
-      <WhyUs />
-      <Process />
-      <Testimonials />
+      <TrustStrip />
+      <FeaturedWork />
+      <ServicesNew />
+      <TechShowcase />
+      <ProcessNew />
+      <TestimonialsNew />
       <Pricing />
       <FAQ />
       <FinalCTA />

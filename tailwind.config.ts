@@ -8,8 +8,10 @@ const config: Config = {
       gold: "#F59E0B",
       surface: { 0:"#030305", 1:"#07070C", 2:"#0C0C14", 3:"#111119" },
       dim:"#4B4B60", body:"#8E8EA0",
+      accent: { DEFAULT: "#C8FF00", muted: "rgba(200,255,0,0.10)" },
     },
     fontFamily: { display:["'Outfit'","sans-serif"], body:["'Inter Tight'","sans-serif"], mono:["'Fira Code'","monospace"] },
+    maxWidth: { page: "1320px" },
   }},
   plugins: [],
 };

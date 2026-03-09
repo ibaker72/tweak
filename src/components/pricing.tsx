@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Minus, Package, Code2, HelpCircle, MessageSquare, Upload, Send, Loader2, CreditCard, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Reveal, Tilt } from "./shared";
+import { Reveal } from "./shared";
 import { tiers, budgetOptions, timelineOptions } from "@/lib/data";
 
 export function Pricing() {
@@ -32,14 +32,12 @@ export function Pricing() {
   };
 
   return (
-    <section id="pricing" className="relative py-28 sm:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface-0 via-surface-1/80 to-surface-1" />
-
-      <div className="wrap relative">
+    <section id="pricing" className="relative py-24 sm:py-32">
+      <div className="wrap">
         <Reveal>
           <div className="mx-auto mb-6 max-w-[600px] text-center">
             <span className="section-label">Pricing</span>
-            <h2 className="section-title mt-3">Two ways to get started</h2>
+            <h2 className="section-title mt-4">Two ways to get started</h2>
             <p className="mt-4 text-[15px] leading-[1.7] text-body">Choose the path that fits your project. Same quality, same team, different starting points.</p>
           </div>
         </Reveal>
@@ -53,16 +51,16 @@ export function Pricing() {
             ]).map(t => (
               <button key={t.id} onClick={() => { setTab(t.id); setStatus("idle"); }}
                 className={cn(
-                  "flex flex-1 items-start gap-3.5 rounded-[18px] border-[1.5px] p-5 text-left transition-all duration-300",
+                  "flex flex-1 items-start gap-3.5 rounded-2xl border-[1.5px] p-5 text-left transition-all duration-300",
                   tab === t.id
-                    ? "border-v bg-gradient-to-br from-v/[0.06] to-cyan/[0.03] shadow-[0_8px_40px_rgba(139,92,246,0.08)]"
+                    ? "border-accent bg-accent/[0.04]"
                     : "border-white/[0.06] bg-white/[0.015] hover:border-white/[0.1]"
                 )}>
                 <div className={cn(
-                  "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px] transition-all",
-                  tab === t.id ? "bg-gradient-to-br from-v to-v-deep shadow-[0_0_20px_rgba(139,92,246,0.2)]" : "bg-white/[0.04]"
+                  "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl transition-all",
+                  tab === t.id ? "bg-accent" : "bg-white/[0.04]"
                 )}>
-                  <t.icon size={18} className={tab === t.id ? "text-white" : "text-dim"} />
+                  <t.icon size={18} className={tab === t.id ? "text-surface-0" : "text-dim"} />
                 </div>
                 <div>
                   <div className={cn("text-[15px] font-bold", tab === t.id ? "text-white" : "text-gray-400")}>{t.label}</div>
@@ -79,65 +77,61 @@ export function Pricing() {
             <div className="mx-auto max-w-[1000px]">
               <div className="mb-10 grid gap-4 md:grid-cols-3">
                 {tiers.map(q => (
-                  <Tilt key={q.name} className="h-full">
-                    <div className={cn(
-                      "relative flex h-full flex-col rounded-[20px] border-[1.5px] p-7 transition-all",
-                      q.popular
-                        ? "border-v bg-gradient-to-b from-v/[0.05] to-surface-1"
-                        : "border-white/[0.06] bg-white/[0.02] hover:border-white/[0.1]"
-                    )}>
-                      {q.popular && (
-                        <div className="absolute -top-px left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-v to-v-deep px-4 py-1 text-[10px] font-bold tracking-wide text-white shadow-[0_4px_16px_rgba(139,92,246,0.3)]">
-                          MOST POPULAR
+                  <div key={q.name} className={cn(
+                    "relative flex h-full flex-col rounded-2xl border-[1.5px] p-7 transition-all",
+                    q.popular
+                      ? "border-accent bg-accent/[0.03]"
+                      : "border-white/[0.06] bg-white/[0.015] hover:border-white/[0.1]"
+                  )}>
+                    {q.popular && (
+                      <div className="absolute -top-px left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent px-4 py-1 text-[10px] font-bold tracking-wide text-surface-0">
+                        MOST POPULAR
+                      </div>
+                    )}
+                    <h3 className="font-display text-[17px] font-bold text-white">{q.name}</h3>
+                    <div className="mt-3 flex items-baseline gap-1.5">
+                      <span className="font-display text-[42px] font-black tracking-tight text-white">{q.price}</span>
+                      <span className="text-[13px] text-dim">flat rate</span>
+                    </div>
+                    <div className="mb-4 mt-1 font-mono text-[11px] text-accent">{q.time}</div>
+
+                    <div className="mb-5 flex items-center gap-2 rounded-xl border border-white/[0.05] bg-white/[0.02] px-3 py-2">
+                      <Wallet size={12} className="flex-shrink-0 text-accent" />
+                      <span className="font-mono text-[10px] leading-tight text-gray-400">{q.payment}</span>
+                    </div>
+
+                    <div className="flex-1 border-t border-white/[0.06] pt-5">
+                      {q.features.map(f => (
+                        <div key={f} className="flex items-start gap-2.5 py-[5px] text-[13px] text-gray-300">
+                          <Check size={13} className="mt-[3px] flex-shrink-0 text-accent" />{f}
                         </div>
-                      )}
-                      <h3 className="font-display text-[17px] font-bold text-white">{q.name}</h3>
-                      <div className="mt-3 flex items-baseline gap-1.5">
-                        <span className="font-display text-[42px] font-black tracking-tight text-white">{q.price}</span>
-                        <span className="text-[13px] text-dim">flat rate</span>
-                      </div>
-                      <div className="mb-4 mt-1 font-mono text-[11px] text-cyan">{q.time}</div>
-
-                      {/* Payment terms */}
-                      <div className="mb-5 flex items-center gap-2 rounded-lg border border-white/[0.05] bg-white/[0.02] px-3 py-2">
-                        <Wallet size={12} className="flex-shrink-0 text-v-light" />
-                        <span className="font-mono text-[10px] leading-tight text-gray-400">{q.payment}</span>
-                      </div>
-
-                      <div className="flex-1 border-t border-white/[0.06] pt-5">
-                        {q.features.map(f => (
-                          <div key={f} className="flex items-start gap-2.5 py-[5px] text-[13px] text-gray-300">
-                            <Check size={13} className="mt-[3px] flex-shrink-0 text-cyan" />{f}
+                      ))}
+                      <div className="mt-3 border-t border-white/[0.04] pt-3">
+                        {q.excluded.map(f => (
+                          <div key={f} className="flex items-start gap-2.5 py-[3px] text-[12px] text-dim">
+                            <Minus size={11} className="mt-[3px] flex-shrink-0 text-white/[0.12]" />{f}
                           </div>
                         ))}
-                        <div className="mt-3 border-t border-white/[0.04] pt-3">
-                          {q.excluded.map(f => (
-                            <div key={f} className="flex items-start gap-2.5 py-[3px] text-[12px] text-dim">
-                              <Minus size={11} className="mt-[3px] flex-shrink-0 text-white/[0.12]" />{f}
-                            </div>
-                          ))}
-                        </div>
                       </div>
-
-                      <button
-                        onClick={() => handleCheckout(q.name)}
-                        disabled={checkoutLoading === q.name}
-                        className={cn(
-                          "mt-6 flex items-center justify-center gap-2 rounded-[14px] py-3 text-[13px] font-semibold transition-all disabled:opacity-60",
-                          q.popular ? "btn-v w-full !px-0" : "btn-o w-full !px-0"
-                        )}>
-                        {checkoutLoading === q.name ? (
-                          <><Loader2 size={14} className="animate-spin" /> Processing...</>
-                        ) : (
-                          <><CreditCard size={14} /> Get started</>
-                        )}
-                      </button>
                     </div>
-                  </Tilt>
+
+                    <button
+                      onClick={() => handleCheckout(q.name)}
+                      disabled={checkoutLoading === q.name}
+                      className={cn(
+                        "mt-6 flex items-center justify-center gap-2 rounded-full py-3 text-[13px] font-semibold transition-all disabled:opacity-60",
+                        q.popular ? "btn-v w-full !px-0" : "btn-o w-full !px-0"
+                      )}>
+                      {checkoutLoading === q.name ? (
+                        <><Loader2 size={14} className="animate-spin" /> Processing...</>
+                      ) : (
+                        <><CreditCard size={14} /> Get started</>
+                      )}
+                    </button>
+                  </div>
                 ))}
               </div>
 
-              {/* Payment reassurance strip */}
               <div className="mb-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
                 {[
                   "Fixed pricing — no hourly billing",
@@ -145,29 +139,27 @@ export function Pricing() {
                   "Revision rounds included",
                 ].map(t => (
                   <span key={t} className="flex items-center gap-2 text-[12px] text-dim">
-                    <Check size={11} className="text-cyan/60" />{t}
+                    <Check size={11} className="text-accent/60" />{t}
                   </span>
                 ))}
               </div>
 
-              {/* Not sure form */}
-              <div className="relative mx-auto max-w-[580px] overflow-hidden rounded-[20px] border border-v/[0.1] bg-white/[0.02] p-8">
-                <div className="absolute left-8 right-8 top-0 h-px bg-gradient-to-r from-transparent via-v/20 to-transparent" />
+              <div className="relative mx-auto max-w-[580px] overflow-hidden rounded-2xl border border-accent/[0.1] bg-white/[0.015] p-8">
                 <div className="mb-1 flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-[10px] border border-cyan/[0.15] bg-cyan/[0.06]">
-                    <HelpCircle size={16} className="text-cyan-light" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-accent/[0.15] bg-accent/[0.06]">
+                    <HelpCircle size={16} className="text-accent" />
                   </div>
                   <h3 className="font-display text-lg font-bold text-white">Not sure which tier fits?</h3>
                 </div>
                 <p className="mb-6 text-[13px] text-dim">Tell us about your project and we&apos;ll recommend the right package. No commitment.</p>
                 {status === "success" ? (
                   <div className="py-8 text-center">
-                    <div className="mx-auto mb-3.5 flex h-12 w-12 items-center justify-center rounded-xl border border-v/[0.2] bg-v/[0.06]">
-                      <Check size={20} className="text-v-light" />
+                    <div className="mx-auto mb-3.5 flex h-12 w-12 items-center justify-center rounded-xl border border-accent/[0.2] bg-accent/[0.06]">
+                      <Check size={20} className="text-accent" />
                     </div>
                     <p className="font-display text-lg font-bold text-white">Got it!</p>
                     <p className="mt-1 text-sm text-body">We&apos;ll review and recommend within 24 hours.</p>
-                    <button onClick={reset} className="mt-5 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another &rarr;</button>
+                    <button onClick={reset} className="mt-5 text-[13px] font-semibold text-accent transition-colors hover:text-white">Submit another &rarr;</button>
                   </div>
                 ) : (
                   <div className="space-y-3.5">
@@ -212,29 +204,27 @@ export function Pricing() {
                   "Milestone-based billing",
                 ].map(f => (
                   <div key={f} className="flex items-start gap-3 py-2.5 text-[14px] text-gray-300">
-                    <div className="mt-0.5 flex h-[22px] w-[22px] flex-shrink-0 items-center justify-center rounded-md border border-v/[0.15] bg-gradient-to-br from-v/[0.08] to-cyan/[0.03]">
-                      <Check size={12} className="text-cyan" />
+                    <div className="mt-0.5 flex h-[22px] w-[22px] flex-shrink-0 items-center justify-center rounded-md border border-accent/[0.15] bg-accent/[0.06]">
+                      <Check size={12} className="text-accent" />
                     </div>
                     {f}
                   </div>
                 ))}
 
-                {/* Pricing + milestone structure */}
-                <div className="mt-7 rounded-[16px] border border-v/[0.12] bg-gradient-to-br from-v/[0.05] to-cyan/[0.02] p-6">
+                <div className="mt-7 rounded-2xl border border-accent/[0.12] bg-accent/[0.04] p-6">
                   <p className="text-[14px] text-gray-300">
                     <strong className="text-white">Starting at $5,000.</strong> Most projects fall between $5k and $25k. Fixed-price proposals always — no hourly billing.
                   </p>
                 </div>
 
-                {/* Milestone visual */}
-                <div className="mt-6 rounded-[16px] border border-white/[0.06] bg-white/[0.02] p-6">
+                <div className="mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6">
                   <div className="mb-4 flex items-center gap-2">
-                    <Wallet size={14} className="text-v-light" />
+                    <Wallet size={14} className="text-accent" />
                     <h4 className="font-display text-[14px] font-bold text-white">How projects are structured</h4>
                   </div>
                   <div className="space-y-3">
                     {[
-                      { pct: "40%", label: "Deposit", desc: "Project kicks off", color: "#8B5CF6", w: "40%" },
+                      { pct: "40%", label: "Deposit", desc: "Project kicks off", color: "#C8FF00", w: "40%" },
                       { pct: "30%", label: "Midpoint", desc: "Approved build preview", color: "#06B6D4", w: "30%" },
                       { pct: "30%", label: "Final", desc: "Before launch & handoff", color: "#22C55E", w: "30%" },
                     ].map(m => (
@@ -258,15 +248,15 @@ export function Pricing() {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-7">
+              <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] p-7">
                 <h3 className="font-display text-[17px] font-bold text-white">Tell us about your project</h3>
                 <p className="mb-5 mt-1 text-[12px] text-dim">We respond within one business day.</p>
                 {status === "success" ? (
                   <div className="py-8 text-center">
-                    <Check size={28} className="mx-auto mb-2.5 text-cyan" />
+                    <Check size={28} className="mx-auto mb-2.5 text-accent" />
                     <p className="font-display text-[17px] font-bold text-white">Inquiry received!</p>
                     <p className="mt-1 text-sm text-body">We&apos;ll respond within 24 hours.</p>
-                    <button onClick={reset} className="mt-4 text-[13px] font-semibold text-cyan transition-colors hover:text-cyan-light">Submit another &rarr;</button>
+                    <button onClick={reset} className="mt-4 text-[13px] font-semibold text-accent transition-colors hover:text-white">Submit another &rarr;</button>
                   </div>
                 ) : (
                   <div className="space-y-3">

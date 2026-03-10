@@ -1,80 +1,189 @@
 export interface Project {
-  slug: string; title: string; category: string; tagline: string;
-  description: string; challenge: string; solution: string;
-  problem: string; solutionShort: string; impactShort: string;
-  impact: string; results: string[]; stack: string[]; year: string;
-  live?: boolean; url?: string;
+  slug: string;
+  title: string;
+  category: string;
+  tagline: string;
+  description: string;
+  challenge: string;
+  solution: string;
+  problem: string;
+  solutionShort: string;
+  impactShort: string;
+  impact: string;
+  results: string[];
+  stack: string[];
+  year: string;
+  live?: boolean;
+  url?: string;
+  image?: string;
+  gallery?: string[];
 }
 
 export const projects: Project[] = [
   {
-    slug: "create3dparts", title: "Create3DParts.com", category: "E-Commerce Platform",
+    slug: "create3dparts",
+    title: "Create3DParts.com",
+    category: "E-Commerce Platform",
     tagline: "Instant 3D printing quotes with integrated checkout",
-    description: "A full-stack platform that lets customers upload CAD files, get real-time pricing based on material and complexity, and check out in under 60 seconds.",
-    challenge: "The client was losing leads because their quote process took 24 to 48 hours. Customers would leave and never return.",
-    solution: "We built a real-time quoting engine that parses STL/STEP files, calculates volume and print time, and returns a price instantly. Integrated Stripe checkout with order tracking and automated email confirmations.",
-    problem: "Manual quoting took 48 hours. Customers left and never came back.",
-    solutionShort: "Built a real-time quoting engine with instant CAD file pricing and Stripe checkout.",
-    impactShort: "Quote time: 48hrs → 60sec. Orders up 35% in month one.",
+    description:
+      "A full-stack platform that lets customers upload CAD files, get real-time pricing based on material and complexity, and check out in under 60 seconds.",
+    challenge:
+      "The client was losing leads because their quote process took 24 to 48 hours. Customers would leave and never return.",
+    solution:
+      "We built a real-time quoting engine that parses STL/STEP files, calculates volume and print time, and returns a price instantly. Integrated Stripe checkout with order tracking and automated email confirmations.",
+    problem:
+      "Manual quoting took 48 hours. Customers left and never came back.",
+    solutionShort:
+      "Built a real-time quoting engine with instant CAD file pricing and Stripe checkout.",
+    impactShort:
+      "Quote time: 48hrs → 60sec. Orders up 35% in month one.",
     impact: "Quote time: 48hrs → 60sec",
-    results: ["Quote-to-checkout reduced from 48 hours to under 60 seconds", "35% increase in completed orders in month one", "Eliminated 20+ hours/week of manual quoting"],
+    results: [
+      "Quote-to-checkout reduced from 48 hours to under 60 seconds",
+      "35% increase in completed orders in month one",
+      "Eliminated 20+ hours/week of manual quoting",
+    ],
     stack: ["Next.js", "TypeScript", "Stripe", "Node.js", "AWS S3", "Vercel"],
-    year: "2025", live: true, url: "https://create3dparts.com",
+    year: "2025",
+    live: true,
+    url: "https://create3dparts.com",
+    image: "/proof/create3dparts/home.png",
+    gallery: [
+      "/proof/create3dparts/home.png",
+      "/proof/create3dparts/quote.png",
+      "/proof/create3dparts/quote-request.png",
+      "/proof/create3dparts/dashboard.png",
+      "/proof/create3dparts/dashboard-settings.png",
+      "/proof/create3dparts/sign-in.png",
+    ],
   },
   {
-    slug: "leadsandsaas", title: "LeadsAndSaaS", category: "SaaS Platform",
+    slug: "leadsandsaas",
+    title: "LeadsAndSaaS",
+    category: "SaaS Platform",
     tagline: "Agent hub, asset vault, and lead distribution engine",
-    description: "A multi-tenant SaaS platform for managing AI agent workflows, storing digital assets, and distributing leads across teams with configurable routing rules.",
-    challenge: "The founding team was juggling four different tools for lead management, asset storage, and agent coordination. Data was siloed and leads were being dropped.",
-    solution: "We consolidated everything into one platform: a drag-and-drop agent builder, a centralized asset vault with tagging and permissions, and a lead router with round-robin and rules-based distribution.",
-    problem: "Four disconnected tools. Data siloed, leads dropped, onboarding took days.",
-    solutionShort: "One platform: agent builder, asset vault, and rules-based lead distribution.",
-    impactShort: "Lead response dropped from 4 hours to 15 minutes.",
+    description:
+      "A multi-tenant SaaS platform for managing AI agent workflows, storing digital assets, and distributing leads across teams with configurable routing rules.",
+    challenge:
+      "The founding team was juggling four different tools for lead management, asset storage, and agent coordination. Data was siloed and leads were being dropped.",
+    solution:
+      "We consolidated everything into one platform: a drag-and-drop agent builder, a centralized asset vault with tagging and permissions, and a lead router with round-robin and rules-based distribution.",
+    problem:
+      "Four disconnected tools. Data siloed, leads dropped, onboarding took days.",
+    solutionShort:
+      "One platform: agent builder, asset vault, and rules-based lead distribution.",
+    impactShort:
+      "Lead response dropped from 4 hours to 15 minutes.",
     impact: "Lead response: 4hrs → 15min",
-    results: ["Lead response time: 4 hours to under 15 minutes", "100% of assets in one searchable vault", "Onboarding reduced from 3 days to 4 hours"],
-    stack: ["Next.js", "TypeScript", "Supabase", "OpenAI API", "Tailwind CSS", "Vercel"],
-    year: "2025", live: true,
+    results: [
+      "Lead response time: 4 hours to under 15 minutes",
+      "100% of assets in one searchable vault",
+      "Onboarding reduced from 3 days to 4 hours",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "OpenAI API",
+      "Tailwind CSS",
+      "Vercel",
+    ],
+    year: "2025",
+    live: true,
+    image: "/proof/leadsandsaas/overview.png",
+    gallery: [
+      "/proof/leadsandsaas/overview.png",
+      "/proof/leadsandsaas/billing.png",
+      "/proof/leadsandsaas/agents.png",
+      "/proof/leadsandsaas/chat-widget.png",
+      "/proof/leadsandsaas/conversations.png",
+      "/proof/leadsandsaas/integrations.png",
+      "/proof/leadsandsaas/login.png",
+      "/proof/leadsandsaas/settings.png",
+    ],
   },
   {
-    slug: "meridian-health", title: "Meridian Health", category: "Web Application",
+    slug: "meridian-health",
+    title: "Meridian Health",
+    category: "Web Application",
     tagline: "Patient portal and scheduling for a multi-location clinic",
-    description: "A full-stack patient portal and scheduling platform serving three clinic locations, replacing phone-based booking with a seamless digital experience.",
-    challenge: "The clinic was losing 20+ staff hours per week on phone scheduling with a 25% no-show rate.",
-    solution: "We built a patient-facing portal with real-time calendar availability, automated SMS/email reminders, and a staff dashboard for full schedule management.",
-    problem: "25% no-show rate and 20+ hours/week wasted on phone scheduling.",
-    solutionShort: "Patient portal with real-time availability and automated SMS reminders.",
-    impactShort: "No-shows reduced 40%. Phone volume cut in half.",
+    description:
+      "A full-stack patient portal and scheduling platform serving three clinic locations, replacing phone-based booking with a seamless digital experience.",
+    challenge:
+      "The clinic was losing 20+ staff hours per week on phone scheduling with a 25% no-show rate.",
+    solution:
+      "We built a patient-facing portal with real-time calendar availability, automated SMS/email reminders, and a staff dashboard for full schedule management.",
+    problem:
+      "25% no-show rate and 20+ hours/week wasted on phone scheduling.",
+    solutionShort:
+      "Patient portal with real-time availability and automated SMS reminders.",
+    impactShort:
+      "No-shows reduced 40%. Phone volume cut in half.",
     impact: "No-shows reduced 40%",
-    results: ["No-show rate dropped from 25% to 15% in 60 days", "Phone volume reduced by 40%", "Patient satisfaction up 22%"],
+    results: [
+      "No-show rate dropped from 25% to 15% in 60 days",
+      "Phone volume reduced by 40%",
+      "Patient satisfaction up 22%",
+    ],
     stack: ["Next.js", "TypeScript", "Supabase", "Twilio", "Vercel"],
     year: "2025",
   },
   {
-    slug: "atlas-freight", title: "Atlas Freight", category: "Landing Page + CRM",
+    slug: "atlas-freight",
+    title: "Atlas Freight",
+    category: "Landing Page + CRM",
     tagline: "Lead generation engine with instant-quote calculator for logistics",
-    description: "A conversion-optimized landing page with a step-by-step freight quote calculator feeding directly into a HubSpot sales pipeline.",
-    challenge: "Atlas was running Google Ads to a generic WordPress page with just a phone number. No online lead capture, no CRM.",
-    solution: "We designed a high-converting landing page with an interactive quote builder. Leads flow into HubSpot with automated sequences and real-time sales notifications.",
-    problem: "Google Ads to a generic page. No lead capture, no CRM, burning budget.",
-    solutionShort: "Conversion-optimized page with interactive quote builder feeding HubSpot.",
-    impactShort: "3.2x more qualified leads. Cost per lead down 58%.",
+    description:
+      "A conversion-optimized landing page with a step-by-step freight quote calculator feeding directly into a HubSpot sales pipeline.",
+    challenge:
+      "Atlas was running Google Ads to a generic WordPress page with just a phone number. No online lead capture, no CRM.",
+    solution:
+      "We designed a high-converting landing page with an interactive quote builder. Leads flow into HubSpot with automated sequences and real-time sales notifications.",
+    problem:
+      "Google Ads to a generic page. No lead capture, no CRM, burning budget.",
+    solutionShort:
+      "Conversion-optimized page with interactive quote builder feeding HubSpot.",
+    impactShort:
+      "3.2x more qualified leads. Cost per lead down 58%.",
     impact: "3.2x more qualified leads",
-    results: ["Qualified leads increased 3.2x in month one", "Cost per lead decreased 58%", "Sales response: 6 hours to 12 minutes"],
+    results: [
+      "Qualified leads increased 3.2x in month one",
+      "Cost per lead decreased 58%",
+      "Sales response: 6 hours to 12 minutes",
+    ],
     stack: ["React", "TypeScript", "HubSpot API", "Vercel", "Analytics"],
     year: "2024",
   },
   {
-    slug: "vow-studios", title: "Vow Studios", category: "Headless E-Commerce",
+    slug: "vow-studios",
+    title: "Vow Studios",
+    category: "Headless E-Commerce",
     tagline: "Headless Shopify storefront with 3D product configurator",
-    description: "A headless Shopify storefront for fine jewelry with a WebGL ring configurator, real-time pricing, and Apple Pay checkout.",
-    challenge: "The existing Shopify theme was slow and generic. The client needed a custom product builder for ring configuration.",
-    solution: "We built a headless Next.js storefront powered by Shopify's Storefront API with a Three.js configurator and streamlined three-step checkout.",
-    problem: "Slow Shopify theme. 5s load. 72% mobile bounce. No product customization.",
-    solutionShort: "Headless Next.js storefront with 3D configurator and Apple Pay.",
-    impactShort: "Revenue up 180% in 90 days. Load time: 5.2s → 1.1s.",
+    description:
+      "A headless Shopify storefront for fine jewelry with a WebGL ring configurator, real-time pricing, and Apple Pay checkout.",
+    challenge:
+      "The existing Shopify theme was slow and generic. The client needed a custom product builder for ring configuration.",
+    solution:
+      "We built a headless Next.js storefront powered by Shopify's Storefront API with a Three.js configurator and streamlined three-step checkout.",
+    problem:
+      "Slow Shopify theme. 5s load. 72% mobile bounce. No product customization.",
+    solutionShort:
+      "Headless Next.js storefront with 3D configurator and Apple Pay.",
+    impactShort:
+      "Revenue up 180% in 90 days. Load time: 5.2s → 1.1s.",
     impact: "Revenue up 180% in 90 days",
-    results: ["Revenue increased 180% in 90 days", "AOV up 35% via configurator upsells", "Load time: 5.2s to 1.1s"],
-    stack: ["Next.js", "Shopify Storefront API", "Three.js", "TypeScript", "Vercel Edge"],
+    results: [
+      "Revenue increased 180% in 90 days",
+      "AOV up 35% via configurator upsells",
+      "Load time: 5.2s to 1.1s",
+    ],
+    stack: [
+      "Next.js",
+      "Shopify Storefront API",
+      "Three.js",
+      "TypeScript",
+      "Vercel Edge",
+    ],
     year: "2024",
   },
 ];

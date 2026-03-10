@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./shared";
@@ -17,6 +18,7 @@ const featuredProjects = [
     accent: "#C8FF00",
     year: "2025",
     live: true,
+    image: "/proof/create3dparts/home.png",
   },
   {
     slug: "leadsandsaas",
@@ -31,6 +33,7 @@ const featuredProjects = [
     accent: "#8B5CF6",
     year: "2025",
     live: true,
+    image: "/proof/leadsandsaas/overview.png",
   },
   {
     slug: "vow-studios",
@@ -45,6 +48,7 @@ const featuredProjects = [
     accent: "#06B6D4",
     year: "2024",
     live: false,
+    image: "/proof/create3dparts/dashboard.png",
   },
 ];
 
@@ -64,7 +68,11 @@ export function FeaturedWork() {
               href="/work"
               className="group flex items-center gap-2 self-start font-mono text-[11px] uppercase tracking-[0.12em] text-dim transition-colors duration-200 hover:text-white sm:self-auto"
             >
-              All case studies <ArrowUpRight size={12} className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              All case studies{" "}
+              <ArrowUpRight
+                size={12}
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
             </Link>
           </div>
         </Reveal>
@@ -75,32 +83,54 @@ export function FeaturedWork() {
               <Link href={`/work/${project.slug}`} className="group block">
                 <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] shadow-[0_1px_0_rgba(255,255,255,0.02)_inset] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.025]">
                   <div className="grid gap-0 lg:grid-cols-[1.15fr,0.85fr]">
-                    {/* Left: project info */}
-                    <div className="flex flex-col justify-between p-8 lg:p-10">
-                      <div>
-                        <div className="mb-5 flex flex-wrap items-center gap-3">
-                          <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-dim">{project.category}</span>
-                          <span className="h-0.5 w-0.5 rounded-full bg-dim" />
-                          <span className="font-mono text-[10px] text-dim">{project.year}</span>
-                          {project.live && (
-                            <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-0.5">
-                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                              <span className="font-mono text-[9px] font-bold text-emerald-400">LIVE</span>
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="font-display text-[26px] font-bold tracking-[-0.03em] text-white transition-colors duration-200 group-hover:text-accent lg:text-[30px]">
-                          {project.title}
-                        </h3>
-                        <p className="mt-3 max-w-[420px] text-[14px] leading-[1.75] text-body">
-                          {project.description}
-                        </p>
+                    {/* Left: image + project info */}
+                    <div className="flex flex-col justify-between">
+                      <div className="relative h-56 overflow-hidden border-b border-white/[0.06] sm:h-64">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                       </div>
 
-                      <div className="mt-8 flex flex-wrap gap-1.5">
-                        {project.stack.map((t) => (
-                          <span key={t} className="tag">{t}</span>
-                        ))}
+                      <div className="p-8 lg:p-10">
+                        <div>
+                          <div className="mb-5 flex flex-wrap items-center gap-3">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-dim">
+                              {project.category}
+                            </span>
+                            <span className="h-0.5 w-0.5 rounded-full bg-dim" />
+                            <span className="font-mono text-[10px] text-dim">
+                              {project.year}
+                            </span>
+                            {project.live && (
+                              <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-0.5">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                                <span className="font-mono text-[9px] font-bold text-emerald-400">
+                                  LIVE
+                                </span>
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="font-display text-[26px] font-bold tracking-[-0.03em] text-white transition-colors duration-200 group-hover:text-accent lg:text-[30px]">
+                            {project.title}
+                          </h3>
+
+                          <p className="mt-3 max-w-[420px] text-[14px] leading-[1.75] text-body">
+                            {project.description}
+                          </p>
+                        </div>
+
+                        <div className="mt-8 flex flex-wrap gap-1.5">
+                          {project.stack.map((t) => (
+                            <span key={t} className="tag">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
@@ -109,15 +139,25 @@ export function FeaturedWork() {
                       <div className="flex h-full flex-col justify-center gap-7">
                         {project.metrics.map((m) => (
                           <div key={m.label}>
-                            <div className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.12em] text-dim">{m.label}</div>
+                            <div className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.12em] text-dim">
+                              {m.label}
+                            </div>
                             {"before" in m ? (
                               <div className="flex items-baseline gap-3">
-                                <span className="text-[14px] text-white/30 line-through">{m.before}</span>
-                                <span className="text-[13px] text-accent/60">&rarr;</span>
-                                <span className="font-display text-[26px] font-black tracking-[-0.02em] text-white">{m.after}</span>
+                                <span className="text-[14px] text-white/30 line-through">
+                                  {m.before}
+                                </span>
+                                <span className="text-[13px] text-accent/60">
+                                  &rarr;
+                                </span>
+                                <span className="font-display text-[26px] font-black tracking-[-0.02em] text-white">
+                                  {m.after}
+                                </span>
                               </div>
                             ) : (
-                              <div className="font-display text-[26px] font-black tracking-[-0.02em] text-accent">{m.value}</div>
+                              <div className="font-display text-[26px] font-black tracking-[-0.02em] text-accent">
+                                {m.value}
+                              </div>
                             )}
                           </div>
                         ))}

@@ -88,7 +88,7 @@ export function Pricing() {
         {tab === "quick" && (
           <Reveal delay={0.1}>
             <div className="mx-auto max-w-[1000px]">
-              <div className="mb-8 grid gap-5 md:grid-cols-3">
+              <div className="mb-8 grid gap-5 pt-4 md:grid-cols-3">
                 {tiers.map(q => {
                   /* Per-tier identity — unified system with distinct accents */
                   const tierMeta = {
@@ -160,8 +160,8 @@ export function Pricing() {
                   const TierIcon = tierMeta.icon;
 
                   return (
-                    <div key={q.name} className={cn("relative", tierMeta.badgeLabel && "mt-3 md:mt-4")}>
-                      {/* Badge — outside the clipping container */}
+                    <div key={q.name} className="relative">
+                      {/* Badge — positioned above card, outside overflow container */}
                       {tierMeta.badgeLabel && (
                         <div className={cn(
                           "absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em]",
@@ -173,122 +173,121 @@ export function Pricing() {
                         </div>
                       )}
 
-                      <div className={cn(
-                        "group relative flex h-full flex-col overflow-hidden rounded-[20px] border-[1.5px] transition-all duration-300",
-                        tierMeta.borderClass
-                      )}
-                      style={{ background: "rgba(255,255,255,0.012)" }}
+                      {/* Card shell */}
+                      <div
+                        className={cn(
+                          "group relative flex h-full flex-col overflow-hidden rounded-[20px] border-[1.5px] transition-all duration-300",
+                          tierMeta.borderClass
+                        )}
+                        style={{ background: "rgba(255,255,255,0.012)" }}
                       >
-                      {/* Top edge glow */}
-                      <div className={cn(
-                        "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent",
-                        tierMeta.topGlowClass
-                      )} />
-
-                      {/* Header zone */}
-                      <div className={cn(
-                        "relative px-7 pb-5",
-                        tierMeta.badgeLabel ? "pt-7" : "pt-8"
-                      )}>
+                        {/* Top edge glow */}
                         <div className={cn(
-                          "pointer-events-none absolute inset-0 bg-gradient-to-b",
-                          tierMeta.headerGradient
+                          "absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent",
+                          tierMeta.topGlowClass
                         )} />
 
-                        <div className="relative">
-                          {/* Icon + title */}
-                          <div className="flex items-center gap-3">
-                            <div className={cn(
-                              "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border",
-                              tierMeta.iconBorder,
-                              tierMeta.iconBg
-                            )}>
-                              <TierIcon size={16} className={tierMeta.iconColor} />
-                            </div>
-                            <div>
-                              <h3 className="font-display text-[18px] font-bold text-white">{q.name}</h3>
-                              <p className={cn("mt-0.5 font-mono text-[10px] tracking-wide", tierMeta.sublabelColor)}>
-                                {tierMeta.sublabel}
-                              </p>
-                            </div>
-                          </div>
+                        {/* Header zone — consistent padding for all tiers */}
+                        <div className="relative px-7 pb-5 pt-8">
+                          <div className={cn(
+                            "pointer-events-none absolute inset-0 bg-gradient-to-b",
+                            tierMeta.headerGradient
+                          )} />
 
-                          {/* Price */}
-                          <div className="mt-5 flex items-baseline gap-2">
-                            <span className="font-display text-[44px] font-black leading-none tracking-tight text-white">{q.price}</span>
-                            <span className="text-[12px] font-medium text-white/20">flat rate</span>
-                          </div>
-
-                          {/* Timeline */}
-                          <div className="mt-2 flex items-center gap-1.5">
-                            <Clock size={11} className={tierMeta.timelineIcon} />
-                            <span className={cn("font-mono text-[11px]", tierMeta.timelineText)}>{q.time}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Divider */}
-                      <div className="mx-7">
-                        <div className={cn("h-px", tierMeta.dividerClass)} />
-                      </div>
-
-                      {/* Body zone */}
-                      <div className="flex flex-1 flex-col px-7 pb-7 pt-5">
-                        {/* Payment info */}
-                        <div className={cn(
-                          "mb-5 flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5",
-                          tierMeta.paymentBorder
-                        )}>
-                          <Wallet size={12} className={cn("flex-shrink-0", tierMeta.paymentIcon)} />
-                          <span className="font-mono text-[10px] leading-tight text-gray-400">{q.payment}</span>
-                        </div>
-
-                        {/* Features */}
-                        <div className="flex-1 space-y-0.5">
-                          <div className="mb-2.5 font-mono text-[9px] uppercase tracking-[0.1em] text-white/20">Included</div>
-                          {q.features.map(f => (
-                            <div key={f} className="flex items-start gap-2.5 py-[5px]">
+                          <div className="relative">
+                            {/* Icon + title */}
+                            <div className="flex items-center gap-3">
                               <div className={cn(
-                                "mt-[2px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-[5px]",
-                                tierMeta.checkBg
+                                "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border",
+                                tierMeta.iconBorder,
+                                tierMeta.iconBg
                               )}>
-                                <Check size={10} className={tierMeta.checkColor} />
+                                <TierIcon size={16} className={tierMeta.iconColor} />
                               </div>
-                              <span className="text-[13px] leading-[1.5] text-gray-300">{f}</span>
+                              <div>
+                                <h3 className="font-display text-[18px] font-bold text-white">{q.name}</h3>
+                                <p className={cn("mt-0.5 font-mono text-[10px] tracking-wide", tierMeta.sublabelColor)}>
+                                  {tierMeta.sublabel}
+                                </p>
+                              </div>
                             </div>
-                          ))}
 
-                          {q.excluded.length > 0 && (
-                            <div className="mt-3 border-t border-white/[0.04] pt-3">
-                              {q.excluded.map(f => (
-                                <div key={f} className="flex items-start gap-2.5 py-[3px]">
-                                  <div className="mt-[2px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-[5px] bg-white/[0.02]">
-                                    <Minus size={9} className="text-white/[0.10]" />
-                                  </div>
-                                  <span className="text-[12px] text-dim">{f}</span>
+                            {/* Price */}
+                            <div className="mt-5 flex items-baseline gap-2">
+                              <span className="font-display text-[44px] font-black leading-none tracking-tight text-white">{q.price}</span>
+                              <span className="text-[12px] font-medium text-white/20">flat rate</span>
+                            </div>
+
+                            {/* Timeline */}
+                            <div className="mt-2 flex items-center gap-1.5">
+                              <Clock size={11} className={tierMeta.timelineIcon} />
+                              <span className={cn("font-mono text-[11px]", tierMeta.timelineText)}>{q.time}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="mx-7">
+                          <div className={cn("h-px", tierMeta.dividerClass)} />
+                        </div>
+
+                        {/* Body zone */}
+                        <div className="flex flex-1 flex-col px-7 pb-7 pt-5">
+                          {/* Payment info */}
+                          <div className={cn(
+                            "mb-5 flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5",
+                            tierMeta.paymentBorder
+                          )}>
+                            <Wallet size={12} className={cn("flex-shrink-0", tierMeta.paymentIcon)} />
+                            <span className="font-mono text-[10px] leading-tight text-gray-400">{q.payment}</span>
+                          </div>
+
+                          {/* Features */}
+                          <div className="flex-1 space-y-0.5">
+                            <div className="mb-2.5 font-mono text-[9px] uppercase tracking-[0.1em] text-white/20">Included</div>
+                            {q.features.map(f => (
+                              <div key={f} className="flex items-start gap-2.5 py-[5px]">
+                                <div className={cn(
+                                  "mt-[2px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-[5px]",
+                                  tierMeta.checkBg
+                                )}>
+                                  <Check size={10} className={tierMeta.checkColor} />
                                 </div>
-                              ))}
-                            </div>
-                          )}
-                        </div>
+                                <span className="text-[13px] leading-[1.5] text-gray-300">{f}</span>
+                              </div>
+                            ))}
 
-                        {/* CTA zone */}
-                        <div className={cn("mt-7 rounded-xl border p-3", tierMeta.ctaWrap)}>
-                          <button
-                            onClick={() => handleCheckout(q.name)}
-                            disabled={checkoutLoading === q.name}
-                            className={cn(
-                              "flex w-full items-center justify-center gap-2 rounded-[10px] py-3.5 text-[13px] font-bold transition-all disabled:opacity-60",
-                              tierMeta.ctaBtn
-                            )}>
-                            {checkoutLoading === q.name ? (
-                              <><Loader2 size={14} className="animate-spin" /> Processing...</>
-                            ) : (
-                              <><CreditCard size={14} /> {q.buttonLabel}</>
+                            {q.excluded.length > 0 && (
+                              <div className="mt-3 border-t border-white/[0.04] pt-3">
+                                {q.excluded.map(f => (
+                                  <div key={f} className="flex items-start gap-2.5 py-[3px]">
+                                    <div className="mt-[2px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-[5px] bg-white/[0.02]">
+                                      <Minus size={9} className="text-white/[0.10]" />
+                                    </div>
+                                    <span className="text-[12px] text-dim">{f}</span>
+                                  </div>
+                                ))}
+                              </div>
                             )}
-                          </button>
+                          </div>
+
+                          {/* CTA zone */}
+                          <div className={cn("mt-7 rounded-xl border p-3", tierMeta.ctaWrap)}>
+                            <button
+                              onClick={() => handleCheckout(q.name)}
+                              disabled={checkoutLoading === q.name}
+                              className={cn(
+                                "flex w-full items-center justify-center gap-2 rounded-[10px] py-3.5 text-[13px] font-bold transition-all disabled:opacity-60",
+                                tierMeta.ctaBtn
+                              )}>
+                              {checkoutLoading === q.name ? (
+                                <><Loader2 size={14} className="animate-spin" /> Processing...</>
+                              ) : (
+                                <><CreditCard size={14} /> {q.buttonLabel}</>
+                              )}
+                            </button>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     </div>
                   );

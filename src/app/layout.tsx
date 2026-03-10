@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     title: "Tweak & Build — Premium Product Engineering Studio",
     description: "High-converting websites, web apps, and automation. Engineered for founders who ship.",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
   robots: { index: true, follow: true },
   other: {
     "theme-color": "#030305",

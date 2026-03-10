@@ -1,16 +1,17 @@
 {
   "name": "Tweak & Build",
-  "short_name": "Tweak&Build",
+  "short_name": "Tweak",
   "description": "Premium Product Engineering Studio",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#030305",
-  "theme_color": "#D7FF00",
+  "background_color": "#0B0B0F",
+  "theme_color": "#0B0B0F",
   "icons": [
     {
       "src": "/icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-icon.png",

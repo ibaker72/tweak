@@ -121,7 +121,7 @@ export default function ProjectPage() {
                 src={src}
                 alt={`${project.title} screenshot ${i + 1}`}
                 fill
-                className="object-contain"
+                className="object-contain bg-black"
               />
             </div>
           </div>

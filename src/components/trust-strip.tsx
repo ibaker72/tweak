@@ -15,10 +15,10 @@ export function TrustStrip() {
           {/* Stat 1: Before → After (static, no count-up) */}
           <Reveal delay={0}>
             <div>
-              <div className="font-display text-[clamp(24px,3.2vw,38px)] font-black tracking-[-0.03em] text-white">
-                <span className="text-white/50">48hrs</span>
+              <div className="font-display text-[clamp(32px,4vw,46px)] font-black tracking-[-0.03em]">
+                <span className="text-white/40">48hrs</span>
                 <span className="mx-1.5 text-accent">→</span>
-                <span>60sec</span>
+                <span className="text-white">60sec</span>
               </div>
               <div className="mt-1.5 font-display text-[14px] font-semibold text-white/70">Quote-to-checkout</div>
               <div className="mt-1 text-[12px] leading-[1.6] text-dim">

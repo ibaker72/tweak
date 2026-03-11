@@ -53,6 +53,7 @@ export function HomepageNewsletter() {
             ) : (
               <form onSubmit={subscribe} className="mx-auto mt-6 flex max-w-[400px] gap-2.5">
                 <input
+                  suppressHydrationWarning
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -61,6 +62,7 @@ export function HomepageNewsletter() {
                   required
                 />
                 <button
+                  suppressHydrationWarning
                   type="submit"
                   disabled={status === "loading"}
                   className="btn-v flex-shrink-0 !px-6 disabled:opacity-60"

@@ -130,6 +130,7 @@ export function Pricing() {
               style={{ boxShadow: "inset 0 1px 3px rgba(0,0,0,0.25), 0 0.5px 0 rgba(255,255,255,0.03)" }}
             >
               <button
+                suppressHydrationWarning
                 role="tab"
                 aria-selected={activeTab === "pricing"}
                 aria-controls="pricing-panel"
@@ -145,6 +146,7 @@ export function Pricing() {
                 Pricing
               </button>
               <button
+                suppressHydrationWarning
                 role="tab"
                 aria-selected={activeTab === "calculator"}
                 aria-controls="calculator-panel"

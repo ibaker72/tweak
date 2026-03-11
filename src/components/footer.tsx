@@ -42,6 +42,7 @@ function FooterNewsletter() {
         ) : (
           <form onSubmit={subscribe} className="flex w-full gap-2.5 sm:w-auto">
             <input
+              suppressHydrationWarning
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -49,7 +50,7 @@ function FooterNewsletter() {
               className="field flex-1 sm:w-56"
               required
             />
-            <button type="submit" disabled={status === "loading"} className="btn-v flex-shrink-0 !px-5 !py-[11px] disabled:opacity-60">
+            <button suppressHydrationWarning type="submit" disabled={status === "loading"} className="btn-v flex-shrink-0 !px-5 !py-[11px] disabled:opacity-60">
               {status === "loading" ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
               <span className="hidden sm:inline text-[13px]">Subscribe</span>
             </button>
@@ -81,7 +82,7 @@ export function FAQ() {
                 "overflow-hidden rounded-2xl border transition-all duration-200",
                 open === i ? "border-accent/[0.15] bg-accent/[0.02]" : "border-white/[0.05] bg-white/[0.015]"
               )}>
-                <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-6 py-[18px] text-left">
+                <button suppressHydrationWarning onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center justify-between gap-4 px-6 py-[18px] text-left">
                   <span className={cn("text-[15px] font-semibold", open === i ? "text-white" : "text-gray-300")}>{faq.q}</span>
                   <ChevronDown size={18} className={cn("flex-shrink-0 transition-transform duration-300", open === i ? "rotate-180 text-accent" : "text-dim")} />
                 </button>
@@ -155,7 +156,7 @@ export function BackToTop() {
   useEffect(() => { const fn = () => setV(window.scrollY > 500); window.addEventListener("scroll", fn, { passive: true }); return () => window.removeEventListener("scroll", fn); }, []);
   if (!v) return null;
   return (
-    <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    <button suppressHydrationWarning onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className="fixed bottom-6 left-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2/90 text-dim shadow-lg backdrop-blur-sm transition-all hover:border-accent/[0.3] hover:text-accent"
       aria-label="Back to top">
       <ArrowUp size={16} />

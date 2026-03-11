@@ -5,18 +5,21 @@ import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/shared";
 import { CalendlyEmbed } from "@/components/calendly-embed";
 import { budgetOptions, timelineOptions, tiers } from "@/lib/data";
+import { getReferralFromCookie } from "@/lib/referral";
 
 export default function ContactPage() {
   const [tierParam, setTierParam] = useState<string | null>(null);
+  const [referralCode, setReferralCode] = useState("");
   const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", timeline: "", tier: "", message: "" });
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setTierParam(params.get("tier"));
+    setReferralCode(getReferralFromCookie());
   }, []);
   const [status, setStatus] = useState<"idle"|"loading"|"success">("idle");
   useEffect(() => { if (tierParam) setForm(p => ({ ...p, tier: tierParam })); }, [tierParam]);
   const s = (k: string) => (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => setForm(p => ({ ...p, [k]: e.target.value }));
-  const submit = async () => { setStatus("loading"); try { await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }); } catch {} setStatus("success"); };
+  const submit = async () => { setStatus("loading"); try { await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, referral: referralCode || undefined }) }); } catch {} setStatus("success"); };
 
   return (
     <div className="pb-24 pt-36 sm:pt-40">
@@ -136,6 +139,7 @@ export default function ContactPage() {
                       <label className="mb-1.5 block font-mono text-[10px] uppercase tracking-[0.06em] text-dim">Project details *</label>
                       <textarea className="field" rows={4} placeholder={tierParam ? "Describe what you need. Include Figma links, screenshots, or references." : "Describe the problem, your goals, and any requirements."} value={form.message} onChange={s("message")} />
                     </div>
+                    <input type="hidden" name="referral" value={referralCode} />
                     <button onClick={submit} disabled={status === "loading"} className="btn-v w-full justify-center disabled:opacity-60">
                       {status === "loading" ? <Loader2 size={15} className="animate-spin" /> : <Send size={13} />}
                       {status === "loading" ? "Sending..." : tierParam ? `Request ${tierParam} Build` : "Submit inquiry"}

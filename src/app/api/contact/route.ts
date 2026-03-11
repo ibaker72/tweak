@@ -13,8 +13,8 @@ export async function POST(request: Request) {
       const resend = new Resend(key);
       await resend.emails.send({
         from: "Tweak & Build <noreply@tweakandbuild.com>", to: [to], replyTo: body.email,
-        subject: `${body.type === "quick" ? "Quick Build" : "Project"} inquiry from ${body.name}${body.company ? ` (${body.company})` : ""}`,
-        html: `<div style="font-family:-apple-system,sans-serif;max-width:560px"><h2 style="color:#8B5CF6">${body.type === "quick" ? "Quick Build Request" : "New Project Inquiry"}</h2><table style="width:100%;border-collapse:collapse">${Object.entries(body).filter(([k,v]) => v && k !== "type").map(([k,v]) => `<tr><td style="padding:8px 0;color:#888;width:100px;text-transform:capitalize">${k}</td><td style="padding:8px 0;color:#222">${v}</td></tr>`).join("")}</table></div>`,
+        subject: `${body.type === "quick" ? "Quick Build" : "Project"} inquiry from ${body.name}${body.company ? ` (${body.company})` : ""}${body.referral ? ` [Ref: ${body.referral}]` : ""}`,
+        html: `<div style="font-family:-apple-system,sans-serif;max-width:560px"><h2 style="color:#8B5CF6">${body.type === "quick" ? "Quick Build Request" : "New Project Inquiry"}</h2>${body.referral ? `<p style="background:#f0fdf4;border:1px solid #bbf7d0;padding:8px 12px;border-radius:6px;font-size:14px"><strong>Referred by:</strong> ${body.referral}</p>` : ""}<table style="width:100%;border-collapse:collapse">${Object.entries(body).filter(([k, v]) => v && k !== "type" && k !== "referral").map(([k, v]) => `<tr><td style="padding:8px 0;color:#888;width:100px;text-transform:capitalize">${k}</td><td style="padding:8px 0;color:#222">${v}</td></tr>`).join("")}</table><p style="padding:8px 0;color:#888;font-size:13px">Referred by: ${body.referral || "Direct (no referral)"}</p></div>`,
       });
       return NextResponse.json({ success: true });
     }

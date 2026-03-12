@@ -17,7 +17,7 @@ Let's start with the uncomfortable truth: hourly billing incentivizes your devel
 
 Not maliciously. Not deliberately. But when someone is paid by the hour, every inefficiency, every scope expansion, every "quick addition" directly increases their revenue. There's no economic incentive to be efficient. There's no penalty for scope creep. And there's no upper limit on what you'll pay.
 
-We know this because we used to bill hourly. And we saw firsthand how it warped the relationship between us and our clients — even when both sides had the best intentions.
+We know this because we used to bill hourly. And we saw firsthand how it warped the relationship between us and our clients - even when both sides had the best intentions.
 
 ## How Hourly Billing Actually Plays Out
 
@@ -57,7 +57,7 @@ Hourly billing turns every conversation into a potential cost event. "Can we hop
 
 This dynamic poisons the collaborative relationship that produces the best work. Clients hold back feedback. Developers avoid suggesting improvements that might extend the timeline. Both sides optimize for hours spent rather than outcomes achieved.
 
-Fixed pricing makes conversations free. Want to brainstorm an idea? Let's talk. Have feedback on the design? Send it over. Need a walkthrough of the codebase? Schedule it. None of these things change the price because the price isn't tied to time — it's tied to the deliverable.
+Fixed pricing makes conversations free. Want to brainstorm an idea? Let's talk. Have feedback on the design? Send it over. Need a walkthrough of the codebase? Schedule it. None of these things change the price because the price isn't tied to time - it's tied to the deliverable.
 
 ## How Fixed Pricing Actually Works
 
@@ -65,7 +65,7 @@ Here's our process:
 
 ### 1. Define the Scope Clearly
 
-Before we quote anything, we invest time understanding exactly what needs to be built. Not "a website" — but specifically which pages, which features, which integrations, and which outcomes matter.
+Before we quote anything, we invest time understanding exactly what needs to be built. Not "a website" - but specifically which pages, which features, which integrations, and which outcomes matter.
 
 We document this in a scope agreement that both sides sign. It lists every deliverable, every feature, and every exclusion. There's no ambiguity about what's included.
 
@@ -98,7 +98,7 @@ This approach means you're never penalized for having ideas. You just know the c
 
 ### "What if you overcharge because you're fast?"
 
-If we quote $3,000 and finish in 15 hours instead of 25, did you overpay? No — you paid for the outcome, not the hours. You got a professional website that converts visitors, loads fast, and works perfectly.
+If we quote $3,000 and finish in 15 hours instead of 25, did you overpay? No - you paid for the outcome, not the hours. You got a professional website that converts visitors, loads fast, and works perfectly.
 
 Our efficiency is the result of years of experience. We've built enough sites to know the fastest path to quality. You shouldn't pay more because someone else would take longer to achieve the same result.
 
@@ -106,7 +106,7 @@ Our efficiency is the result of years of experience. We've built enough sites to
 
 We invest heavily in the discovery phase specifically to prevent this. And our scope documents are detailed enough that both sides know exactly what's included.
 
-But if we genuinely underestimate — if the work turns out to be significantly more complex than we assessed — we absorb that cost. We quoted a price. We deliver at that price.
+But if we genuinely underestimate - if the work turns out to be significantly more complex than we assessed - we absorb that cost. We quoted a price. We deliver at that price.
 
 ### "What about ongoing work?"
 
@@ -136,7 +136,7 @@ Whether you work with us or someone else, here's what to look for:
 
 ## The Bottom Line
 
-Hourly billing isn't evil. It works fine for certain types of work — consulting, advisory, exploratory research where the scope genuinely can't be defined upfront.
+Hourly billing isn't evil. It works fine for certain types of work - consulting, advisory, exploratory research where the scope genuinely can't be defined upfront.
 
 But for building websites, web apps, and digital products? The scope can be defined. The deliverables can be listed. The price can be locked.
 

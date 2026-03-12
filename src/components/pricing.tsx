@@ -37,7 +37,7 @@ const tracks: Track[] = [
     rangeUnit: null,
     subtext: "Fixed rate · Typical turnaround: 1–3 weeks",
     description:
-      "You bring the design, wireframes, or a detailed brief. We build it — fast, responsive, and production-ready. Flat rate locked before we start.",
+      "You bring the design, wireframes, or a detailed brief. We build it - fast, responsive, and production-ready. Flat rate locked before we start.",
     tags: ["Page count", "CMS integration", "E-commerce", "Third-party integrations", "Revision rounds"],
     payment: "Paid upfront or 50/50 split depending on scope.",
     cta: "Get your fixed quote",
@@ -53,7 +53,7 @@ const tracks: Track[] = [
     rangeUnit: null,
     subtext: "Milestone billing · Typical timeline: 3–8 weeks",
     description:
-      "Full-cycle product engineering — from discovery and architecture through development, QA, and launch. We challenge assumptions, optimize for conversion, and deliver a product that performs.",
+      "Full-cycle product engineering - from discovery and architecture through development, QA, and launch. We challenge assumptions, optimize for conversion, and deliver a product that performs.",
     tags: ["Product complexity", "Custom features", "API integrations", "AI / automation", "Design from scratch"],
     payment: "Milestone-based: 40% to start · 30% midpoint · 30% before launch.",
     cta: "Book a strategy call",
@@ -82,7 +82,7 @@ const tracks: Track[] = [
     rangeUnit: "/month",
     subtext: "Monthly · Cancel anytime",
     description:
-      "Your product launched — now it needs to grow. Ongoing development, feature additions, performance optimization, and priority support on a predictable monthly budget.",
+      "Your product launched - now it needs to grow. Ongoing development, feature additions, performance optimization, and priority support on a predictable monthly budget.",
     tags: ["Feature development", "Bug fixes & maintenance", "Performance optimization", "Priority support", "Weekly iterations"],
     payment: "Billed monthly. No long-term contracts.",
     cta: "Explore a retainer",

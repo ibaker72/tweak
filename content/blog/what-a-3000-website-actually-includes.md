@@ -1,7 +1,7 @@
 ---
 title: "What a $3,000 Website Actually Includes (And Why Most Quotes Are Lies)"
 slug: what-a-3000-website-actually-includes
-excerpt: "A transparent breakdown of what goes into a professional multi-page website build — and why the $500 quotes and $30K proposals are both misleading."
+excerpt: "A transparent breakdown of what goes into a professional multi-page website build - and why the $500 quotes and $30K proposals are both misleading."
 date: "2025-10-28"
 author: "Tweak & Build"
 tags:
@@ -13,11 +13,11 @@ published: true
 
 ## The Pricing Problem in Web Development
 
-Ask five agencies what a website costs and you'll get five wildly different answers. We've seen quotes ranging from $500 on Fiverr to $35,000 from traditional agencies — for what appears to be the same deliverable.
+Ask five agencies what a website costs and you'll get five wildly different answers. We've seen quotes ranging from $500 on Fiverr to $35,000 from traditional agencies - for what appears to be the same deliverable.
 
 The truth is, those quotes aren't for the same thing. But unless you've built websites professionally, you have no way of knowing what's included, what's missing, and what's going to cost extra later.
 
-This post is our attempt at radical transparency. We're going to walk through exactly what goes into a professional multi-page website at the $3,000 price point — the kind we deliver under our Multi Page tier — and explain where every hour goes.
+This post is our attempt at radical transparency. We're going to walk through exactly what goes into a professional multi-page website at the $3,000 price point - the kind we deliver under our Multi Page tier - and explain where every hour goes.
 
 ## The Real Breakdown: Where Your Money Goes
 
@@ -28,11 +28,11 @@ Here's how we allocate time and effort on a typical 5-page business website:
 Before we write a single line of code, we need to understand your business. This phase includes:
 
 - **Kickoff call** (30-60 min): Understanding your business model, target customers, competitors, and what "success" looks like for this website
-- **Content audit**: Reviewing whatever you have — an old site, a Google Doc, a napkin sketch — and identifying what content needs to exist on each page
+- **Content audit**: Reviewing whatever you have - an old site, a Google Doc, a napkin sketch - and identifying what content needs to exist on each page
 - **Sitemap planning**: Defining the page structure, navigation hierarchy, and user flow from landing to conversion
 - **Competitive research**: Looking at 3-5 competitors to identify positioning opportunities and table-stakes features
 
-Most $500 builds skip this entirely. You hand over content and they arrange it on a template. That's not web development — it's data entry.
+Most $500 builds skip this entirely. You hand over content and they arrange it on a template. That's not web development - it's data entry.
 
 ### Phase 2: Design & Wireframing (6-10 hours)
 
@@ -148,11 +148,11 @@ Regardless of who you hire, ask these questions:
 5. **What's the revision process?** How many rounds? What constitutes a "revision" versus a "change request"?
 6. **What happens after launch?** Is there a support period? What does ongoing maintenance cost?
 
-A good partner — whether it's us or someone else — will answer all of these clearly and in writing before you pay a dime.
+A good partner - whether it's us or someone else - will answer all of these clearly and in writing before you pay a dime.
 
 ## The Bottom Line
 
-A $3,000 website isn't cheap. But it's not expensive either. It's the cost of having experienced professionals build something that actually works for your business — that loads fast, looks professional, ranks on Google, and converts visitors into customers.
+A $3,000 website isn't cheap. But it's not expensive either. It's the cost of having experienced professionals build something that actually works for your business - that loads fast, looks professional, ranks on Google, and converts visitors into customers.
 
 If your website is a core part of how you acquire customers (and for most businesses, it is), the ROI of a properly built site pays for itself within months.
 

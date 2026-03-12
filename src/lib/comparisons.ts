@@ -95,7 +95,7 @@ export const comparisons: ComparisonPage[] = [
   {
     slug: "tweak-and-build-vs-in-house",
     title: "Hiring In-House vs Tweak & Build",
-    subtitle: "Building a team is the right long-term play — but timing matters.",
+    subtitle: "Building a team is the right long-term play - but timing matters.",
     description:
       "Compare hiring an in-house developer with working with Tweak & Build. Cost, speed to delivery, and when each option makes sense.",
     themLabel: "In-House Hire",

@@ -98,7 +98,7 @@ export function ExitIntentPopup() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-accent/60">
                     Free Guide
                   </p>
-                  <h3 className="font-display text-[18px] font-bold text-white">Before you go —</h3>
+                  <h3 className="font-display text-[18px] font-bold text-white">Before you go </h3>
                 </div>
               </div>
 

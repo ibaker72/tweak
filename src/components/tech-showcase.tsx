@@ -105,7 +105,7 @@ const techStack = [
 const differentiators = [
   {
     title: "Senior-led execution",
-    desc: "No revolving door of junior devs. Your project is led by experienced engineers who've shipped real products — not managed from a distance.",
+    desc: "No revolving door of junior devs. Your project is led by experienced engineers who've shipped real products - not managed from a distance.",
   },
   {
     title: "Fixed pricing, always",

@@ -160,7 +160,7 @@ export const projects: Project[] = [
     category: "Affiliate & Commission Platform",
     tagline: "Affiliate and commission management platform with real-time tracking, automated payouts, and multi-tier campaign analytics.",
     description:
-      "A full-stack affiliate and commission management platform that enables businesses to run, track, and optimize their affiliate programs. Kommison handles partner onboarding, link generation, real-time conversion tracking, multi-tier commission structures, and automated payouts — replacing spreadsheets and fragmented tools with a single unified system.",
+      "A full-stack affiliate and commission management platform that enables businesses to run, track, and optimize their affiliate programs. Kommison handles partner onboarding, link generation, real-time conversion tracking, multi-tier commission structures, and automated payouts - replacing spreadsheets and fragmented tools with a single unified system.",
     challenge:
       "Affiliate program management is fragmented across spreadsheets, manual payout calculations, and disconnected tracking tools. Businesses running affiliate programs waste hours reconciling data and risk losing partners to delayed or inaccurate payments.",
     solution:
@@ -315,7 +315,7 @@ export const recentLaunches = [
 export const differentiators = [
   {
     title: "Senior-led execution",
-    desc: "No revolving door of junior devs. Your project is led by experienced engineers who've shipped real products — not managed from a distance.",
+    desc: "No revolving door of junior devs. Your project is led by experienced engineers who've shipped real products - not managed from a distance.",
   },
   {
     title: "Fixed pricing, always",
@@ -351,7 +351,7 @@ export const bestFitClients = [
 export const faqs = [
   {
     q: "What's the difference between Rapid Build and Custom Engineering?",
-    a: "Rapid Build is our flat-rate service for when you have a design, wireframes, or a clear spec — we implement what you provide, typically in 1–3 weeks. Custom Engineering is for projects that need strategy, architecture, and full-cycle development from scratch. Different starting points, same quality and the same team.",
+    a: "Rapid Build is our flat-rate service for when you have a design, wireframes, or a clear spec - we implement what you provide, typically in 1–3 weeks. Custom Engineering is for projects that need strategy, architecture, and full-cycle development from scratch. Different starting points, same quality and the same team.",
   },
   {
     q: "How do payments work?",
@@ -359,7 +359,7 @@ export const faqs = [
   },
   {
     q: "When do I get the source code and files?",
-    a: "Full source code, repository access, credentials, and all documentation transfer to you after final payment. This is standard for every engagement — you own 100% of what we build.",
+    a: "Full source code, repository access, credentials, and all documentation transfer to you after final payment. This is standard for every engagement - you own 100% of what we build.",
   },
   {
     q: "What if I'm not sure which path fits?",
@@ -371,11 +371,11 @@ export const faqs = [
   },
   {
     q: "What happens after I submit an inquiry?",
-    a: "We respond within one business day — usually within a few hours. For Rapid Builds, we confirm scope and send an invoice. For Custom Engineering projects, we schedule a 30-minute strategy call to understand your goals before writing a proposal.",
+    a: "We respond within one business day - usually within a few hours. For Rapid Builds, we confirm scope and send an invoice. For Custom Engineering projects, we schedule a 30-minute strategy call to understand your goals before writing a proposal.",
   },
   {
     q: "How many revision rounds do I get?",
-    a: "Rapid Builds include 1–3 revision rounds depending on scope. Custom Engineering projects include revisions at each milestone checkpoint — we work iteratively with weekly demos so there are no surprises at the end. Growth Retainer clients get continuous iteration as part of the monthly engagement.",
+    a: "Rapid Builds include 1–3 revision rounds depending on scope. Custom Engineering projects include revisions at each milestone checkpoint - we work iteratively with weekly demos so there are no surprises at the end. Growth Retainer clients get continuous iteration as part of the monthly engagement.",
   },
   {
     q: "What does a Custom Engineering project typically cost?",
@@ -383,7 +383,7 @@ export const faqs = [
   },
   {
     q: "What's included in a Growth Retainer?",
-    a: "A dedicated monthly budget for ongoing development — feature builds, bug fixes, performance improvements, and priority support. We work in weekly iterations so you see continuous progress. No long-term contracts. Cancel anytime with 30 days notice.",
+    a: "A dedicated monthly budget for ongoing development - feature builds, bug fixes, performance improvements, and priority support. We work in weekly iterations so you see continuous progress. No long-term contracts. Cancel anytime with 30 days notice.",
   },
   {
     q: "What happens after launch?",
@@ -391,7 +391,7 @@ export const faqs = [
   },
   {
     q: "Who is this best for?",
-    a: "Founders, small business owners, and early-stage startups who need a professional web presence or custom product built by senior engineers. If you value quality, clear communication, and getting it right the first time — we're a good fit.",
+    a: "Founders, small business owners, and early-stage startups who need a professional web presence or custom product built by senior engineers. If you value quality, clear communication, and getting it right the first time - we're a good fit.",
   },
 ];
 

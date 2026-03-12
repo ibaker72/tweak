@@ -32,7 +32,7 @@ import { Reveal } from "@/components/shared";
 
 /* ─── Partner Personas ─── */
 const personas = [
-  { icon: Palette, title: "Brand Designers", desc: "You design the brand — we build the site. Earn on every client you refer for development." },
+  { icon: Palette, title: "Brand Designers", desc: "You design the brand - we build the site. Earn on every client you refer for development." },
   { icon: Megaphone, title: "Marketing Consultants", desc: "Your clients need a web presence that converts. Send them our way and earn on the build." },
   { icon: Lightbulb, title: "Startup Advisors & Coaches", desc: "Founders in your network need MVPs and websites. Make the intro, earn the commission." },
   { icon: Users, title: "Community Operators", desc: "You run events, groups, or co-working spaces. Turn your network into recurring income." },

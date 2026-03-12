@@ -1,7 +1,7 @@
 ---
 title: "How We Cut a 48-Hour Quoting Process to 60 Seconds"
 slug: how-we-cut-quoting-to-60-seconds
-excerpt: "A technical case study on building Create3DParts — from manual email quoting losing leads to real-time STL parsing with instant Stripe checkout."
+excerpt: "A technical case study on building Create3DParts - from manual email quoting losing leads to real-time STL parsing with instant Stripe checkout."
 date: "2025-11-15"
 author: "Tweak & Build"
 tags:
@@ -13,11 +13,11 @@ published: true
 
 ## The Problem Nobody Wants to Talk About
 
-Here's a scenario most manufacturing founders know too well: a customer uploads a CAD file, sends an email, and waits. And waits. Forty-eight hours later — if they haven't already gone to a competitor — they get a quote back. Maybe.
+Here's a scenario most manufacturing founders know too well: a customer uploads a CAD file, sends an email, and waits. And waits. Forty-eight hours later - if they haven't already gone to a competitor - they get a quote back. Maybe.
 
 That was the reality at Create3DParts before we got involved. Their 3D printing operation was growing, but their quoting process was stuck in 2010. Every quote required a human to open the file, eyeball the geometry, estimate material usage, calculate print time, and type up a reply.
 
-The result? They were losing roughly 60% of leads who never came back after the initial inquiry. The ones who did convert were frustrated. And the team was spending 20+ hours per week on quoting alone — time they could have spent on actually running the business.
+The result? They were losing roughly 60% of leads who never came back after the initial inquiry. The ones who did convert were frustrated. And the team was spending 20+ hours per week on quoting alone - time they could have spent on actually running the business.
 
 ## Why This Wasn't a "Simple Fix"
 
@@ -36,7 +36,7 @@ We broke the problem into four pieces:
 
 ### 1. Real-Time STL Parsing
 
-When a customer uploads an STL file, we needed to extract usable data instantly — not queue it for manual review. We built a parsing pipeline that extracts volume, surface area, bounding box dimensions, and triangle count directly in the browser using Web Workers.
+When a customer uploads an STL file, we needed to extract usable data instantly - not queue it for manual review. We built a parsing pipeline that extracts volume, surface area, bounding box dimensions, and triangle count directly in the browser using Web Workers.
 
 The key insight: you don't need to fully render the 3D model to quote it. You need the volume (for material cost), the bounding box (to check it fits the print bed), and the surface area (to estimate support material). Everything else is nice-to-have.
 
@@ -64,7 +64,7 @@ We also built order tracking with automated email confirmations at each stage: o
 
 ### 4. File Storage and Management
 
-Uploaded CAD files go to AWS S3 with signed URLs. The Create3DParts team gets a simple dashboard showing all orders, file downloads, and order status management. Nothing fancy — just what they need to run the operation.
+Uploaded CAD files go to AWS S3 with signed URLs. The Create3DParts team gets a simple dashboard showing all orders, file downloads, and order status management. Nothing fancy - just what they need to run the operation.
 
 ## Why Next.js + Node.js
 
@@ -74,7 +74,7 @@ We get asked about stack decisions a lot, so here's the reasoning:
 
 **Node.js** for the pricing engine because the STL parsing libraries we needed were JavaScript-based. Keeping everything in one language meant one deployment pipeline, one set of dependencies, and one team that could debug anything.
 
-**Stripe** because it's Stripe. The Checkout integration took less than a day. Payment disputes, refunds, invoicing — all handled.
+**Stripe** because it's Stripe. The Checkout integration took less than a day. Payment disputes, refunds, invoicing - all handled.
 
 **AWS S3** for file storage because CAD files can be large (50MB+), and S3 handles that without us thinking about it. Signed URLs mean files are secure without building a separate auth layer for downloads.
 
@@ -87,7 +87,7 @@ The numbers after 30 days told the story:
 - **Manual quoting hours**: 20+ hours/week → essentially zero
 - **Customer complaints about wait times**: Gone
 
-But the number that mattered most to the founder was this: the leads that used to disappear during the 48-hour wait were now converting on the spot. The instant quote removed the biggest objection — uncertainty about price — and turned browsers into buyers.
+But the number that mattered most to the founder was this: the leads that used to disappear during the 48-hour wait were now converting on the spot. The instant quote removed the biggest objection - uncertainty about price - and turned browsers into buyers.
 
 ## What We'd Do Differently
 
@@ -101,4 +101,4 @@ The lesson from Create3DParts isn't about 3D printing. It's about this: if your 
 
 The technology to automate quoting, booking, ordering, or any customer-facing workflow exists today. The question is whether you build it with a tool that fits your business or force your business to fit a tool that doesn't.
 
-We chose to build exactly what was needed — nothing more, nothing less. That's the approach we take with every project at Tweak & Build.
+We chose to build exactly what was needed - nothing more, nothing less. That's the approach we take with every project at Tweak & Build.

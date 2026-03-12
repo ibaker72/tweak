@@ -1,15 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Terminal, ArrowLeft, Mail, Check, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/browser";
 
 export default function LoginPage() {
+  const [configError, setConfigError] = useState(false);
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setConfigError(params.get("error") === "config");
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -60,6 +66,11 @@ export default function LoginPage() {
                 <p className="mt-1.5 text-[13px] leading-relaxed text-body">
                   Sign in to track your project progress, review deliverables, and manage approvals.
                 </p>
+                {configError && (
+                  <p className="mt-3 text-[12px] text-amber-300">
+                    Portal authentication is not configured yet. Add Supabase environment variables to enable login.
+                  </p>
+                )}
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">

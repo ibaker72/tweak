@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Terminal, LayoutDashboard, FileText, CheckSquare, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 import { getProfile } from "@/lib/portal/queries";
 import { PortalNav } from "@/components/portal/portal-nav";
 
@@ -16,6 +17,10 @@ export default async function PortalLayout({
 }: {
   children: React.ReactNode;
 }) {
+  if (!getSupabaseEnv()) {
+    redirect("/login?error=config");
+  }
+
   const supabase = await createClient();
   const {
     data: { user },

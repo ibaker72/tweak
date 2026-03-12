@@ -15,6 +15,7 @@ import {
   Inbox,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 import { getUserProjects, getProjectDashboard } from "@/lib/portal/queries";
 import { StatusBadge } from "@/components/portal/status-badge";
 import { ProgressRing } from "@/components/portal/progress-ring";
@@ -33,6 +34,10 @@ interface PageProps {
 }
 
 export default async function ClientPortalPage({ searchParams }: PageProps) {
+  if (!getSupabaseEnv()) {
+    redirect("/login?error=config");
+  }
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");

@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
+  const [resent, setResent] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -28,19 +29,17 @@ export default function LoginPage() {
     return () => window.clearTimeout(timer);
   }, [cooldownSeconds]);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim() || cooldownSeconds > 0) return;
-
+  async function requestMagicLink(targetEmail: string) {
     setLoading(true);
     setError(null);
+    setResent(false);
 
     let authError: { status?: number; message?: string } | null = null;
 
     try {
       const supabase = createClient();
       const result = await supabase.auth.signInWithOtp({
-        email: email.trim(),
+        email: targetEmail.trim(),
         options: {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
         },
@@ -60,19 +59,38 @@ export default function LoginPage() {
         const waitSeconds = retryMatch ? Number.parseInt(retryMatch[1], 10) : 60;
         setCooldownSeconds(waitSeconds);
         setError(`Too many attempts. Please wait ${waitSeconds}s before requesting another magic link.`);
-        return;
+        return false;
       }
 
       if (authError.message?.toLowerCase().includes("not configured")) {
         setError("Portal authentication is not configured yet. Please contact support.");
-        return;
+        return false;
       }
 
       setError("Something went wrong. Please try again.");
-      return;
+      return false;
     }
 
+    return true;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim() || cooldownSeconds > 0) return;
+
+    const success = await requestMagicLink(email);
+    if (!success) return;
+
     setSent(true);
+  }
+
+  async function handleResend() {
+    if (!email.trim() || cooldownSeconds > 0) return;
+
+    const success = await requestMagicLink(email);
+    if (!success) return;
+
+    setResent(true);
   }
 
   return (
@@ -163,8 +181,29 @@ export default function LoginPage() {
                 <span className="font-medium text-white">{email}</span>.
                 <br />Click the link to access your portal.
               </p>
+              {error && (
+                <p className="mt-3 text-[12px] text-red-400">{error}</p>
+              )}
+              {resent && !error && (
+                <p className="mt-3 text-[12px] text-accent">
+                  New magic link sent. Please check your inbox.
+                </p>
+              )}
               <button
-                onClick={() => { setSent(false); setEmail(""); }}
+                onClick={handleResend}
+                disabled={loading || cooldownSeconds > 0}
+                className="btn-v mx-auto mt-5 !px-5 !py-2 !text-[12px] disabled:opacity-50"
+              >
+                {loading ? (
+                  <Loader2 size={14} className="animate-spin" />
+                ) : cooldownSeconds > 0 ? (
+                  <>Resend in {cooldownSeconds}s</>
+                ) : (
+                  <>Resend magic link</>
+                )}
+              </button>
+              <button
+                onClick={() => { setSent(false); setEmail(""); setError(null); setResent(false); }}
                 className="btn-o mx-auto mt-5 !px-5 !py-2 !text-[12px]"
               >
                 Use a different email

@@ -10,7 +10,7 @@ export function BlogCard({ post, delay = 0 }: { post: BlogPost; delay?: number }
       <Link href={`/blog/${post.slug}`} className="group block">
         <article className="card flex h-full flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:border-accent/[0.15] hover:shadow-[0_8px_32px_rgba(200,255,0,0.04)]">
           {/* Featured image area */}
-          <div className="relative h-48 overflow-hidden rounded-t-2xl bg-gradient-to-br from-surface-2 to-surface-3 sm:h-52">
+          <div className="relative h-52 overflow-hidden rounded-t-2xl bg-gradient-to-br from-surface-2 to-surface-3 sm:h-56">
             {post.featuredImage ? (
               <img
                 src={post.featuredImage}
@@ -35,7 +35,7 @@ export function BlogCard({ post, delay = 0 }: { post: BlogPost; delay?: number }
 
           {/* Content */}
           <div className="flex flex-1 flex-col p-6">
-            <h3 className="font-display text-[17px] font-bold leading-[1.3] tracking-[-0.01em] text-white transition-colors group-hover:text-accent/90">
+            <h3 className="line-clamp-2 font-display text-[17px] font-bold leading-[1.3] tracking-[-0.01em] text-white transition-colors group-hover:text-accent/90">
               {post.title}
             </h3>
             <p className="mt-2.5 line-clamp-2 flex-1 text-[13px] leading-[1.7] text-body">

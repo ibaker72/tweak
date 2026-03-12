@@ -208,10 +208,10 @@ export function Pricing() {
 
                     {/* "Most projects" badge — absolutely centered on top edge at all breakpoints */}
                     {track.primary && (
-                      <div className="absolute -top-[11px] left-1/2 z-10 -translate-x-1/2">
+                      <div className="absolute -top-[13px] left-1/2 z-10 -translate-x-1/2">
                         <span
-                          className="whitespace-nowrap rounded-full border border-accent/20 bg-[#0a0a12] px-3 py-[3px] font-mono text-[9px] font-medium uppercase tracking-[0.06em] text-accent/70"
-                          style={{ boxShadow: "inset 0 0.5px 0 rgba(200,255,0,0.08), 0 1px 3px rgba(0,0,0,0.3)" }}
+                          className="whitespace-nowrap rounded-full border border-accent/25 bg-[#0a0a12] px-4 py-[5px] font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-accent/80"
+                          style={{ boxShadow: "inset 0 0.5px 0 rgba(200,255,0,0.1), 0 2px 6px rgba(0,0,0,0.35)" }}
                         >
                           Most projects
                         </span>

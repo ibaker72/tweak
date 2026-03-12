@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useMemo } from "react";
 import {
   ArrowRight,
   Zap,
@@ -23,36 +22,24 @@ import {
   Send,
   Loader2,
   Check,
+  DollarSign,
+  Calculator,
+  Handshake,
+  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/shared";
 
-/* ─── Commission Cards ─── */
-const commissionTiers = [
-  {
-    icon: Zap,
-    name: "Rapid Build",
-    commission: "10%",
-    range: "on $2,500 – $8,000 projects",
-    example: "Refer a $5,000 project → earn $500",
-    payout: "Paid 14 days after client payment",
-  },
-  {
-    icon: Layers,
-    name: "Custom Engineering",
-    commission: "10%",
-    range: "on $8,000 – $30,000+ projects",
-    example: "Refer a $20,000 project → earn $2,000",
-    payout: "Paid per milestone as client pays",
-  },
-  {
-    icon: RefreshCcw,
-    name: "Growth Retainer",
-    commission: "10% for 3 months",
-    range: "on $2,000 – $5,000/month retainers",
-    example: "Refer a $3,000/mo retainer → earn $900 over 3 months",
-    payout: "Paid monthly for first 3 months",
-  },
+/* ─── Partner Personas ─── */
+const personas = [
+  { icon: Palette, title: "Brand Designers", desc: "You design the brand — we build the site. Earn on every client you refer for development." },
+  { icon: Megaphone, title: "Marketing Consultants", desc: "Your clients need a web presence that converts. Send them our way and earn on the build." },
+  { icon: Lightbulb, title: "Startup Advisors & Coaches", desc: "Founders in your network need MVPs and websites. Make the intro, earn the commission." },
+  { icon: Users, title: "Community Operators", desc: "You run events, groups, or co-working spaces. Turn your network into recurring income." },
+  { icon: FileText, title: "Copywriters & Content Creators", desc: "You write the copy — we build the site it lives on. A natural partnership." },
+  { icon: UserCheck, title: "Past Clients", desc: "You\u2019ve seen the quality firsthand. Refer a friend, earn a commission." },
+  { icon: Handshake, title: "Freelance Closers & Sales Agents", desc: "You know how to qualify and close. Earn 30% on deals you help bring across the line." },
+  { icon: TrendingUp, title: "Operators with Founder Networks", desc: "You\u2019re already in the room with decision-makers. Monetize the introductions you\u2019re already making." },
 ];
 
 /* ─── How it works ─── */
@@ -64,8 +51,8 @@ const steps = [
   },
   {
     num: "02",
-    title: "Share your link",
-    desc: "When you meet someone who needs a website, web app, or product built — send them to tweakandbuild.com using your unique link. Or introduce us directly via email.",
+    title: "Make the introduction",
+    desc: "When you meet someone who needs a website, web app, or product built \u2014 send them to tweakandbuild.com using your unique link. Or introduce us directly via email.",
   },
   {
     num: "03",
@@ -75,55 +62,49 @@ const steps = [
   {
     num: "04",
     title: "You get paid",
-    desc: "When the client pays, your commission hits your account within 14 days. Track everything in your partner dashboard.",
+    desc: "When the client pays, your commission is paid within Net 30. Track everything in your partner dashboard.",
   },
-];
-
-/* ─── Partner Personas ─── */
-const personas = [
-  { icon: Palette, title: "Brand Designers", desc: "You design the brand — we build the site. Earn on every client you refer for development." },
-  { icon: Megaphone, title: "Marketing Consultants", desc: "Your clients need a web presence that converts. Send them our way and earn on the build." },
-  { icon: Lightbulb, title: "Startup Advisors & Coaches", desc: "Founders in your network need MVPs and websites. Make the intro, earn the commission." },
-  { icon: Users, title: "Community Operators", desc: "You run events, groups, or co-working spaces. Turn your network into recurring income." },
-  { icon: FileText, title: "Copywriters & Content Creators", desc: "You write the copy — we build the site it lives on. A natural partnership." },
-  { icon: UserCheck, title: "Past Clients", desc: "You\u2019ve seen the quality firsthand. Refer a friend, earn a commission." },
 ];
 
 /* ─── Partner Toolkit ─── */
 const toolkit = [
-  { icon: Link2, title: "Unique referral link", desc: "Personalized URL with 90-day tracking" },
-  { icon: File, title: "Partner one-pager", desc: "PDF you can share with prospects — our services, pricing, and results" },
+  { icon: Link2, title: "Unique referral link", desc: "Personalized URL with 90-day attribution tracking" },
+  { icon: File, title: "Partner one-pager", desc: "PDF you can share with prospects \u2014 our services, pricing, and results" },
   { icon: Mail, title: "Intro email templates", desc: "Pre-written emails to make warm introductions" },
   { icon: LayoutDashboard, title: "Partner dashboard", desc: "Track your referrals, conversions, and earnings" },
   { icon: MessageCircle, title: "Direct line to Iyad", desc: "Priority communication for partner questions" },
-  { icon: Unlock, title: "No exclusivity", desc: "Work with anyone — no non-compete, no restrictions" },
+  { icon: Unlock, title: "No exclusivity", desc: "Work with anyone \u2014 no non-compete, no restrictions" },
 ];
 
 /* ─── FAQ ─── */
 const partnerFaqs = [
   {
     q: "How much can I realistically earn?",
-    a: "Our average project is $8,000\u2013$15,000. At 10% commission, one referral per month puts $800\u2013$1,500 in your pocket. Partners who actively make introductions typically earn $2,000\u2013$5,000 per quarter.",
+    a: "Our average project is $8,000\u2013$15,000. At 20% commission, one referral per month puts $1,600\u2013$3,000 in your pocket. Sales Partners earning 30% can clear $2,400\u2013$4,500 per referral. Active partners typically earn $5,000\u2013$15,000 per quarter.",
+  },
+  {
+    q: "What\u2019s the difference between Referral and Sales Partner?",
+    a: "Referral Partners (20%) make the warm introduction \u2014 we handle everything from there. Sales Partners (30%) actively help qualify the lead and guide them through pricing and commitment. The 30% tier is unlocked after closing 2 qualified deals or generating $15,000+ in referred revenue.",
   },
   {
     q: "Do I need to sell or close deals?",
-    a: "No. You make the introduction — we handle the strategy call, proposal, pricing, and the entire project. You don\u2019t need to understand our tech stack or scope projects.",
+    a: "Not as a Referral Partner. You make the introduction \u2014 we handle the strategy call, proposal, pricing, and the entire project. Sales Partners who want higher commissions can be more involved in the close.",
   },
   {
     q: "When do I get paid?",
-    a: "14 days after we receive payment from the client. For milestone-based projects, you earn as each milestone is paid. For retainers, you earn monthly for the first 3 months.",
+    a: "Net 30 after we receive cleared payment from the client. For milestone-based projects, you earn as each milestone is paid. For retainers, you earn monthly for up to 6 months.",
   },
   {
     q: "How do I track my referrals?",
-    a: "Every partner gets a unique referral link. When someone visits our site through your link, they\u2019re tracked for 90 days. You can also introduce clients directly via email — we\u2019ll manually attribute the referral.",
-  },
-  {
-    q: "What if someone I refer doesn\u2019t convert right away?",
-    a: "Your referral link has a 90-day attribution window. If they click your link today and submit an inquiry 60 days later, you still get credit.",
+    a: "Every partner gets a unique referral link with a 90-day attribution window. If they click your link today and submit an inquiry 60 days later, you still get credit. You can also introduce clients directly via email \u2014 we\u2019ll manually attribute the referral.",
   },
   {
     q: "Is there a minimum number of referrals required?",
-    a: "No minimums, no quotas. Refer one client a year or ten a month — you earn on every one.",
+    a: "No minimums, no quotas. Refer one client a year or ten a month \u2014 you earn on every one.",
+  },
+  {
+    q: "How do I unlock the 30% Sales Partner tier?",
+    a: "Close 2 qualified deals or generate $15,000+ in referred revenue. Once unlocked, the 30% rate applies to all future referrals. Final tier approval is at Tweak & Build\u2019s discretion.",
   },
   {
     q: "Can I refer myself?",
@@ -134,6 +115,163 @@ const partnerFaqs = [
 /* ─── Referral Estimate Options ─── */
 const referralOptions = ["1-2", "3-5", "5-10", "10+"];
 
+/* ─── Service configs for calculator ─── */
+type ServiceKey = "rapid" | "custom" | "retainer";
+const serviceConfigs: Record<ServiceKey, { label: string; min: number; max: number; step: number; isRetainer: boolean }> = {
+  rapid: { label: "Rapid Build", min: 2500, max: 8000, step: 500, isRetainer: false },
+  custom: { label: "Custom Engineering", min: 5000, max: 50000, step: 1000, isRetainer: false },
+  retainer: { label: "Growth Retainer", min: 1000, max: 10000, step: 500, isRetainer: true },
+};
+
+/* ─── Commission Calculator Component ─── */
+function CommissionCalculator() {
+  const [service, setService] = useState<ServiceKey>("custom");
+  const config = serviceConfigs[service];
+  const defaultValue = Math.round((config.min + config.max) / 2 / config.step) * config.step;
+  const [values, setValues] = useState<Record<ServiceKey, number>>({
+    rapid: 5000,
+    custom: 27000,
+    retainer: 5500,
+  });
+
+  const value = values[service];
+  const setValue = (v: number) => setValues((prev) => ({ ...prev, [service]: v }));
+
+  const calc = (rate: number) => {
+    const commission = value * rate;
+    if (config.isRetainer) {
+      return { monthly: commission, total: commission * 6 };
+    }
+    return { total: commission };
+  };
+
+  const referral = calc(0.2);
+  const sales = calc(0.3);
+
+  const fmt = (n: number) =>
+    n >= 1000
+      ? "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 })
+      : "$" + n;
+
+  return (
+    <section className="py-24 sm:py-32">
+      <Reveal>
+        <div className="mx-auto mb-14 max-w-[560px] text-center">
+          <span className="section-label">
+            <Calculator size={10} className="text-accent" />
+            Commission Calculator
+          </span>
+          <h2 className="section-title mt-4">See what a deal is worth</h2>
+          <p className="mt-4 text-[15px] leading-[1.7] text-body">
+            Choose a service, adjust the deal size, and instantly see your earnings at both partner tiers.
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <div className="mx-auto max-w-[680px]">
+          {/* Service selector pills */}
+          <div className="mb-8 flex justify-center gap-2">
+            {(Object.entries(serviceConfigs) as [ServiceKey, typeof config][]).map(([key, cfg]) => (
+              <button
+                key={key}
+                onClick={() => setService(key)}
+                className={cn(
+                  "rounded-full border px-5 py-2 font-mono text-[11px] font-medium transition-all duration-200",
+                  service === key
+                    ? "border-accent/30 bg-accent/[0.08] text-accent"
+                    : "border-white/[0.06] bg-white/[0.02] text-dim hover:border-white/[0.12] hover:text-white/60",
+                )}
+              >
+                {cfg.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Value controls */}
+          <div className="mb-8">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-dim">
+                {config.isRetainer ? "Monthly value" : "Project value"}
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="font-display text-[24px] font-black tracking-[-0.02em] text-white">
+                  {fmt(value)}
+                </span>
+                {config.isRetainer && (
+                  <span className="text-[13px] text-dim">/mo</span>
+                )}
+              </div>
+            </div>
+            <input
+              type="range"
+              min={config.min}
+              max={config.max}
+              step={config.step}
+              value={value}
+              onChange={(e) => setValue(Number(e.target.value))}
+              className="calc-slider w-full"
+            />
+            <div className="mt-1.5 flex justify-between font-mono text-[10px] text-dim">
+              <span>{fmt(config.min)}</span>
+              <span>{fmt(config.max)}{config.isRetainer ? "/mo" : ""}</span>
+            </div>
+          </div>
+
+          {/* Result cards */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {/* Referral Partner card */}
+            <div
+              className="rounded-[18px] border-[1.5px] border-white/10 p-6 transition-all duration-200"
+              style={{ background: "rgba(255,255,255,0.012)" }}
+            >
+              <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.06em] text-dim">Referral Partner</div>
+              <div className="mb-3 font-mono text-[11px] text-body">20% commission</div>
+              <div className="font-display text-[32px] font-black tracking-[-0.03em] text-white">
+                {fmt(referral.total)}
+              </div>
+              {config.isRetainer && referral.monthly !== undefined && (
+                <p className="mt-1 font-mono text-[11px] text-body">
+                  {fmt(referral.monthly)}/mo &times; 6 months
+                </p>
+              )}
+              {!config.isRetainer && (
+                <p className="mt-1 font-mono text-[11px] text-dim">per project</p>
+              )}
+            </div>
+
+            {/* Sales Partner card (featured) */}
+            <div
+              className="rounded-[18px] border-[1.5px] border-accent/40 p-6 transition-all duration-200"
+              style={{
+                background: "rgba(200,255,0,0.015)",
+                boxShadow: "0 0 40px rgba(200,255,0,0.04), inset 0 0 0 1px rgba(200,255,0,0.02)",
+              }}
+            >
+              <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.06em] text-accent/70">Sales Partner</div>
+              <div className="mb-3 font-mono text-[11px] text-accent/60">30% commission</div>
+              <div className="font-display text-[32px] font-black tracking-[-0.03em] text-accent">
+                {fmt(sales.total)}
+              </div>
+              {config.isRetainer && sales.monthly !== undefined && (
+                <p className="mt-1 font-mono text-[11px] text-accent/60">
+                  {fmt(sales.monthly)}/mo &times; 6 months
+                </p>
+              )}
+              {!config.isRetainer && (
+                <p className="mt-1 font-mono text-[11px] text-accent/50">per project</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   MAIN PAGE
+═══════════════════════════════════════════════════════ */
 export default function PartnersPage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [form, setForm] = useState({
@@ -174,75 +312,154 @@ export default function PartnersPage() {
             SECTION 1 — Hero
         ══════════════════════════════════════════════════ */}
         <Reveal>
-          <div className="mx-auto max-w-[680px] text-center">
+          <div className="mx-auto max-w-[720px] text-center">
             <span className="section-label">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-40" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
-              Partner Program
+              Partner Network
             </span>
-            <h1 className="mt-5 font-display text-[clamp(32px,5vw,52px)] font-black leading-[1.05] tracking-[-0.04em] text-white">
-              Earn commissions for every client you refer.
+            <h1 className="mt-5 font-display text-[clamp(32px,5vw,56px)] font-black leading-[1.05] tracking-[-0.04em] text-white">
+              Earn up to 30% when you bring the right clients.
             </h1>
-            <p className="mx-auto mt-4 max-w-[520px] text-[15px] leading-[1.75] text-body">
-              We pay 10% on every deal. Fixed pricing means your referrals know the cost upfront — no awkward surprises. You introduce, we build, you get paid.
+            <p className="mx-auto mt-5 max-w-[560px] text-[15px] leading-[1.75] text-body">
+              A premium partner program for people who already have trust with founders, operators, and service businesses. Make the introduction or help close the deal &mdash; either way, you get paid.
             </p>
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a href="#apply" className="btn-v w-full justify-center sm:w-auto">
-                Apply to become a partner <ArrowRight size={13} />
+                Apply to partner <ArrowRight size={13} />
               </a>
-              <a href="#how-it-works" className="text-[13px] font-semibold text-dim transition-colors hover:text-white">
-                See how it works
+              <a href="#commission" className="btn-o sm:w-auto">
+                See commission structure
               </a>
             </div>
+          </div>
+        </Reveal>
+
+        {/* Trust bullets */}
+        <Reveal delay={0.15}>
+          <div className="mx-auto mt-12 flex max-w-[700px] flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
+            {[
+              "Fixed pricing clients can understand",
+              "We handle proposals, delivery, and execution",
+              "Net 30 payouts with clear attribution",
+            ].map((bullet) => (
+              <div key={bullet} className="flex items-center gap-2.5">
+                <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border border-accent/20 bg-accent/[0.08]">
+                  <Check size={8} className="text-accent" />
+                </div>
+                <span className="font-mono text-[11px] text-body">{bullet}</span>
+              </div>
+            ))}
           </div>
         </Reveal>
 
         <div className="divider mt-16" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 2 — Commission Structure
+            SECTION 2 — Partner Tiers
         ══════════════════════════════════════════════════ */}
-        <section id="commission" className="py-24 sm:py-32">
+        <section id="tiers" className="scroll-mt-24 py-24 sm:py-32">
           <Reveal>
-            <div className="mx-auto mb-14 max-w-[520px] text-center">
-              <span className="section-label">Commissions</span>
-              <h2 className="section-title mt-4">What you earn</h2>
+            <div className="mx-auto mb-14 max-w-[560px] text-center">
+              <span className="section-label">Partner Tiers</span>
+              <h2 className="section-title mt-4">Choose how involved you want to be</h2>
               <p className="mt-4 text-[15px] leading-[1.7] text-body">
-                Transparent commissions on every engagement.
+                Some partners make the introduction. Others help qualify and close. Both models are rewarded.
               </p>
             </div>
           </Reveal>
 
-          <div className="mx-auto grid max-w-[1060px] items-stretch gap-5 md:grid-cols-3">
-            {commissionTiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={0.06 + i * 0.06}>
-                <div
-                  className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-white/10 px-7 pb-7 pt-7 transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
-                  style={{ background: "rgba(255,255,255,0.012)" }}
-                >
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-                  <tier.icon className="mb-4 h-8 w-8 text-neutral-500" strokeWidth={1.5} />
-                  <h3 className="font-display text-[20px] font-bold text-white">{tier.name}</h3>
-                  <div className="mt-4 flex items-baseline">
-                    <span className="font-display text-[clamp(28px,3.5vw,36px)] font-black leading-none tracking-[-0.03em] text-accent">
-                      {tier.commission}
-                    </span>
-                  </div>
-                  <p className="mt-1.5 font-mono text-[11px] text-dim">{tier.range}</p>
-                  <div className="mt-5 rounded-xl border border-accent/[0.12] bg-accent/[0.04] px-4 py-2.5 font-mono text-[11px] text-accent/80">
-                    {tier.example}
-                  </div>
-                  <p className="mt-auto pt-5 font-mono text-[10px] leading-[1.6] text-dim">{tier.payout}</p>
+          <div className="mx-auto grid max-w-[780px] items-stretch gap-5 md:grid-cols-2">
+            {/* Referral Partner — 20% */}
+            <Reveal delay={0.06}>
+              <div
+                className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-white/10 px-7 pb-7 pt-8 transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+                style={{ background: "rgba(255,255,255,0.012)" }}
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                <span className="mb-4 inline-block w-fit rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 font-mono text-[9px] font-medium uppercase tracking-[0.08em] text-dim">
+                  Referral Partner
+                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-display text-[clamp(48px,6vw,64px)] font-black leading-none tracking-[-0.04em] text-white">
+                    20%
+                  </span>
                 </div>
-              </Reveal>
-            ))}
+                <p className="mt-2 font-display text-[15px] font-semibold text-white/70">
+                  You introduce. We close.
+                </p>
+                <p className="mt-4 text-[13px] leading-[1.7] text-body">
+                  Send us a warm lead through your partner link or direct email intro. We handle discovery, proposal, close, and delivery. You earn 20% on closed business.
+                </p>
+                <ul className="mt-5 space-y-2.5">
+                  {[
+                    "Best for connectors and network-driven partners",
+                    "No sales call or proposal handling required",
+                    "Earn on approved, attributed deals",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[12px] leading-[1.6] text-body">
+                      <Check size={12} className="mt-0.5 flex-shrink-0 text-white/40" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            {/* Sales Partner — 30% (featured) */}
+            <Reveal delay={0.12}>
+              <div
+                className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-accent/40 px-7 pb-7 pt-8 transition-all duration-300 hover:border-accent/55 hover:shadow-[0_8px_40px_rgba(200,255,0,0.06)]"
+                style={{
+                  background: "rgba(200,255,0,0.015)",
+                  boxShadow: "0 0 40px rgba(200,255,0,0.04), inset 0 0 0 1px rgba(200,255,0,0.02)",
+                }}
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+                {/* Featured badge */}
+                <div className="absolute -top-[11px] left-1/2 z-10 -translate-x-1/2">
+                  <span
+                    className="whitespace-nowrap rounded-full border border-accent/25 bg-[#0a0a12] px-3.5 py-[3px] font-mono text-[9px] font-medium uppercase tracking-[0.06em] text-accent/80"
+                    style={{ boxShadow: "inset 0 0.5px 0 rgba(200,255,0,0.1), 0 1px 4px rgba(0,0,0,0.3)" }}
+                  >
+                    Premium tier
+                  </span>
+                </div>
+                <span className="mb-4 inline-block w-fit rounded-full border border-accent/15 bg-accent/[0.06] px-3 py-1 font-mono text-[9px] font-medium uppercase tracking-[0.08em] text-accent/70">
+                  Sales Partner
+                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-display text-[clamp(48px,6vw,64px)] font-black leading-none tracking-[-0.04em] text-accent">
+                    30%
+                  </span>
+                </div>
+                <p className="mt-2 font-display text-[15px] font-semibold text-accent/70">
+                  You qualify and help close. We build.
+                </p>
+                <p className="mt-4 text-[13px] leading-[1.7] text-body">
+                  For trusted partners who can guide the lead through pricing and commitment. Close 2 qualified deals or generate $15,000+ in referred revenue to unlock the 30% rate on future referrals.
+                </p>
+                <ul className="mt-5 space-y-2.5">
+                  {[
+                    "Best for consultants, closers, and strategic partners",
+                    "Higher upside for active involvement",
+                    "Premium tier unlocked through proven performance",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[12px] leading-[1.6] text-body">
+                      <Check size={12} className="mt-0.5 flex-shrink-0 text-accent/60" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
 
-          <Reveal delay={0.25}>
-            <p className="mx-auto mt-10 max-w-[700px] text-center font-mono text-[11px] leading-[1.7] text-dim">
-              Commissions are paid via Stripe or PayPal, 14 days after we receive client payment. 90-day attribution window on all referral links.
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-8 max-w-[600px] text-center font-mono text-[11px] leading-[1.6] text-dim">
+              Final tier approval is at Tweak &amp; Build&apos;s discretion to maintain partner quality.
             </p>
           </Reveal>
         </section>
@@ -250,7 +467,137 @@ export default function PartnersPage() {
         <div className="divider" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 3 — How It Works
+            SECTION 3 — Earnings by Service Type
+        ══════════════════════════════════════════════════ */}
+        <section id="commission" className="scroll-mt-24 py-24 sm:py-32">
+          <Reveal>
+            <div className="mx-auto mb-14 max-w-[560px] text-center">
+              <span className="section-label">
+                <DollarSign size={10} className="text-accent" />
+                Earnings by Engagement
+              </span>
+              <h2 className="section-title mt-4">What a closed deal is worth to you</h2>
+              <p className="mt-4 text-[15px] leading-[1.7] text-body">
+                Transparent commission ranges across our core offers.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mx-auto grid max-w-[1060px] items-stretch gap-5 md:grid-cols-3">
+            {/* Rapid Build */}
+            <Reveal delay={0.06}>
+              <div
+                className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-white/10 px-7 pb-7 pt-7 transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+                style={{ background: "rgba(255,255,255,0.012)" }}
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                <Zap className="mb-4 h-8 w-8 text-neutral-500" strokeWidth={1.5} />
+                <h3 className="font-display text-[20px] font-bold text-white">Rapid Build</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="font-display text-[clamp(24px,3vw,30px)] font-black leading-none tracking-[-0.03em] text-white">
+                    $2,500 &ndash; $8,000
+                  </span>
+                </div>
+                <div className="mt-5 space-y-2">
+                  <div className="flex items-center justify-between rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-body">20%</span>
+                    <span className="font-mono text-[12px] font-semibold text-white">$500 &ndash; $1,600</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border border-accent/[0.12] bg-accent/[0.04] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-accent/70">30%</span>
+                    <span className="font-mono text-[12px] font-semibold text-accent">$750 &ndash; $2,400</span>
+                  </div>
+                </div>
+                <p className="mt-auto pt-5 font-mono text-[10px] leading-[1.6] text-dim">1&ndash;3 week turnaround</p>
+              </div>
+            </Reveal>
+
+            {/* Custom Engineering */}
+            <Reveal delay={0.12}>
+              <div
+                className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-accent/40 px-7 pb-7 pt-7 transition-all duration-300 hover:border-accent/55 hover:shadow-[0_8px_40px_rgba(200,255,0,0.06)]"
+                style={{
+                  background: "rgba(200,255,0,0.015)",
+                  boxShadow: "0 0 40px rgba(200,255,0,0.04), inset 0 0 0 1px rgba(200,255,0,0.02)",
+                }}
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+                <Layers className="mb-4 h-8 w-8 text-accent/50" strokeWidth={1.5} />
+                <h3 className="font-display text-[20px] font-bold text-white">Custom Engineering</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="font-display text-[clamp(24px,3vw,30px)] font-black leading-none tracking-[-0.03em] text-white">
+                    $8,000 &ndash; $30,000+
+                  </span>
+                </div>
+                <div className="mt-5 space-y-2">
+                  <div className="flex items-center justify-between rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-body">20%</span>
+                    <span className="font-mono text-[12px] font-semibold text-white">$1,600 &ndash; $6,000+</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border border-accent/[0.12] bg-accent/[0.04] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-accent/70">30%</span>
+                    <span className="font-mono text-[12px] font-semibold text-accent">$2,400 &ndash; $9,000+</span>
+                  </div>
+                </div>
+                <p className="mt-auto pt-5 font-mono text-[10px] leading-[1.6] text-dim">3&ndash;8 week delivery window</p>
+              </div>
+            </Reveal>
+
+            {/* Growth Retainer */}
+            <Reveal delay={0.18}>
+              <div
+                className="group relative flex h-full flex-col overflow-visible rounded-[20px] border-[1.5px] border-white/10 px-7 pb-7 pt-7 transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+                style={{ background: "rgba(255,255,255,0.012)" }}
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+                <RefreshCcw className="mb-4 h-8 w-8 text-neutral-500" strokeWidth={1.5} />
+                <h3 className="font-display text-[20px] font-bold text-white">Growth Retainer</h3>
+                <div className="mt-4 flex items-baseline gap-1.5">
+                  <span className="font-display text-[clamp(24px,3vw,30px)] font-black leading-none tracking-[-0.03em] text-white">
+                    $2,000 &ndash; $5,000
+                  </span>
+                  <span className="text-[clamp(12px,1.5vw,15px)] font-medium text-white/30">/month</span>
+                </div>
+                <div className="mt-5 space-y-2">
+                  <div className="flex items-center justify-between rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-body">20%</span>
+                    <span className="font-mono text-[12px] font-semibold text-white">$400 &ndash; $1,000/mo</span>
+                  </div>
+                  <div className="flex items-center justify-between rounded-lg border border-accent/[0.12] bg-accent/[0.04] px-3.5 py-2.5">
+                    <span className="font-mono text-[11px] text-accent/70">30%</span>
+                    <span className="font-mono text-[12px] font-semibold text-accent">$600 &ndash; $1,500/mo</span>
+                  </div>
+                </div>
+                <p className="mt-auto pt-5 font-mono text-[10px] leading-[1.6] text-dim">Commission capped at 6 months</p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Payout policy strip */}
+          <Reveal delay={0.25}>
+            <div className="mx-auto mt-10 flex max-w-[860px] flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-2xl border border-white/[0.04] bg-white/[0.015] px-6 py-4 text-center font-mono text-[10px] leading-[1.6] text-dim">
+              <span>Net 30 after cleared client payment</span>
+              <span className="hidden text-white/10 sm:inline">&middot;</span>
+              <span>90-day attribution window</span>
+              <span className="hidden text-white/10 sm:inline">&middot;</span>
+              <span>Retainer commissions capped at 6 months</span>
+              <span className="hidden text-white/10 sm:inline">&middot;</span>
+              <span>Paid via Stripe or PayPal</span>
+            </div>
+          </Reveal>
+        </section>
+
+        <div className="divider" />
+
+        {/* ══════════════════════════════════════════════════
+            SECTION 4 — Commission Calculator
+        ══════════════════════════════════════════════════ */}
+        <CommissionCalculator />
+
+        <div className="divider" />
+
+        {/* ══════════════════════════════════════════════════
+            SECTION 5 — How It Works
         ══════════════════════════════════════════════════ */}
         <section id="how-it-works" className="scroll-mt-24 py-24 sm:py-32">
           <Reveal>
@@ -287,7 +634,7 @@ export default function PartnersPage() {
         <div className="divider" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 4 — Who This Is For
+            SECTION 6 — Who This Is For
         ══════════════════════════════════════════════════ */}
         <section className="py-24 sm:py-32">
           <Reveal>
@@ -323,7 +670,7 @@ export default function PartnersPage() {
         <div className="divider" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 5 — What Partners Get
+            SECTION 7 — What Partners Get
         ══════════════════════════════════════════════════ */}
         <section className="py-24 sm:py-32">
           <Reveal>
@@ -351,7 +698,7 @@ export default function PartnersPage() {
         <div className="divider" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 6 — FAQ
+            SECTION 8 — FAQ
         ══════════════════════════════════════════════════ */}
         <section className="py-24 sm:py-32">
           <div className="mx-auto max-w-[780px]">
@@ -394,13 +741,13 @@ export default function PartnersPage() {
         <div className="divider" />
 
         {/* ══════════════════════════════════════════════════
-            SECTION 7 — Application Form
+            SECTION 9 — Application Form
         ══════════════════════════════════════════════════ */}
         <section id="apply" className="scroll-mt-24 py-24 sm:py-32">
           <Reveal>
             <div className="mx-auto mb-10 max-w-[520px] text-center">
               <span className="section-label">Apply</span>
-              <h2 className="section-title mt-4">Apply to become a partner</h2>
+              <h2 className="section-title mt-4">Apply to the partner network</h2>
               <p className="mt-4 text-[15px] leading-[1.7] text-body">
                 Takes 2 minutes. We review every application within 48 hours.
               </p>

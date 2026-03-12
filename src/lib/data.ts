@@ -297,6 +297,7 @@ export const techStack = [
   { name: "WordPress", color: "#21759B" },
   { name: "Node.js", color: "#68A063" },
   { name: "Vercel", color: "#fff" },
+  { name: "Tailwind UI", color: "#38BDF8" },
 ];
 
 export const metrics = [

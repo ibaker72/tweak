@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Circle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal, Counter } from "./shared";
 import { siteConfig } from "@/lib/config";
 
@@ -16,8 +16,8 @@ const liveProjects = [
 const codeLines = [
   { text: "const product = await build({", color: "text-white/70" },
   { text: '  client: "your-startup",', color: "text-accent/70" },
-  { text: "  quality: \"production\",", color: "text-accent/70" },
-  { text: "  timeline: \"weeks-not-months\",", color: "text-accent/70" },
+  { text: '  quality: "production",', color: "text-accent/70" },
+  { text: '  timeline: "weeks-not-months",', color: "text-accent/70" },
   { text: "  ownership: 1.0,", color: "text-accent/70" },
   { text: "});", color: "text-white/70" },
   { text: "", color: "" },
@@ -56,7 +56,6 @@ function TypingCode() {
 export function Hero() {
   return (
     <section className="relative min-h-[100dvh] overflow-hidden">
-      {/* Subtle grid background */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
@@ -65,13 +64,10 @@ export function Hero() {
           backgroundSize: "72px 72px",
         }}
       />
-      {/* Accent radial glow - top */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_-10%,rgba(200,255,0,0.04),transparent)]" />
-      {/* Secondary glow - bottom right for depth */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_80%_80%,rgba(200,255,0,0.015),transparent)]" />
 
       <div className="wrap relative flex min-h-[100dvh] flex-col justify-center pb-10 pt-24 sm:pb-16 sm:pt-24 lg:pb-24 lg:pt-28">
-        {/* Top bar: status + availability */}
         <Reveal>
           <div className="mb-8 sm:mb-10">
             <div
@@ -82,16 +78,14 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
               </span>
-              <span className="font-mono text-[10px] font-medium tracking-[0.06em] text-emerald-400/80 sm:text-[11px] sm:text-emerald-400/90">{siteConfig.availability}</span>
-              <span className="hidden h-3 w-px bg-emerald-400/15 sm:inline-block" />
-              <span className="hidden font-mono text-[10px] text-emerald-400/50 sm:inline">{siteConfig.openSlots} slots open for {siteConfig.currentQuarter}</span>
+              <span className="font-mono text-[10px] font-medium tracking-[0.06em] text-emerald-400/80 sm:text-[11px] sm:text-emerald-400/90">
+                {siteConfig.availability}
+              </span>
             </div>
           </div>
         </Reveal>
 
-        {/* Main headline area */}
         <div className="grid gap-12 sm:gap-14 lg:grid-cols-[1fr,480px] lg:items-center lg:gap-20">
-          {/* Left: copy */}
           <div>
             <Reveal delay={0.05}>
               <h1 className="font-display text-[clamp(44px,11vw,80px)] font-black leading-[0.9] tracking-[-0.045em] text-white sm:text-[clamp(42px,7vw,80px)] sm:leading-[0.92] sm:tracking-[-0.05em]">
@@ -120,7 +114,6 @@ export function Hero() {
               </div>
             </Reveal>
 
-            {/* Micro-proof metrics inline */}
             <Reveal delay={0.24}>
               <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-white/[0.06] pt-7 sm:mt-12 sm:gap-10 sm:pt-8">
                 {[
@@ -132,22 +125,20 @@ export function Hero() {
                     <div className="font-display text-[28px] font-black tracking-[-0.03em] text-white sm:text-[32px]">
                       <Counter end={m.value} suffix={m.suffix} />
                     </div>
-                    <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-dim sm:text-[10px]">{m.label}</div>
+                    <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-dim sm:text-[10px]">
+                      {m.label}
+                    </div>
                   </div>
                 ))}
               </div>
             </Reveal>
           </div>
 
-          {/* Right: Studio terminal + live feed */}
           <Reveal delay={0.15}>
             <div className="relative">
-              {/* Glow behind card */}
               <div className="pointer-events-none absolute -inset-8 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(200,255,0,0.03),transparent_70%)]" />
 
-              {/* Outer container - studio monitor */}
               <div className="relative overflow-hidden rounded-2xl border border-white/[0.10] bg-surface-1 shadow-[0_16px_64px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.03)_inset] sm:rounded-2xl">
-                {/* Monitor header */}
                 <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3 sm:px-6 sm:py-3.5">
                   <div className="flex items-center gap-2.5">
                     <div className="flex gap-1.5">
@@ -166,12 +157,10 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Code block section */}
                 <div className="border-b border-white/[0.04] px-5 py-5 sm:px-6 sm:py-6">
                   <TypingCode />
                 </div>
 
-                {/* Project rows */}
                 <div className="divide-y divide-white/[0.04]">
                   {liveProjects.map((proj, i) => (
                     <div
@@ -184,9 +173,7 @@ export function Hero() {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className="truncate text-[13px] font-semibold text-white sm:text-[14px]">{proj.name}</span>
-                          <span
-                            className="flex-shrink-0 rounded-full border border-white/[0.06] bg-white/[0.02] px-2 py-[2px] font-mono text-[9px] tracking-[0.03em] text-white/30"
-                          >
+                          <span className="flex-shrink-0 rounded-full border border-white/[0.06] bg-white/[0.02] px-2 py-[2px] font-mono text-[9px] tracking-[0.03em] text-white/30">
                             {proj.tag}
                           </span>
                         </div>
@@ -196,7 +183,6 @@ export function Hero() {
                   ))}
                 </div>
 
-                {/* Bottom stats bar */}
                 <div className="grid grid-cols-3 border-t border-white/[0.06] bg-white/[0.01]">
                   {[
                     { val: "12+", label: "Shipped" },
@@ -204,7 +190,9 @@ export function Hero() {
                     { val: "100%", label: "Ownership" },
                   ].map((stat, i) => (
                     <div key={stat.label} className={`px-5 py-4 sm:px-6 ${i < 2 ? "border-r border-white/[0.04]" : ""}`}>
-                      <div className="font-display text-[18px] font-black tracking-[-0.02em] text-white sm:text-[20px]">{stat.val}</div>
+                      <div className="font-display text-[18px] font-black tracking-[-0.02em] text-white sm:text-[20px]">
+                        {stat.val}
+                      </div>
                       <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-dim">{stat.label}</div>
                     </div>
                   ))}
@@ -214,10 +202,11 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Shipped for - client logos */}
         <Reveal delay={0.3}>
           <div className="mt-16 border-t border-white/[0.04] pt-8 sm:mt-20 sm:pt-10">
-            <p className="mb-4 text-center font-mono text-[9px] uppercase tracking-[0.16em] text-dim sm:mb-5 sm:text-[10px]">Trusted by founders at</p>
+            <p className="mb-4 text-center font-mono text-[9px] uppercase tracking-[0.16em] text-dim sm:mb-5 sm:text-[10px]">
+              Trusted by founders at
+            </p>
             <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:gap-x-3">
               {clientNames.map((name) => (
                 <span

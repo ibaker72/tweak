@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Reveal, Counter } from "./shared";
+import { Reveal } from "./shared";
 import { siteConfig } from "@/lib/config";
 
 const clientNames = ["Create3DParts", "LeadsAndSaaS", "Meridian Health", "Atlas Freight", "Kommison"];
@@ -207,24 +207,6 @@ export function Hero() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.24}>
-              <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-white/[0.06] pt-7 sm:mt-12 sm:gap-10 sm:pt-8">
-                {[
-                  { value: 12, suffix: "+", label: "Products shipped" },
-                  { value: 35, suffix: "%", label: "Avg. conversion lift" },
-                  { value: 100, suffix: "%", label: "Code ownership" },
-                ].map((m) => (
-                  <div key={m.label}>
-                    <div className="font-display text-[28px] font-black tracking-[-0.03em] text-white sm:text-[32px]">
-                      <Counter end={m.value} suffix={m.suffix} />
-                    </div>
-                    <div className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-dim sm:text-[10px]">
-                      {m.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
 
           <Reveal delay={0.15}>

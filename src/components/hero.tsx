@@ -10,45 +10,138 @@ const clientNames = ["Create3DParts", "LeadsAndSaaS", "Meridian Health", "Atlas 
 const liveProjects = [
   { name: "Create3DParts.com", tag: "E-Commerce", result: "+35% orders" },
   { name: "LeadsAndSaaS", tag: "SaaS Platform", result: "Shipped in <1wk" },
-  { name: "Meridian Health", tag: "Patient Portal", result: "-40% no-shows" },
-];
-
-const codeLines = [
-  { text: "const product = await build({", color: "text-white/70" },
-  { text: '  client: "your-startup",', color: "text-accent/70" },
-  { text: '  quality: "production",', color: "text-accent/70" },
-  { text: '  timeline: "weeks-not-months",', color: "text-accent/70" },
-  { text: "  ownership: 1.0,", color: "text-accent/70" },
-  { text: "});", color: "text-white/70" },
-  { text: "", color: "" },
-  { text: "// → deployed to production ✓", color: "text-emerald-400/60" },
+  { name: "Kommison", tag: "Referral Platform", result: "In Progress" },
 ];
 
 function TypingCode() {
+  const scenes = [
+    [
+      'const product = await build({',
+      '  client: "your-startup",',
+      '  quality: "production",',
+      '  timeline: "weeks-not-months",',
+      '  ownership: 1.0,',
+      '});',
+      '',
+      '// → deployed to production ✓',
+    ],
+    [
+      'const launch = await optimize({',
+      '  speed: "fast",',
+      '  ux: "premium",',
+      '  seo: "structured",',
+      '  conversions: "tracked",',
+      '});',
+      '',
+      '// → metrics improving ✓',
+    ],
+    [
+      'const system = await automate({',
+      '  leads: "captured",',
+      '  followUp: "instant",',
+      '  handoff: "clean",',
+      '  reporting: "live",',
+      '});',
+      '',
+      '// → ops running smoother ✓',
+    ],
+  ];
+
+  const [sceneIndex, setSceneIndex] = useState(0);
   const [visibleLines, setVisibleLines] = useState(0);
+  const [isResetting, setIsResetting] = useState(false);
+  const [cursorVisible, setCursorVisible] = useState(true);
+
+  const currentScene = scenes[sceneIndex];
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
-    codeLines.forEach((_, i) => {
-      timers.push(setTimeout(() => setVisibleLines(i + 1), 600 + i * 280));
-    });
-    return () => timers.forEach(clearTimeout);
+    const cursorTimer = setInterval(() => {
+      setCursorVisible((prev) => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorTimer);
   }, []);
+
+  useEffect(() => {
+    setVisibleLines(0);
+    setIsResetting(false);
+
+    const lineTimers: NodeJS.Timeout[] = [];
+
+    currentScene.forEach((_, i) => {
+      lineTimers.push(
+        setTimeout(() => {
+          setVisibleLines(i + 1);
+        }, 250 + i * 220)
+      );
+    });
+
+    const totalTypingTime = 250 + currentScene.length * 220;
+
+    const holdTimer = setTimeout(() => {
+      setIsResetting(true);
+    }, totalTypingTime + 1600);
+
+    const nextSceneTimer = setTimeout(() => {
+      setSceneIndex((prev) => (prev + 1) % scenes.length);
+    }, totalTypingTime + 2100);
+
+    return () => {
+      lineTimers.forEach(clearTimeout);
+      clearTimeout(holdTimer);
+      clearTimeout(nextSceneTimer);
+    };
+  }, [sceneIndex, currentScene]);
 
   return (
     <div className="font-mono text-[11px] leading-[2] sm:text-[12px]">
-      {codeLines.map((line, i) => (
-        <div
-          key={i}
-          className={`${line.color} transition-all duration-300`}
-          style={{
-            opacity: i < visibleLines ? 1 : 0,
-            transform: i < visibleLines ? "translateY(0)" : "translateY(6px)",
-          }}
-        >
-          {line.text || "\u00A0"}
-        </div>
-      ))}
+      {currentScene.map((line, i) => {
+        const isComment = line.startsWith("//");
+        const isKeyLine =
+          line.includes('client:') ||
+          line.includes('quality:') ||
+          line.includes('timeline:') ||
+          line.includes('ownership:') ||
+          line.includes('speed:') ||
+          line.includes('ux:') ||
+          line.includes('seo:') ||
+          line.includes('conversions:') ||
+          line.includes('leads:') ||
+          line.includes('followUp:') ||
+          line.includes('handoff:') ||
+          line.includes('reporting:');
+
+        const colorClass = isComment
+          ? "text-emerald-400/60"
+          : isKeyLine
+            ? "text-accent/70"
+            : "text-white/70";
+
+        const showCursor = i === visibleLines - 1 && !isResetting;
+
+        return (
+          <div
+            key={`${sceneIndex}-${i}`}
+            className={`${colorClass} transition-all duration-300`}
+            style={{
+              opacity: i < visibleLines ? (isResetting ? 0 : 1) : 0,
+              transform:
+                i < visibleLines
+                  ? isResetting
+                    ? "translateY(-4px)"
+                    : "translateY(0)"
+                  : "translateY(6px)",
+            }}
+          >
+            {line || "\u00A0"}
+            {showCursor ? (
+              <span className="ml-0.5 inline-block text-accent/80">
+                {cursorVisible ? "▋" : " "}
+              </span>
+            ) : null}
+          </div>
+        );
+      })}
     </div>
   );
 }
